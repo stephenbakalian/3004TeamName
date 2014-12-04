@@ -14,13 +14,16 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    login.cpp
+    login.cpp \
+    studentviewtextbooks.cpp
 
 HEADERS  += mainwindow.h \
-    login.h
+    login.h \
+    studentviewtextbooks.h
 
 FORMS    += mainwindow.ui \
-    login.ui
+    login.ui \
+    studentviewtextbooks.ui
 
 OTHER_FILES +=
 

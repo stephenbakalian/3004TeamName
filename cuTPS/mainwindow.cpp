@@ -9,7 +9,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     Login *login =new Login();
     this->setCentralWidget(login);
-
 }
 
 MainWindow::~MainWindow()
