@@ -1,6 +1,6 @@
 #include "login.h"
 #include "ui_login.h"
-
+#include "mainwindow.h"
 Login::Login(QWidget *parent) :
     QWidget(parent), ui(new Ui::Login)
 {
@@ -10,4 +10,9 @@ Login::Login(QWidget *parent) :
 Login::~Login()
 {
     delete ui;
+}
+
+void Login::on_pushButton_clicked()
+{
+    ((MainWindow*)parentWidget())->setStuViewItems();
 }

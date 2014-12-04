@@ -183,29 +183,36 @@ p, li { white-space: pre-wrap; }
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_3">
      <item>
-      <layout class="QGridLayout" name="gridLayout_3">
-       <item row="6" column="5">
+      <layout class="QGridLayout" name="ItemGrid">
+       <item row="3" column="2">
+        <widget class="QLabel" name="label_51">
+         <property name="text">
+          <string>Section</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="4">
         <widget class="Line" name="line_13">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
         </widget>
        </item>
-       <item row="2" column="5">
+       <item row="2" column="4">
         <widget class="Line" name="line_14">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
         </widget>
        </item>
-       <item row="4" column="5">
+       <item row="4" column="4">
         <widget class="Line" name="line_15">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
         </widget>
        </item>
-       <item row="5" column="5">
+       <item row="5" column="4">
         <widget class="Line" name="line_16">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -213,7 +220,7 @@ p, li { white-space: pre-wrap; }
         </widget>
        </item>
        <item row="6" column="0">
-        <spacer name="verticalSpacer_3">
+        <spacer name="Endoflistspacer">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
@@ -225,14 +232,14 @@ p, li { white-space: pre-wrap; }
          </property>
         </spacer>
        </item>
-       <item row="1" column="5">
+       <item row="1" column="4">
         <widget class="Line" name="line_17">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
         </widget>
        </item>
-       <item row="3" column="5">
+       <item row="3" column="4">
         <widget class="Line" name="line_18">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -247,7 +254,7 @@ p, li { white-space: pre-wrap; }
         </widget>
        </item>
        <item row="1" column="0">
-        <widget class="QLabel" name="label_46">
+        <widget class="QLabel" name="NameTitle">
          <property name="text">
           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Item Name&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
@@ -267,13 +274,6 @@ p, li { white-space: pre-wrap; }
          </property>
         </widget>
        </item>
-       <item row="2" column="3">
-        <widget class="QPushButton" name="pushButton_12">
-         <property name="text">
-          <string>Details</string>
-         </property>
-        </widget>
-       </item>
        <item row="3" column="3">
         <widget class="QPushButton" name="pushButton_13">
          <property name="text">
@@ -281,8 +281,22 @@ p, li { white-space: pre-wrap; }
          </property>
         </widget>
        </item>
+       <item row="2" column="3">
+        <widget class="QPushButton" name="pushButton_12">
+         <property name="text">
+          <string>Details</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="3">
+        <widget class="QPushButton" name="pushButton_14">
+         <property name="text">
+          <string>Details</string>
+         </property>
+        </widget>
+       </item>
        <item row="0" column="2">
-        <spacer name="horizontalSpacer_5">
+        <spacer name="TypeSpacer">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
          </property>
@@ -293,13 +307,6 @@ p, li { white-space: pre-wrap; }
           </size>
          </property>
         </spacer>
-       </item>
-       <item row="4" column="3">
-        <widget class="QPushButton" name="pushButton_14">
-         <property name="text">
-          <string>Details</string>
-         </property>
-        </widget>
        </item>
        <item row="2" column="2">
         <widget class="QLabel" name="label_49">
@@ -312,13 +319,6 @@ p, li { white-space: pre-wrap; }
         <widget class="QLabel" name="label_50">
          <property name="text">
           <string>Chapter</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="2">
-        <widget class="QLabel" name="label_51">
-         <property name="text">
-          <string>Section</string>
          </property>
         </widget>
        </item>
@@ -343,36 +343,8 @@ p, li { white-space: pre-wrap; }
          </property>
         </widget>
        </item>
-       <item row="4" column="4">
-        <widget class="QCheckBox" name="checkBox_11">
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="4">
-        <widget class="QCheckBox" name="checkBox_12">
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="4">
-        <widget class="QCheckBox" name="checkBox_13">
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="4">
-        <widget class="QCheckBox" name="checkBox_14">
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-       </item>
        <item row="0" column="0">
-        <spacer name="horizontalSpacer_6">
+        <spacer name="NameSpacer">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
          </property>
@@ -384,31 +356,17 @@ p, li { white-space: pre-wrap; }
          </property>
         </spacer>
        </item>
-       <item row="1" column="4">
-        <widget class="QLabel" name="label_55">
-         <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Select&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-        </widget>
-       </item>
        <item row="1" column="2">
-        <widget class="QLabel" name="label_56">
+        <widget class="QLabel" name="TypeTitle">
          <property name="text">
           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Item Type&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
        </item>
        <item row="1" column="1">
-        <widget class="QLabel" name="label_57">
+        <widget class="QLabel" name="CourseTitle">
          <property name="text">
           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Course&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QLabel" name="label_58">
-         <property name="text">
-          <string>ENGL1001</string>
          </property>
         </widget>
        </item>
@@ -416,6 +374,13 @@ p, li { white-space: pre-wrap; }
         <widget class="QLabel" name="label_59">
          <property name="text">
           <string>LAWS2001</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLabel" name="label_58">
+         <property name="text">
+          <string>ENGL1001</string>
          </property>
         </widget>
        </item>
@@ -437,7 +402,7 @@ p, li { white-space: pre-wrap; }
      </item>
     </layout>
    </widget>
-   <widget class="QLabel" name="SelectedPrice_6">
+   <widget class="QLabel" name="SelectedISBN">
     <property name="geometry">
      <rect>
       <x>560</x>
@@ -545,7 +510,7 @@ p, li { white-space: pre-wrap; }
     </rect>
    </property>
    <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt;&quot;&gt;My Required Literature&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt;&quot;&gt;All Literature&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
   <zorder>label</zorder>

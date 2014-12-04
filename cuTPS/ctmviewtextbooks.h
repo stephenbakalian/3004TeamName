@@ -15,6 +15,9 @@ public:
     explicit CTMViewTextbooks(QWidget *parent = 0);
     ~CTMViewTextbooks();
 
+private slots:
+    void on_pushButton_16_clicked();
+
 private:
     Ui::CTMViewTextbooks *ui;
 };

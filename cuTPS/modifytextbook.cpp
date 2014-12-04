@@ -1,6 +1,6 @@
 #include "modifytextbook.h"
 #include "ui_modifytextbook.h"
-
+#include "mainwindow.h"
 ModifyTextbook::ModifyTextbook(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::ModifyTextbook)
@@ -11,4 +11,14 @@ ModifyTextbook::ModifyTextbook(QWidget *parent) :
 ModifyTextbook::~ModifyTextbook()
 {
     delete ui;
+}
+
+void ModifyTextbook::on_pushButton_clicked()
+{
+
+}
+
+void ModifyTextbook::on_pushButton_2_clicked()
+{
+    ((MainWindow*)parentWidget())->setCTMViewItems();
 }
