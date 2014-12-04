@@ -31,7 +31,7 @@ void Login::socketStatus(int status) {
     case 0://Socket Disconect
         break;
 
-    case 1: //Successfull
+    case 2: //Successfull
         ((MainWindow*)parentWidget())->setStuViewItems();
         break;
 
