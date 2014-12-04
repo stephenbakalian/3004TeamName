@@ -1,3 +1,15 @@
 3004TeamName
 ============
-Hellllooooo
+
+
+## Members
+
+  * Jon Penny 
+    * Role: Leader
+
+  * Jason 
+    * Role: ???
+
+  * Stephen Bakalian
+    * Role: ???
+

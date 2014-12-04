@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -19,7 +19,8 @@ SOURCES += main.cpp\
     modifytextbook.cpp \
     ctmviewtextbooks.cpp \
     error.cpp \
-    cart.cpp
+    cart.cpp \
+    requesthandler.cpp
 
 HEADERS  += mainwindow.h \
     login.h \
@@ -27,7 +28,8 @@ HEADERS  += mainwindow.h \
     modifytextbook.h \
     ctmviewtextbooks.h \
     error.h \
-    cart.h
+    cart.h \
+    requesthandler.h
 
 FORMS    += mainwindow.ui \
     login.ui \
