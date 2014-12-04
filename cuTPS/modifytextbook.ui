@@ -88,7 +88,7 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
     <property name="text">
-     <string>Confirm Changes</string>
+     <string>Confirm</string>
     </property>
    </widget>
    <widget class="QWidget" name="gridLayoutWidget">
