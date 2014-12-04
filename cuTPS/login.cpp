@@ -14,5 +14,8 @@ Login::~Login()
 
 void Login::on_pushButton_clicked()
 {
+
+
+
     ((MainWindow*)parentWidget())->setStuViewItems();
 }

@@ -1,6 +1,6 @@
 #include "studentviewtextbooks.h"
 #include "ui_studentviewtextbooks.h"
-
+#include "mainwindow.h"
 StudentViewTextbooks::StudentViewTextbooks(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::StudentViewTextbooks)
@@ -11,4 +11,16 @@ StudentViewTextbooks::StudentViewTextbooks(QWidget *parent) :
 StudentViewTextbooks::~StudentViewTextbooks()
 {
     delete ui;
+}
+
+void StudentViewTextbooks::on_pushButton_6_clicked()
+{
+    ((MainWindow*)parentWidget())->setViewLogin();
+
+}
+
+void StudentViewTextbooks::on_pushButton_7_clicked()
+{
+    ((MainWindow*)parentWidget())->setViewCart();
+
 }

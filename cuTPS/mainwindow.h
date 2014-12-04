@@ -8,6 +8,7 @@
 #include "error.h"
 #include "modifytextbook.h"
 #include "studentviewtextbooks.h"
+#include "cart.h"
 
 namespace Ui {
 class MainWindow;
@@ -24,7 +25,11 @@ public:
     void setViewLogin();
     void setViewError(QString,int);
     void setViewModItems();
+    void setViewCart();
     ~MainWindow();
+
+private slots:
+    void on_pushButton_clicked();
 
 private:
 
@@ -33,6 +38,7 @@ private:
     Error *errorPage;
     CTMViewTextbooks *CTMViewTextsPage;
     StudentViewTextbooks *StuViewTextsPage;
+    Cart *cartPage;
 
     Ui::MainWindow *ui;
 };

@@ -17,3 +17,8 @@ void CTMViewTextbooks::on_pushButton_16_clicked()
 {
     ((MainWindow*)parentWidget())->setViewModItems();
 }
+
+void CTMViewTextbooks::on_pushButton_3_clicked()
+{
+    ((MainWindow*)parentWidget())->setViewLogin();
+}

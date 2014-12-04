@@ -31,10 +31,21 @@ void MainWindow::setViewError(QString errorMessage, int refPage){
     this->setCentralWidget(errorPage);
 }
 void MainWindow::setViewModItems(){
+    ModTextPage = new ModifyTextbook();
     this->setCentralWidget(ModTextPage);
 }
+void MainWindow::setViewCart(){
+    cartPage = new Cart();
+    this->setCentralWidget(cartPage);
+}
+
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    ((MainWindow*)parentWidget())->setViewLogin();
 }

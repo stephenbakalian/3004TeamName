@@ -1,6 +1,6 @@
 #include "error.h"
 #include "ui_error.h"
-
+#include "mainwindow.h"
 Error::Error(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Error)
@@ -20,4 +20,9 @@ Error::~Error()
 void Error::on_pushButton_clicked()
 {
 
+}
+
+void Error::on_pushButton_2_clicked()
+{
+    ((MainWindow*)parentWidget())->setViewLogin();
 }
