@@ -45,13 +45,13 @@ void Connection::run() {
 //TODO this is a place holder
             if (request["username"] == QString("student")) {
                 qDebug() << "student";
-                response["status"] = 1;
+                response["status"] = 2;
             } else if (request["username"] == QString("contentmanager")) {
                 qDebug() << "CTM";
-                response["status"] = 2;
+                response["status"] = 3;
             } else if (request["username"] == QString("admin")) {
                 qDebug() << "admin";
-                response["status"] = 3;
+                response["status"] = 4;
             } else {
                 qDebug() << "failed";
                 response["status"] = -1;

@@ -182,13 +182,13 @@ void RequestHandler::Login(std::string username) {
         rawResponse = QJsonDocument::fromJson(buffer, &jsonError);
 
         if (jsonError.error) {
-            emit login(-1);
+            emit login(-2);
             kill();
             return;
         }
 
         response = rawResponse.object();
-        emit login(response["status"].toDouble());
+        emit connection(response["status"].toDouble());
 
         qDebug() << "Response status: " << response["status"].toDouble();
     }
@@ -198,14 +198,14 @@ void RequestHandler::Login(std::string username) {
 void RequestHandler::socketChanged(QAbstractSocket::SocketState state) {
     switch(state) {
     case QAbstractSocket::UnconnectedState:
-        emit connection(0);
+       // emit connection(0);
         break;
     case QAbstractSocket::HostLookupState:
         break;
     case QAbstractSocket::ConnectingState:
         break;
     case QAbstractSocket::ConnectedState:
-        emit connection(1);
+       // emit connection(1);
         break;
     case QAbstractSocket::BoundState:
         break;

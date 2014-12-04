@@ -34,10 +34,14 @@ void Login::socketStatus(int status) {
     case 0://Socket Disconect
         break;
 
+<<<<<<< HEAD
     case 1: //Successfull
         break;
 
     case 2: //Student logs in
+=======
+    case 2: //Successfull
+>>>>>>> 9e9da2906136b708dcbd266df084131ccc4bbac4
         ((MainWindow*)parentWidget())->setStuViewItems();
         break;
     case 3: //CTM logs in
