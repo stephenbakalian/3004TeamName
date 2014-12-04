@@ -146,12 +146,12 @@
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
-   <widget class="QLabel" name="label_7">
+   <widget class="QLabel" name="error">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>230</y>
-      <width>441</width>
+      <x>350</x>
+      <y>250</y>
+      <width>181</width>
       <height>31</height>
      </rect>
     </property>
@@ -162,7 +162,7 @@
    <zorder>line</zorder>
    <zorder>verticalLayoutWidget</zorder>
    <zorder>label_5</zorder>
-   <zorder>label_7</zorder>
+   <zorder>error</zorder>
   </widget>
   <widget class="QLabel" name="label_4">
    <property name="geometry">

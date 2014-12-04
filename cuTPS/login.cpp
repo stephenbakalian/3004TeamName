@@ -19,20 +19,31 @@ void Login::on_pushButton_clicked()
     qDebug() << "button login triggered.";
     reqHandler = new RequestHandler(this);
     reqHandler->Login((ui->LoginUsername->text().toStdString()));
+
 }
 
 void Login::socketStatus(int status) {
     qDebug() << (status);
     switch (status) {
     case -1:
-        ui->label_2->setText("Incorrect username or Password");
+        ui->error->setText("Incorrect Username");
+        ui->error->setStyleSheet("QLabel { font-size : 16; color : red; }");
+
         break;
 
     case 0://Socket Disconect
         break;
 
     case 1: //Successfull
+        break;
+
+    case 2: //Student logs in
         ((MainWindow*)parentWidget())->setStuViewItems();
+        break;
+    case 3: //CTM logs in
+        ((MainWindow*)parentWidget())->setCTMViewItems();
+        break;
+    case 4: //Admin Logs in
         break;
 
     default: //General Server Error
