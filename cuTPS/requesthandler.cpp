@@ -14,13 +14,13 @@ RequestHandler::RequestHandler(QObject *parent) :
 
 
     //connect(this, SIGNAL(buybook(int)), parent, SLOT(socketStatus(int)));
-
-    if (parent->objectName() == "LoginWindow") {
+/*
+    if (parent->objectName() == "Login") {
         connect(this, SIGNAL(login(int)), parent, SLOT(loginStatus(int)));
     }
     if (parent->objectName() == "LoginWindow") {
         connect(this, SIGNAL(buybook(int)), parent, SLOT(socketStatus(int)));
-    }
+    }*/
 }
 
 RequestHandler::~RequestHandler() {}
@@ -34,7 +34,8 @@ void RequestHandler::init() {
 }
 
 void RequestHandler::kill() {
-    socket->disconnectFromHost();
+    socket->close();
+    //socket->disconnectFromHost();
 }
 
 void RequestHandler::AddBook(std::string bookName, double bookEdition, std::string authorName, double yearPublished, double bookPrice, std::string bookISBN){
@@ -182,7 +183,7 @@ void RequestHandler::Login(std::string username) {
         rawResponse = QJsonDocument::fromJson(buffer, &jsonError);
 
         if (jsonError.error) {
-            emit login(-2);
+            emit connection(-2);
             kill();
             return;
         }
@@ -192,20 +193,37 @@ void RequestHandler::Login(std::string username) {
 
         qDebug() << "Response status: " << response["status"].toDouble();
     }
+
+/*
+    socket->waitForBytesWritten(1000);
+    socket->waitForReadyRead(3000);
+
+    buffer = socket->readAll().trimmed();
+    rawResponse = QJsonDocument::fromJson(buffer, &jsonError);
+
+    if (jsonError.error) {
+        emit connection(-2);
+        kill();
+        return;
+    }
+
+    response = rawResponse.object();
+    emit connection(response["status"].toDouble());*/
+
     kill();
 }
 
 void RequestHandler::socketChanged(QAbstractSocket::SocketState state) {
     switch(state) {
     case QAbstractSocket::UnconnectedState:
-       // emit connection(0);
+        emit connection(0);
         break;
     case QAbstractSocket::HostLookupState:
         break;
     case QAbstractSocket::ConnectingState:
         break;
     case QAbstractSocket::ConnectedState:
-       // emit connection(1);
+        emit connection(1);
         break;
     case QAbstractSocket::BoundState:
         break;

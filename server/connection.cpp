@@ -87,7 +87,7 @@ void Connection::run() {
     rawResponse = QJsonDocument(response);
     socket.write(rawResponse.toJson());
     socket.flush();
-    socket.disconnectFromHost();
+    socket.close();
 }
 
 //================================================================
