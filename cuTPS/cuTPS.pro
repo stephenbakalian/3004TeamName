@@ -16,17 +16,20 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     login.cpp \
     studentviewtextbooks.cpp \
-    modifytextbook.cpp
+    modifytextbook.cpp \
+    ctmviewtextbooks.cpp
 
 HEADERS  += mainwindow.h \
     login.h \
     studentviewtextbooks.h \
-    modifytextbook.h
+    modifytextbook.h \
+    ctmviewtextbooks.h
 
 FORMS    += mainwindow.ui \
     login.ui \
     studentviewtextbooks.ui \
-    modifytextbook.ui
+    modifytextbook.ui \
+    ctmviewtextbooks.ui
 
 OTHER_FILES +=
 
