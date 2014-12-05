@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     ctmviewtextbooks.cpp \
     error.cpp \
     cart.cpp \
-    requesthandler.cpp
+    requesthandler.cpp \
+    ownedbooks.cpp
 
 HEADERS  += mainwindow.h \
     login.h \
@@ -29,7 +30,8 @@ HEADERS  += mainwindow.h \
     ctmviewtextbooks.h \
     error.h \
     cart.h \
-    requesthandler.h
+    requesthandler.h \
+    ownedbooks.h
 
 FORMS    += mainwindow.ui \
     login.ui \
@@ -37,7 +39,8 @@ FORMS    += mainwindow.ui \
     modifytextbook.ui \
     ctmviewtextbooks.ui \
     error.ui \
-    cart.ui
+    cart.ui \
+    ownedbooks.ui
 
 OTHER_FILES +=
 

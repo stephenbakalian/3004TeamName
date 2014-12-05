@@ -34,11 +34,19 @@ void MainWindow::setViewModItems(){
     ModTextPage = new ModifyTextbook();
     this->setCentralWidget(ModTextPage);
 }
+void MainWindow::setViewModItems(QString args[]){
+    ModTextPage = new ModifyTextbook();
+    ModTextPage->setData(args);
+    this->setCentralWidget(ModTextPage);
+}
 void MainWindow::setViewCart(){
     cartPage = new Cart();
     this->setCentralWidget(cartPage);
 }
-
+void MainWindow::setViewOwnedItems(){
+    ownedPage = new OwnedBooks();
+    this->setCentralWidget(ownedPage);
+}
 
 MainWindow::~MainWindow()
 {

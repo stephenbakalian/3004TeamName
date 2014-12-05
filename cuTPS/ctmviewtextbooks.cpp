@@ -13,12 +13,19 @@ CTMViewTextbooks::~CTMViewTextbooks()
     delete ui;
 }
 
-void CTMViewTextbooks::on_pushButton_16_clicked()
+void CTMViewTextbooks::on_pushButton_16_clicked() //edit button had been pressed
 {
-    ((MainWindow*)parentWidget())->setViewModItems();
+    QString temp[]= {"1","THIS IS A PLACEHOLDER"};
+    ((MainWindow*)parentWidget())->setViewModItems(temp);
 }
 
 void CTMViewTextbooks::on_pushButton_3_clicked()
 {
     ((MainWindow*)parentWidget())->setViewLogin();
+}
+
+void CTMViewTextbooks::on_pushButton_clicked()//new Button has been pressed
+{
+    ((MainWindow*)parentWidget())->setViewModItems();
+
 }

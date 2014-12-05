@@ -48,7 +48,7 @@
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Description:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QTextEdit" name="textEdit">
+   <widget class="QTextEdit" name="description">
     <property name="geometry">
      <rect>
       <x>430</x>
@@ -109,7 +109,7 @@ p, li { white-space: pre-wrap; }
       </widget>
      </item>
      <item row="5" column="1">
-      <widget class="QLineEdit" name="lineEdit_5">
+      <widget class="QLineEdit" name="isbn">
        <property name="text">
         <string/>
        </property>
@@ -122,7 +122,7 @@ p, li { white-space: pre-wrap; }
       </widget>
      </item>
      <item row="6" column="1">
-      <widget class="QLineEdit" name="lineEdit_6">
+      <widget class="QLineEdit" name="textbook">
        <property name="enabled">
         <bool>false</bool>
        </property>
@@ -144,7 +144,7 @@ p, li { white-space: pre-wrap; }
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QComboBox" name="comboBox">
+      <widget class="QComboBox" name="type">
        <property name="editable">
         <bool>false</bool>
        </property>
@@ -194,7 +194,7 @@ p, li { white-space: pre-wrap; }
       </widget>
      </item>
      <item row="4" column="1">
-      <widget class="QLineEdit" name="lineEdit_4">
+      <widget class="QLineEdit" name="length">
        <property name="text">
         <string/>
        </property>
@@ -221,7 +221,7 @@ p, li { white-space: pre-wrap; }
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QLineEdit" name="lineEdit">
+      <widget class="QLineEdit" name="title">
        <property name="text">
         <string/>
        </property>
@@ -234,7 +234,7 @@ p, li { white-space: pre-wrap; }
       </widget>
      </item>
      <item row="2" column="1">
-      <widget class="QLineEdit" name="lineEdit_2">
+      <widget class="QLineEdit" name="price">
        <property name="text">
         <string/>
        </property>
@@ -247,7 +247,7 @@ p, li { white-space: pre-wrap; }
       </widget>
      </item>
      <item row="3" column="1">
-      <widget class="QLineEdit" name="lineEdit_3">
+      <widget class="QLineEdit" name="author">
        <property name="text">
         <string/>
        </property>
@@ -267,7 +267,7 @@ p, li { white-space: pre-wrap; }
       </widget>
      </item>
      <item row="7" column="1">
-      <widget class="QLineEdit" name="lineEdit_7">
+      <widget class="QLineEdit" name="chapter">
        <property name="enabled">
         <bool>false</bool>
        </property>

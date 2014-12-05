@@ -22,5 +22,9 @@ void StudentViewTextbooks::on_pushButton_6_clicked()
 void StudentViewTextbooks::on_pushButton_7_clicked()
 {
     ((MainWindow*)parentWidget())->setViewCart();
+}
 
+void StudentViewTextbooks::on_pushButton_8_clicked()
+{
+    ((MainWindow*)parentWidget())->setViewOwnedItems();
 }

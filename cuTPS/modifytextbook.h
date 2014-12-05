@@ -2,7 +2,6 @@
 #define MODIFYTEXTBOOK_H
 #include <QWidget>
 
-
 namespace Ui {
     class ModifyTextbook;
 }
@@ -12,6 +11,7 @@ class ModifyTextbook : public QWidget
 
 public:
     explicit ModifyTextbook(QWidget *parent = 0);
+    void setData(QString*);
     ~ModifyTextbook();
 
 private slots:
@@ -21,8 +21,13 @@ private slots:
 
     void on_pushButton_3_clicked();
 
+    void on_type_currentIndexChanged(const QString &arg1);
+
+    void on_type_activated(const QString &arg1);
+
 private:
     Ui::ModifyTextbook *ui;
+    void updateAvailableFeilds();
 };
 
 #endif // MODIFYTEXTBOOK_H
