@@ -23,7 +23,8 @@ public:
 
 private slots:
     void on_pushButton_clicked();
-    void socketStatus(int status);
+
+    void on_pushButton_released();
 
 private:
     Ui::Login *ui;

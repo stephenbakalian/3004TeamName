@@ -4,13 +4,13 @@
 
 #include "../config.h"
 #include "requesthandler.h"
-
+#include <string>
 RequestHandler::RequestHandler(QObject *parent) :
     QObject(parent)
 {
     socket = new QTcpSocket(this);
     connect(socket, SIGNAL(stateChanged(QAbstractSocket::SocketState)), this, SLOT(socketChanged(QAbstractSocket::SocketState)));
-    connect(this, SIGNAL(connection(int)), parent, SLOT(socketStatus(int)));
+    //connect(this, SIGNAL(connection(int)), parent, SLOT(socketStatus(int)));
 
 
     //connect(this, SIGNAL(buybook(int)), parent, SLOT(socketStatus(int)));
@@ -157,8 +157,7 @@ void RequestHandler::BuyBook(std::string studentName, std::string bookISBN){
         qDebug() << "Response status: " << response["status"].toDouble();
     }
 }
-
-void RequestHandler::Login(std::string username) {
+int RequestHandler::Login(std::string username) {
     QByteArray buffer;
     QJsonDocument rawRequest;
     QJsonObject request;
@@ -174,43 +173,41 @@ void RequestHandler::Login(std::string username) {
     request["username"] = QString(username.c_str());
     rawRequest.setObject(request);
 
-    socket->write(rawRequest.toJson());
-    socket->flush();
 
-    /* Read from the server. */
-    while (socket->waitForReadyRead()) {
-        buffer = socket->readAll().trimmed();
-        rawResponse = QJsonDocument::fromJson(buffer, &jsonError);
+    double req=-10;
+        socket = new QTcpSocket(this);
+               socket->connectToHost(SERVER, PORT);
 
-        if (jsonError.error) {
-            emit connection(-2);
-            kill();
-            return;
-        }
+            if(socket->waitForConnected(3000))
+            {
+                //qDebug() << "Connected!";
 
-        response = rawResponse.object();
-        emit connection(response["status"].toDouble());
+                // send
+                socket->write(rawRequest.toJson());
+                socket->waitForBytesWritten(1000);
+                socket->waitForReadyRead(3000);
+                //qDebug() << "Reading: " << socket->bytesAvailable();
 
-        qDebug() << "Response status: " << response["status"].toDouble();
-    }
+                buffer= (socket->readAll());
+                //qDebug() << "Reading: " <<buffer;
 
-/*
-    socket->waitForBytesWritten(1000);
-    socket->waitForReadyRead(3000);
+                rawResponse = QJsonDocument::fromJson(buffer, &jsonError);
 
-    buffer = socket->readAll().trimmed();
-    rawResponse = QJsonDocument::fromJson(buffer, &jsonError);
+                if (jsonError.error) {
+                    return -2;
+                }
 
-    if (jsonError.error) {
-        emit connection(-2);
-        kill();
-        return;
-    }
-
-    response = rawResponse.object();
-    emit connection(response["status"].toDouble());*/
-
-    kill();
+                response = rawResponse.object();
+                return (response["status"].toDouble());
+                socket->close();
+            }
+            else
+            {
+                //qDebug() << "No Connecion";
+                return -1;
+            }
+            qDebug() << req;
+        return req;
 }
 
 void RequestHandler::socketChanged(QAbstractSocket::SocketState state) {

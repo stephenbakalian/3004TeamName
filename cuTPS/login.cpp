@@ -16,19 +16,26 @@ Login::~Login()
 
 void Login::on_pushButton_clicked()
 {
-    qDebug() << "button login triggered.";
-    reqHandler = new RequestHandler(this);
-    reqHandler->Login((ui->LoginUsername->text().toStdString()));
+
 
 }
 
-void Login::socketStatus(int status) {
-    qDebug() << (status);
-    switch (status) {
+
+void Login::on_pushButton_released()
+{
+
+    reqHandler = new RequestHandler(this);
+    int resp = reqHandler->Login((ui->LoginUsername->text().toStdString()));
+    qDebug() << "Login Status" << resp;
+    switch (resp) {
+    case -10:
+        ((MainWindow*)parentWidget())->setViewError("Opps/nSomething went very wrong",0);
+    case -2:
+        ((MainWindow*)parentWidget())->setViewError("Unknown Json Parsing Error",0);
+        break;
     case -1:
         ui->error->setText("Incorrect Username");
         ui->error->setStyleSheet("QLabel { font-size : 16; color : red; }");
-
         break;
 
     case 0://Socket Disconect
@@ -42,10 +49,6 @@ void Login::socketStatus(int status) {
         ((MainWindow*)parentWidget())->setCTMViewItems();
         break;
     case 4: //Admin Logs in
-        break;
-
-    default: //General Server Error
-        ((MainWindow*)parentWidget())->setViewError("Unable to Connect to server",0);
         break;
     }
 }

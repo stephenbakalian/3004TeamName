@@ -13,7 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
 void MainWindow::setCTMViewItems()
 {
     CTMViewTextsPage = new CTMViewTextbooks();
-    this->setCentralWidget(loginPage);
+    this->setCentralWidget(CTMViewTextsPage);
 }
 void MainWindow::setStuViewItems()
 {

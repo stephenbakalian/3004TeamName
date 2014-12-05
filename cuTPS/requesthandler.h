@@ -13,7 +13,8 @@ class RequestHandler : public QObject
 public:
     explicit RequestHandler(QObject *parent = 0);
     ~RequestHandler();
-    void Login(std::string username);
+    int Login(std::string username);
+
     void AddBook(std::string, double, std::string, double, double, std::string);
     void AddCoruse(std::string,std::string,std::string,double,std::string);
     void BuyBook(std::string, std::string);

@@ -22,3 +22,8 @@ void ModifyTextbook::on_pushButton_2_clicked()
 {
     ((MainWindow*)parentWidget())->setCTMViewItems();
 }
+
+void ModifyTextbook::on_pushButton_3_clicked()
+{
+    ((MainWindow*)parentWidget())->setViewLogin();
+}
