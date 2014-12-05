@@ -284,19 +284,6 @@ p, li { white-space: pre-wrap; }
      </item>
     </layout>
    </widget>
-   <widget class="QPushButton" name="pushButton_3">
-    <property name="geometry">
-     <rect>
-      <x>750</x>
-      <y>10</y>
-      <width>88</width>
-      <height>27</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Sign Out</string>
-    </property>
-   </widget>
   </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
@@ -359,12 +346,26 @@ p, li { white-space: pre-wrap; }
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt;&quot;&gt;Textbook Information&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="pushButton_3">
+   <property name="geometry">
+    <rect>
+     <x>750</x>
+     <y>90</y>
+     <width>88</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Sign Out</string>
+   </property>
+  </widget>
   <zorder>label</zorder>
   <zorder>widget</zorder>
   <zorder>label_6</zorder>
   <zorder>Title</zorder>
   <zorder>label_2</zorder>
   <zorder>label_3</zorder>
+  <zorder>pushButton_3</zorder>
  </widget>
  <resources/>
  <connections/>

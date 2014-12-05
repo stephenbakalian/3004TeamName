@@ -204,7 +204,7 @@ int RequestHandler::Login(std::string username) {
             else
             {
                 //qDebug() << "No Connecion";
-                return -1;
+                return -4;
             }
             qDebug() << req;
         return req;

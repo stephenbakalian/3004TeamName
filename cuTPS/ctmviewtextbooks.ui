@@ -16,8 +16,8 @@
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>431</x>
-     <y>1</y>
+     <x>430</x>
+     <y>0</y>
      <width>461</width>
      <height>71</height>
     </rect>
@@ -428,19 +428,6 @@ p, li { white-space: pre-wrap; }
      <string>Edit</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_3">
-    <property name="geometry">
-     <rect>
-      <x>760</x>
-      <y>0</y>
-      <width>88</width>
-      <height>27</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Sign Out</string>
-    </property>
-   </widget>
   </widget>
   <widget class="Line" name="line_19">
    <property name="geometry">
@@ -471,8 +458,8 @@ p, li { white-space: pre-wrap; }
   <widget class="QLabel" name="label_63">
    <property name="geometry">
     <rect>
-     <x>351</x>
-     <y>661</y>
+     <x>350</x>
+     <y>660</y>
      <width>181</width>
      <height>31</height>
     </rect>
@@ -484,8 +471,8 @@ p, li { white-space: pre-wrap; }
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>-2</x>
-     <y>-4</y>
+     <x>0</x>
+     <y>0</y>
      <width>871</width>
      <height>701</height>
     </rect>
@@ -497,8 +484,8 @@ p, li { white-space: pre-wrap; }
   <widget class="QLabel" name="Title">
    <property name="geometry">
     <rect>
-     <x>71</x>
-     <y>1</y>
+     <x>70</x>
+     <y>0</y>
      <width>1051</width>
      <height>71</height>
     </rect>
@@ -526,6 +513,19 @@ p, li { white-space: pre-wrap; }
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt;&quot;&gt;All Literature&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="pushButton_3">
+   <property name="geometry">
+    <rect>
+     <x>750</x>
+     <y>90</y>
+     <width>88</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Sign Out</string>
+   </property>
+  </widget>
   <zorder>label</zorder>
   <zorder>label_2</zorder>
   <zorder>label_18</zorder>
@@ -535,6 +535,7 @@ p, li { white-space: pre-wrap; }
   <zorder>label_63</zorder>
   <zorder>Title</zorder>
   <zorder>label_3</zorder>
+  <zorder>pushButton_3</zorder>
  </widget>
  <resources/>
  <connections/>

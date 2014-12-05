@@ -28,8 +28,12 @@ void Login::on_pushButton_released()
     int resp = reqHandler->Login((ui->LoginUsername->text().toStdString()));
     qDebug() << "Login Status" << resp;
     switch (resp) {
-    case -10:
+    case -4:
+        ((MainWindow*)parentWidget())->setViewError("Unable to connect to the server... \n is it running?",0);
+        break;
+    case -3:
         ((MainWindow*)parentWidget())->setViewError("Opps/nSomething went very wrong",0);
+        break;
     case -2:
         ((MainWindow*)parentWidget())->setViewError("Unknown Json Parsing Error",0);
         break;
