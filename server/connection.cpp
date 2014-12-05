@@ -5,7 +5,7 @@
 #include "connection.h"
 
 Connection::Connection(QObject *parent, int socketDesc) :
-QThread(parent), socketDesc(socketDesc) {
+QThread(parent) {
 // Connect to the database
 this->socketDesc = socketDesc;
 // ***** END OF DATABASE TESTING *****
