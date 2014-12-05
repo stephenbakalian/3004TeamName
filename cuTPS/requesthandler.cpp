@@ -34,8 +34,8 @@ void RequestHandler::init() {
 }
 
 void RequestHandler::kill() {
-    socket->close();
-    //socket->disconnectFromHost();
+    //socket->close();
+    socket->disconnectFromHost();
 }
 
 void RequestHandler::AddBook(std::string bookName, double bookEdition, std::string authorName, double yearPublished, double bookPrice, std::string bookISBN){
@@ -219,17 +219,22 @@ void RequestHandler::socketChanged(QAbstractSocket::SocketState state) {
         emit connection(0);
         break;
     case QAbstractSocket::HostLookupState:
+        emit connection(-2);
         break;
     case QAbstractSocket::ConnectingState:
+        emit connection(-3);
         break;
     case QAbstractSocket::ConnectedState:
         emit connection(1);
         break;
     case QAbstractSocket::BoundState:
+        emit connection(-4);
         break;
     case QAbstractSocket::ListeningState:
+        emit connection(-5);
         break;
     case QAbstractSocket::ClosingState:
+        emit connection(-6);
         break;
     }
 }

@@ -7,10 +7,9 @@
 Connection::Connection(QObject *parent, int socketDesc) :
 QThread(parent), socketDesc(socketDesc) {
 // Connect to the database
-
+this->socketDesc = socketDesc;
 // ***** END OF DATABASE TESTING *****
 }
-
 
 void Connection::run() {
     QTcpSocket socket;
@@ -87,7 +86,7 @@ void Connection::run() {
     rawResponse = QJsonDocument(response);
     socket.write(rawResponse.toJson());
     socket.flush();
-    socket.close();
+    socket.disconnectFromHost();
 }
 
 //================================================================
