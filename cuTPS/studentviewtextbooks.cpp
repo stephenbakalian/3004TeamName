@@ -92,6 +92,7 @@ void StudentViewTextbooks::showItems(Item list[]){
    QLabel *price[sizeof(list)];
    QLabel *description[sizeof(list)];
    QPushButton *details[sizeof(list)];
+   QCheckBox *addToCart[sizeof(list)];
 
 
 
