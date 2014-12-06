@@ -3,5 +3,6 @@
         <file>Background.png</file>
         <file>CarletonLibrary.jpg</file>
         <file>CuTPS.ico</file>
+        <file>noPass.jpg</file>
     </qresource>
 </RCC>
