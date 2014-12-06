@@ -171,252 +171,38 @@ p, li { white-space: pre-wrap; }
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
       <layout class="QGridLayout" name="gridLayout">
-       <item row="6" column="5">
-        <widget class="Line" name="line_2">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="5">
-        <widget class="Line" name="line_5">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="5">
-        <widget class="Line" name="line">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="5">
-        <widget class="Line" name="line_3">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-        </widget>
-       </item>
-       <item row="6" column="0">
-        <spacer name="verticalSpacer">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="1" column="5">
-        <widget class="Line" name="line_6">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="5">
-        <widget class="Line" name="line_4">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="3">
-        <widget class="QPushButton" name="pushButton">
-         <property name="text">
-          <string>Details</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="label_13">
-         <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Item Name&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0">
-        <widget class="QLabel" name="label_5">
-         <property name="text">
-          <string>Law Studies</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="2">
-        <widget class="QLabel" name="label_9">
-         <property name="text">
-          <string>Textbook</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="3">
-        <widget class="QPushButton" name="pushButton_3">
-         <property name="text">
-          <string>Details</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="3">
-        <widget class="QPushButton" name="pushButton_4">
-         <property name="text">
-          <string>Details</string>
-         </property>
-        </widget>
-       </item>
        <item row="0" column="2">
-        <spacer name="horizontalSpacer_2">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="4" column="3">
-        <widget class="QPushButton" name="pushButton_2">
-         <property name="text">
-          <string>Details</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="2">
-        <widget class="QLabel" name="label_12">
-         <property name="text">
-          <string>Textbook</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="2">
-        <widget class="QLabel" name="label_11">
-         <property name="text">
-          <string>Chapter</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="2">
-        <widget class="QLabel" name="label_10">
-         <property name="text">
-          <string>Section</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="0">
-        <widget class="QLabel" name="label_7">
-         <property name="text">
-          <string>Introduction to UIs</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QLabel" name="label_8">
-         <property name="text">
-          <string>Spelling 101</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="0">
-        <widget class="QLabel" name="label_4">
-         <property name="text">
-          <string>How to Defeat Balwrog</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="4">
-        <widget class="QCheckBox" name="checkBox_5">
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="4">
-        <widget class="QCheckBox" name="checkBox_3">
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="4">
-        <widget class="QCheckBox" name="checkBox_4">
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="4">
-        <widget class="QCheckBox" name="checkBox_6">
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <spacer name="horizontalSpacer">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="1" column="4">
-        <widget class="QLabel" name="label_15">
-         <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Select&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="2">
         <widget class="QLabel" name="label_14">
          <property name="text">
           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Item Type&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="1">
+       <item row="0" column="1">
         <widget class="QLabel" name="label_17">
          <property name="text">
           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Course&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
        </item>
-       <item row="2" column="1">
-        <widget class="QLabel" name="label_22">
-         <property name="text">
-          <string>ENGL1001</string>
+       <item row="0" column="4">
+        <widget class="Line" name="line_6">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
          </property>
         </widget>
        </item>
-       <item row="3" column="1">
-        <widget class="QLabel" name="label_23">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_13">
          <property name="text">
-          <string>LAWS2001</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Item Name&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
        </item>
-       <item row="4" column="1">
-        <widget class="QLabel" name="label_24">
+       <item row="0" column="3">
+        <widget class="QLabel" name="label_15">
          <property name="text">
-          <string>COMP3105</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="1">
-        <widget class="QLabel" name="label_25">
-         <property name="text">
-          <string>WINN1337</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Select&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
        </item>

@@ -7,6 +7,13 @@ ModifyTextbook::ModifyTextbook(QWidget *parent) :
     ui(new Ui::ModifyTextbook)
 {
     ui->setupUi(this);
+
+
+
+
+
+
+
 }
 
 ModifyTextbook::~ModifyTextbook()
