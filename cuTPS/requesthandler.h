@@ -1,8 +1,6 @@
 #ifndef REQUESTHANDLER_H
 #define REQUESTHANDLER_H
 
-#include <string>
-
 #include <QObject>
 #include <QTcpSocket>
 

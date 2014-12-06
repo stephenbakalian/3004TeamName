@@ -4,7 +4,8 @@
 
 #include "../config.h"
 #include "requesthandler.h"
-#include <string>
+
+
 RequestHandler::RequestHandler(QObject *parent) :
     QObject(parent)
 {

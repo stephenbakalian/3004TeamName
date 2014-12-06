@@ -1,6 +1,6 @@
 #ifndef CART_H
 #define CART_H
-
+#include "item.h"
 #include <QWidget>
 
 namespace Ui {
@@ -14,6 +14,7 @@ class Cart : public QWidget
 public:
     explicit Cart(QWidget *parent = 0);
     ~Cart();
+    void showItems(Item[]);
 
 private slots:
     void on_pushButton_clicked();

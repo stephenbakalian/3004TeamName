@@ -21,7 +21,8 @@ SOURCES += main.cpp\
     error.cpp \
     cart.cpp \
     requesthandler.cpp \
-    ownedbooks.cpp
+    ownedbooks.cpp \
+    item.cpp
 
 HEADERS  += mainwindow.h \
     login.h \
@@ -31,7 +32,8 @@ HEADERS  += mainwindow.h \
     error.h \
     cart.h \
     requesthandler.h \
-    ownedbooks.h
+    ownedbooks.h \
+    item.h
 
 FORMS    += mainwindow.ui \
     login.ui \

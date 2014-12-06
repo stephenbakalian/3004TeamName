@@ -14,7 +14,7 @@ class OwnedBooks : public QWidget
 public:
     explicit OwnedBooks(QWidget *parent = 0);
     ~OwnedBooks();
-
+    void showTexts();
 private slots:
     void on_pushButton_2_clicked();
 
