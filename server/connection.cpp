@@ -4,6 +4,7 @@
 
 #include "connection.h"
 #include "sharedmanager.h"
+#include "studentmanager.h"
 
 Connection::Connection(QObject *parent, int socketDesc) :
 QThread(parent) {
@@ -43,46 +44,31 @@ void Connection::run() {
             std::string username    = request["username"].toString().toStdString();
             response["status"] = SharedManager().loginHandler(username);
 
-        } else if (request["request"] == QString("addbook")) {
-            std::string bookName    = request["bookName"].toString().toStdString();
-            int         bookEdition = request["bookEdition"].toDouble();
-            std::string authorName  = request["authorName"].toString().toStdString();
-            int         yearPublished   = request["yearPublished"].toDouble();
-            double      bookPrice   = request["bookPrice"].toDouble();
-            std::string bookISBN    = request["bookISBN"].toString().toStdString();
-
-        } else if (request["request"] == QString("addcourse")) {
-            std::string courseCode  = request["courseCode"].toString().toStdString();
-            std::string courseInstructor  = request["courseInstructor"].toString().toStdString();
-            std::string courseTerm  = request["courseTerm"].toString().toStdString();
-            int         courseNum   = request["courseNum"].toDouble();
-            std::string courseLocation    = request["courseLocation"].toString().toStdString();
-
-        } else if (request["request"] == QString("buybook")) {
-            std::string studentName = request["studentName"].toString().toStdString();
-            std::string bookISBN = request["bookISBN"].toString().toStdString();
-
         } else if (request["request"] == QString("addToCart")){
 
             qDebug() << "add to cart request made";
 
-            int         itemCount = request["itemCount"].toDouble();
+            int         itemCount   = request["itemCount"].toDouble();
+            std::string user        = request["user"].toString().toStdString();
+
             std::string itemKey[itemCount];
-            std::string user = request["user"].toString().toStdString();
-
-
-            qDebug() << itemCount;
 
             for (int i =0; i< itemCount; i++){
                 itemKey[i] = request["items"+i].toString().toStdString();
                 qDebug() << itemKey[i].c_str();
             }
 
+            response["status"] = StudentManager().addToCart(user, itemKey);
 
-            response["status"] = addToPreviouslyPurchasedItems(user, itemKey);
+        } else if (request["request"] == QString("addbook")) {
+
+        } else if (request["request"] == QString("addcourse")) {
+
+        } else if (request["request"] == QString("buybook")) {
+
 
         }else {
-            response["status"] = -2;
+            response["status"] = -403;
             response["message"] = QString("unknown request");
         }
 
@@ -119,18 +105,10 @@ void selectBooks(){
 //TODO
 }
 
-int addToPreviouslyPurchasedItems(std::string studentName, std::string itemKeys[]) {
-    //TODO
-
-
-    return -5;
-}
-
 bool addChapter(int startPage, int endPage, double price, std::string title, std::string bookISBN){
 //TODO
     return false;
 }
-
 
 bool addSection(int startPage, int endPage, double price, std::string ISBN, std::string chpTitle){
 //TODO

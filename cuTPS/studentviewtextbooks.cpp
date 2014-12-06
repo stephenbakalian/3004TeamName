@@ -33,10 +33,13 @@ void StudentViewTextbooks::on_pushButton_8_clicked()
 void StudentViewTextbooks::on_pushButton_5_clicked()
 {
     reqHandler = new RequestHandler(this);
+
+
     //TODO loop seleteditems
     std::string checkedItems[4];
-    checkedItems[0]="test";
     checkedItems[1]="waffles";
+    //TODO ends here
+
     int resp = reqHandler->AddToCart(checkedItems, ((MainWindow*)parentWidget())->getUsername());
     qDebug() << "Add to cart" << resp;
     switch (resp) {
@@ -59,5 +62,7 @@ void StudentViewTextbooks::on_pushButton_5_clicked()
     case 2: //Student logs in
         //Add to cart
         break;
+    default:
+        ((MainWindow*)parentWidget())->setViewError("An unhandeled error occured \n please contant a techincal assiant \n ERROR: " + resp,1);
     }
 }
