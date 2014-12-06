@@ -2,6 +2,5 @@
     <qresource prefix="/new/prefix1">
         <file>Background.png</file>
         <file>CarletonLibrary.jpg</file>
-        <file>CuTPS.ico</file>
     </qresource>
 </RCC>

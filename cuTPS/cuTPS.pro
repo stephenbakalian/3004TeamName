@@ -47,4 +47,4 @@ FORMS    += mainwindow.ui \
 OTHER_FILES +=
 
 RESOURCES += \
-    Assets/Assets.qr
+    Assets/Assets.qrc
