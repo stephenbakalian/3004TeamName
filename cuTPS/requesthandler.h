@@ -3,7 +3,10 @@
 
 #include <QObject>
 #include <QTcpSocket>
+//#include <list>
+#include <QList>
 
+#include "item.h"
 
 class RequestHandler : public QObject
 {
@@ -13,6 +16,7 @@ public:
     ~RequestHandler();
     int Login(std::string username);
     int AddToCart(std::string itemKey[], std::string username);
+    QList<Item> booksOwned(std::string username);
 
     void AddBook(std::string, double, std::string, double, double, std::string);
     void AddCoruse(std::string,std::string,std::string,double,std::string);

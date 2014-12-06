@@ -214,7 +214,6 @@ int RequestHandler::Login(std::string username) {
 
 
 int RequestHandler::AddToCart(std::string itemKey[], std::string username){
-
     QByteArray buffer;
     QJsonDocument rawRequest;
     QJsonObject request;
@@ -268,6 +267,60 @@ int RequestHandler::AddToCart(std::string itemKey[], std::string username){
     }
     qDebug() << req;
     return req;
+}
+
+
+QList<Item> RequestHandler::booksOwned(std::string username){
+    QByteArray buffer;
+    QJsonDocument rawRequest;
+    QJsonObject request;
+    QJsonDocument rawResponse;
+    QJsonObject response;
+    QJsonParseError jsonError;
+    QList<Item> ownedBooks;
+    /* Connect to the server. */
+    init();
+
+    /* Generate the request object. */
+    request["request"] = QString("booksOwned");
+    request["user"] = QString(username.c_str());
+    rawRequest.setObject(request);
+
+    double req=-10;
+    socket = new QTcpSocket(this);
+    socket->connectToHost(SERVER, PORT);
+
+    if(socket->waitForConnected(3000))
+    {
+        // send
+        socket->write(rawRequest.toJson());
+        socket->waitForBytesWritten(1000);
+        socket->waitForReadyRead(3000);
+        //qDebug() << "Reading: " << socket->bytesAvailable();
+
+        buffer= (socket->readAll());
+        //qDebug() << "Reading: " <<buffer;
+
+        rawResponse = QJsonDocument::fromJson(buffer, &jsonError);
+
+        if (jsonError.error) {
+            return ownedBooks;//-2 error
+        }
+
+        response = rawResponse.object();
+
+        response["status"].toDouble();
+
+      //  return (response["status"].toDouble());
+        return ownedBooks;
+        socket->close();
+    }else{
+        return ownedBooks;//-4 error
+    }
+
+    qDebug() << req;
+
+    return ownedBooks;
 }
 
 void RequestHandler::socketChanged(QAbstractSocket::SocketState state) {

@@ -18,10 +18,12 @@ OwnedBooks::OwnedBooks(QWidget *parent) :
     temp3->setTitle("duck you");
     temp4->setTitle("Hai");
 
-    Item literature[]={*temp1,*temp2,*temp3,*temp4};
     /**
       HERE ITEMS SHOULD BE GRABBED FROM SERVER
      **/
+
+    reqHandler = new RequestHandler(this);
+    Item literature[] = reqHandler->booksOwned(((MainWindow*)parentWidget())->getUsername());
     showItems(literature);
 }
 

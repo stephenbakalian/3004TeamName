@@ -93,7 +93,6 @@ void StudentViewTextbooks::showItems(Item list[]){
    QLabel *purchaseDate[sizeof(list)];
    QLabel *description[sizeof(list)];
    QPushButton *details[sizeof(list)];
-   QCheckBox *addToCart[sizeof(list)];
 
    for(x=0;x < sizeof(list); x++){
          titles[x] = new QLabel(QString::fromUtf8(list[x].getTitle().c_str()));
