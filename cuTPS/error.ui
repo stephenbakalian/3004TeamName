@@ -35,8 +35,8 @@
   <widget class="QWidget" name="widget" native="true">
    <property name="geometry">
     <rect>
-     <x>9</x>
-     <y>89</y>
+     <x>10</x>
+     <y>110</y>
      <width>851</width>
      <height>531</height>
     </rect>
@@ -45,33 +45,20 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>10</y>
-      <width>401</width>
-      <height>161</height>
+      <y>60</y>
+      <width>351</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="text">
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:26pt;&quot;&gt;An error has occured:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QPlainTextEdit" name="plainTextEdit">
-    <property name="geometry">
-     <rect>
-      <x>160</x>
-      <y>150</y>
-      <width>521</width>
-      <height>261</height>
-     </rect>
-    </property>
-    <property name="plainText">
-     <string>Unable to connect to remote server</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>380</x>
-      <y>470</y>
+      <x>530</x>
+      <y>420</y>
       <width>88</width>
       <height>27</height>
      </rect>
@@ -89,33 +76,39 @@
       <height>261</height>
      </rect>
     </property>
-    <widget class="Line" name="line">
+    <widget class="QPlainTextEdit" name="plainTextEdit">
      <property name="geometry">
       <rect>
-       <x>-10</x>
-       <y>0</y>
-       <width>871</width>
-       <height>261</height>
+       <x>380</x>
+       <y>10</y>
+       <width>411</width>
+       <height>251</height>
       </rect>
      </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
-     </property>
-     <property name="lineWidth">
-      <number>1000</number>
-     </property>
-     <property name="midLineWidth">
-      <number>100</number>
-     </property>
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
+     <property name="plainText">
+      <string>Unable to connect to remote server</string>
      </property>
     </widget>
+    <zorder>label_4</zorder>
+    <zorder>plainTextEdit</zorder>
    </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>-110</x>
+      <y>140</y>
+      <width>691</width>
+      <height>381</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/new/prefix1/bookError.jpg&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <zorder>label_4</zorder>
    <zorder>label_3</zorder>
    <zorder>pushButton</zorder>
    <zorder>widget_2</zorder>
-   <zorder>plainTextEdit</zorder>
   </widget>
   <widget class="QLabel" name="label_2">
    <property name="geometry">

@@ -3,5 +3,7 @@
         <file>Background.png</file>
         <file>CarletonLibrary.jpg</file>
         <file>CuTPS.ico</file>
+        <file>noPass.jpg</file>
+        <file>bookError.jpg</file>
     </qresource>
 </RCC>
