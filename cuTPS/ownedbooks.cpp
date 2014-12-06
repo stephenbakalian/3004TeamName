@@ -23,8 +23,16 @@ OwnedBooks::OwnedBooks(QWidget *parent) :
      **/
 
     reqHandler = new RequestHandler(this);
-    Item literature[] = reqHandler->booksOwned(((MainWindow*)parentWidget())->getUsername());
-    showItems(literature);
+    QList<Item> items = reqHandler->booksOwned(((MainWindow*)parentWidget())->getUsername());
+    if (items.size() != 0){
+        Item literature[sizeof(items)];
+
+        for (int i =0; i < items.size(); i++){
+            literature[i] = items.takeAt(i);
+        }
+
+        showItems(literature);
+    }
 }
 
 OwnedBooks::~OwnedBooks()

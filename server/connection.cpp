@@ -60,6 +60,10 @@ void Connection::run() {
 
             response["status"] = StudentManager().addToCart(user, itemKey);
 
+        } else if (request["request"] == QString("books owned")){
+
+            qDebug() << "owned books request made";
+
         } else if (request["request"] == QString("addbook")) {
 
         } else if (request["request"] == QString("addcourse")) {

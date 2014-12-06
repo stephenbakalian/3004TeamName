@@ -3,6 +3,7 @@
 #include "item.h"
 #include <QWidget>
 #include "requesthandler.h"
+#include <QList>
 
 namespace Ui {
 class OwnedBooks;
