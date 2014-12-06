@@ -1,5 +1,9 @@
 #include "sharedmanager.h"
 
+//================================================================
+//          Methods to manage shared user activites
+//================================================================
+
 SharedManager::SharedManager()
 {
 }

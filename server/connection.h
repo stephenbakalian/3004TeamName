@@ -10,7 +10,6 @@ bool addBook(std::string, int, std::string, int, double, std::string);
 bool addCourse(std::string, std::string, std::string, int, std::string);
 void selectCourses();
 void selectBooks();
-int addToPreviouslyPurchasedItems(std::string users, std::string itemKeys[]);
 bool addChapter(int, int, double, std::string, std::string);
 bool addSection(int, int, double, std::string, std::string);
 
