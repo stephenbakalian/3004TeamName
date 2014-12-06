@@ -90,24 +90,32 @@ void StudentViewTextbooks::showItems(Item list[]){
    QPushButton *details[sizeof(list)];
    QCheckBox *addToCart[sizeof(list)];
 
+
+
    for(x=0;x < sizeof(list); x++){
          titles[x] = new QLabel(QString::fromUtf8(list[x].getTitle().c_str()));
          ui->gridLayout->addWidget(titles[x],x+1,0,1,1);
 
          type[x] = new QLabel(QString::fromUtf8(list[x].getType().c_str()));
-         ui->gridLayout->addWidget(type[x],1,x);
+         ui->gridLayout->addWidget(type[x],x+1,1,1,1);
+
 
          price[x] = new QLabel(QString::fromUtf8(list[x].getPrice().c_str()));
-         ui->gridLayout->addWidget(price[x],2,x);
+         ui->gridLayout->addWidget(price[x],x+1,2,1,1);
 
-         purchaseDate[x] = new QLabel(QString::fromUtf8(list[x].getPurchaseDate().c_str()));
-         ui->gridLayout->addWidget(purchaseDate[x],3,x);
+         addToCart[x] = new QCheckBox("");
+         ui->gridLayout->addWidget(addToCart[x],x+1,3,1,1);
+
+
+         //purchaseDate[x] = new QLabel(QString::fromUtf8(list[x].getPurchaseDate().c_str()));
+        // ui->gridLayout->addWidget(purchaseDate[x],x+1,3,1,1);
 
          description[x] = new QLabel(QString::fromUtf8(list[x].getDescription().c_str()));
-         ui->gridLayout->addWidget(description[x],4,x);
+         ui->gridLayout->addWidget(description[x],x+1,4,1,1);
 
          details[x] = new QPushButton("Details");
-         ui->gridLayout->addWidget(description[x],5,x);
+         ui->gridLayout->addWidget(details[x],x+1,5,1,1);
+
 
 
 
