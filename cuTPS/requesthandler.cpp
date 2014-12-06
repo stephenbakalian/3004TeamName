@@ -157,6 +157,7 @@ void RequestHandler::BuyBook(std::string studentName, std::string bookISBN){
         qDebug() << "Response status: " << response["status"].toDouble();
     }
 }
+
 int RequestHandler::Login(std::string username) {
     QByteArray buffer;
     QJsonDocument rawRequest;
@@ -208,6 +209,64 @@ int RequestHandler::Login(std::string username) {
             }
             qDebug() << req;
         return req;
+}
+
+
+int RequestHandler::AddToCart(std::string itemKey[], std::string username){
+
+    QByteArray buffer;
+    QJsonDocument rawRequest;
+    QJsonObject request;
+    QJsonDocument rawResponse;
+    QJsonObject response;
+    QJsonParseError jsonError;
+    int itemCount = 0;
+    /* Connect to the server. */
+    init();
+
+    /* Generate the request object. */
+    request["request"] = QString("addToCart");
+
+    for (int i =0; i< sizeof(itemKey); i++){
+        if (!itemKey[i].empty()){
+            request["items"+itemCount] = QString(itemKey[i].c_str());
+            itemCount++;
+            qDebug() << itemKey[i].c_str();
+        }
+    }
+    request["itemCount"] = itemCount;
+    request["user"] = QString(username.c_str());
+    rawRequest.setObject(request);
+
+    double req=-10;
+    socket = new QTcpSocket(this);
+    socket->connectToHost(SERVER, PORT);
+
+    if(socket->waitForConnected(3000))
+    {
+        // send
+                socket->write(rawRequest.toJson());
+                socket->waitForBytesWritten(1000);
+                socket->waitForReadyRead(3000);
+                //qDebug() << "Reading: " << socket->bytesAvailable();
+
+                buffer= (socket->readAll());
+                //qDebug() << "Reading: " <<buffer;
+
+                rawResponse = QJsonDocument::fromJson(buffer, &jsonError);
+
+                if (jsonError.error) {
+                    return -2;
+                }
+
+                response = rawResponse.object();
+                return (response["status"].toDouble());
+                socket->close();
+    }else{
+        return -4;
+    }
+    qDebug() << req;
+    return req;
 }
 
 void RequestHandler::socketChanged(QAbstractSocket::SocketState state) {

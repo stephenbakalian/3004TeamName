@@ -17,8 +17,14 @@ TEMPLATE = app
 
 SOURCES += main.cpp \
     server.cpp \
-    connection.cpp
+    connection.cpp \
+    studentmanager.cpp \
+    sharedmanager.cpp \
+    ctmmanager.cpp
 
 HEADERS += \
     server.h \
-    connection.h
+    connection.h \
+    studentmanager.h \
+    sharedmanager.h \
+    ctmmanager.h

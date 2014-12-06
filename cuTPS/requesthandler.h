@@ -14,6 +14,7 @@ public:
     explicit RequestHandler(QObject *parent = 0);
     ~RequestHandler();
     int Login(std::string username);
+    int AddToCart(std::string itemKey[], std::string username);
 
     void AddBook(std::string, double, std::string, double, double, std::string);
     void AddCoruse(std::string,std::string,std::string,double,std::string);

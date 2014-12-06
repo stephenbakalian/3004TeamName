@@ -48,9 +48,11 @@ void Login::on_pushButton_released()
         break;
     case 2: //Student logs in
         ((MainWindow*)parentWidget())->setStuViewItems();
+        ((MainWindow*)parentWidget())->setUsername(ui->LoginUsername->text().toStdString());
         break;
     case 3: //CTM logs in
         ((MainWindow*)parentWidget())->setCTMViewItems();
+        ((MainWindow*)parentWidget())->setUsername(ui->LoginUsername->text().toStdString());
         break;
     case 4: //Admin Logs in
         break;

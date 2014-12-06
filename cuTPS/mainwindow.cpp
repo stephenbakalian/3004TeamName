@@ -48,6 +48,13 @@ void MainWindow::setViewOwnedItems(){
     this->setCentralWidget(ownedPage);
 }
 
+std::string MainWindow::getUsername(){
+    return username;
+}
+void MainWindow::setUsername(std::string username){
+    this->username=username;
+}
+
 MainWindow::~MainWindow()
 {
     delete ui;

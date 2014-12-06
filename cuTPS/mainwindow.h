@@ -21,6 +21,8 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = 0);
+    std::string getUsername();
+    void setUsername(std::string username);
     void setStuViewItems();
     void setCTMViewItems();
     void setViewOwnedItems();
@@ -43,6 +45,7 @@ private:
     CTMViewTextbooks *CTMViewTextsPage;
     StudentViewTextbooks *StuViewTextsPage;
     Cart *cartPage;
+    std::string username;
 
     Ui::MainWindow *ui;
 };
