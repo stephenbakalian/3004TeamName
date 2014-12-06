@@ -23,7 +23,7 @@ private slots:
 
     void on_type_currentIndexChanged(const QString &arg1);
 
-    void on_type_activated(const QString &arg1);
+    void on_type_activated(int index);
 
 private:
     Ui::ModifyTextbook *ui;

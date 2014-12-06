@@ -7,6 +7,13 @@ ModifyTextbook::ModifyTextbook(QWidget *parent) :
     ui(new Ui::ModifyTextbook)
 {
     ui->setupUi(this);
+
+
+
+
+
+
+
 }
 
 ModifyTextbook::~ModifyTextbook()
@@ -59,3 +66,9 @@ void ModifyTextbook::updateAvailableFeilds(){
     }
 
 }
+
+void ModifyTextbook::on_type_activated(int index)
+{
+
+}
+

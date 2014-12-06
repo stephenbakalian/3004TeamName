@@ -2,7 +2,7 @@
 #define STUDENTVIEWTEXTBOOKS_H
 
 #include <QWidget>
-
+#include "item.h"
 #include "requesthandler.h"
 
 namespace Ui {
@@ -17,7 +17,7 @@ public:
     RequestHandler *reqHandler;
     explicit StudentViewTextbooks(QWidget *parent = 0);
     ~StudentViewTextbooks();
-
+    void showItems(Item list[]);
 private slots:
     void on_pushButton_6_clicked();
 

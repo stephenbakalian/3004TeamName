@@ -1,6 +1,6 @@
 #ifndef OWNEDBOOKS_H
 #define OWNEDBOOKS_H
-
+#include "item.h"
 #include <QWidget>
 
 namespace Ui {
@@ -14,7 +14,8 @@ class OwnedBooks : public QWidget
 public:
     explicit OwnedBooks(QWidget *parent = 0);
     ~OwnedBooks();
-    void showTexts();
+    void showItems(Item[]);
+
 private slots:
     void on_pushButton_2_clicked();
 
