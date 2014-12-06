@@ -19,6 +19,17 @@ std::string Item::getCourse(){
 std::string Item::getPurchaseDate(){
     return purchaseDate;
 }
+std::string Item::getPrice(){
+    return price;
+}
+std::string Item::getType(){
+    return type;
+}
+
+
+
+
+
 
 void Item::setTitle(std::string newTitle){
     title=newTitle;
@@ -34,4 +45,10 @@ void Item::setCourse(std::string newCourse){
 }
 void Item::setPurchaseDate(std::string newPurchaseDate){
     purchaseDate=newPurchaseDate;
+}
+void Item::setPrice(std::string newPrice){
+    price=newPrice;
+}
+void Item::setType(std::string newType){
+    type=newType;
 }
