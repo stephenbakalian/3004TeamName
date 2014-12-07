@@ -1,6 +1,8 @@
 #include <QDebug>
 #include <QtNetwork>
 #include <QJsonDocument>
+#include <iostream>
+#include <sstream>
 
 #include "../config.h"
 #include "requesthandler.h"
@@ -318,13 +320,13 @@ QList<Item> RequestHandler::booksOwned(std::string username){
             //ownedBooks.insert(i, response["items"+i]);
 
             Item item;
-            item.setAuthor(response["author"+i].toString().toStdString());
-            item.setCourse(response["course"+i].toString().toStdString());
-            item.setDescription(response["description"+i].toString().toStdString());
-            item.setPrice(response["price"+i].toString().toStdString());
-            item.setPurchaseDate(response["purchasedate"+i].toString().toStdString());
-            item.setTitle(response["title"+i].toString().toStdString());
-            item.setType(response["type"+itemCount].toString().toStdString());
+            item.setAuthor(response[concatStrInt("author",i).c_str()].toString().toStdString());
+            item.setCourse(response[concatStrInt("course",i).c_str()].toString().toStdString());
+            item.setDescription(response[concatStrInt("description",i).c_str()].toString().toStdString());
+            item.setPrice(response[concatStrInt("price",i).c_str()].toString().toStdString());
+            item.setPurchaseDate(response[concatStrInt("purchasedate",i).c_str()].toString().toStdString());
+            item.setTitle(response[concatStrInt("title",i).c_str()].toString().toStdString());
+            item.setType(response[concatStrInt("type",itemCount).c_str()].toString().toStdString());
             ownedBooks.push_back(item);
             qDebug() << ownedBooks.value(i).getTitle().c_str();
         }
@@ -386,13 +388,13 @@ QList<Item> RequestHandler::viewCart(std::string username){
         qDebug() << itemCount;
         for (int i = 0; i < itemCount; i++){
             Item item;
-            item.setAuthor(response["author"+i].toString().toStdString());
-            item.setCourse(response["course"+i].toString().toStdString());
-            item.setDescription(response["description"+i].toString().toStdString());
-            item.setPrice(response["price"+i].toString().toStdString());
-            item.setPurchaseDate(response["purchasedate"+i].toString().toStdString());
-            item.setTitle(response["title"+i].toString().toStdString());
-            item.setType(response["type"+i].toString().toStdString());
+            item.setAuthor(response[concatStrInt("author",i).c_str()].toString().toStdString());
+            item.setCourse(response[concatStrInt("course",i).c_str()].toString().toStdString());
+            item.setDescription(response[concatStrInt("description",i).c_str()].toString().toStdString());
+            item.setPrice(response[concatStrInt("price",i).c_str()].toString().toStdString());
+            item.setPurchaseDate(response[concatStrInt("purchasedate",i).c_str()].toString().toStdString());
+            item.setTitle(response[concatStrInt("title",i).c_str()].toString().toStdString());
+            item.setType(response[concatStrInt("type",i).c_str()].toString().toStdString());
             ownedBooks.push_back(item);
             qDebug() << ownedBooks.value(i).getTitle().c_str();
         }
@@ -429,13 +431,13 @@ int RequestHandler::checkout(QList<Item> cartItems, std::string username){
     }
     qDebug() << cartItems.size();
     for (int i =0; i< cartItems.size(); i++){
-        request["title"+itemCount]         = QString(bookList[i].getTitle().c_str());
-        request["author"+itemCount]        = QString(bookList[i].getAuthor().c_str());
-        request["description"+itemCount]   = QString(bookList[i].getDescription().c_str());
-        request["course"+itemCount]        = QString(bookList[i].getCourse().c_str());
-        request["purchasedate"+itemCount]  = QString(bookList[i].getPurchaseDate().c_str());
-        request["price"+itemCount]         = QString(bookList[i].getPrice().c_str());
-        request["type"+itemCount]          = QString(bookList[i].getType().c_str());
+        request[concatStrInt("title",i).c_str()]   = QString(bookList[i].getTitle().c_str());
+        request[concatStrInt("author",itemCount).c_str()]        = QString(bookList[i].getAuthor().c_str());
+        request[concatStrInt("description",itemCount).c_str()]   = QString(bookList[i].getDescription().c_str());
+        request[concatStrInt("course",itemCount).c_str()]        = QString(bookList[i].getCourse().c_str());
+        request[concatStrInt("purchasedate",itemCount).c_str()]  = QString(bookList[i].getPurchaseDate().c_str());
+        request[concatStrInt("price",itemCount).c_str()]         = QString(bookList[i].getPrice().c_str());
+        request[concatStrInt("type",itemCount).c_str()]          = QString(bookList[i].getType().c_str());
         itemCount++;
     }
     qDebug() << itemCount;
@@ -556,4 +558,10 @@ void RequestHandler::socketChanged(QAbstractSocket::SocketState state) {
     case QAbstractSocket::ClosingState:
         break;
     }
+}
+
+std::string RequestHandler::concatStrInt(std::string str, int num){
+    std::stringstream test;
+    test << str << num;
+    return test.str();
 }

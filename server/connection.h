@@ -27,6 +27,7 @@ signals:
 
 private:
     int socketDesc;
+    std::string concatStrInt(std::string str, int num);
 };
 
 #endif // CONNECTION_H

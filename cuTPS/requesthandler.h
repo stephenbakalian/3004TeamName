@@ -38,7 +38,7 @@ signals:
 
 private:
     QTcpSocket *socket;
-
+    std::string concatStrInt(std::string str, int num);
     void init();
     void kill();
 };
