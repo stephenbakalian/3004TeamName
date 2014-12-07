@@ -1,41 +1,15 @@
 #include "ownedbooks.h"
 #include "ui_ownedbooks.h"
 #include "mainwindow.h"
+
 OwnedBooks::OwnedBooks(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::OwnedBooks)
 {
     ui->setupUi(this);
 
-
-    Item *temp1 = new Item();
-    Item *temp2 = new Item();
-    Item *temp3 = new Item();
-    Item *temp4 = new Item();
-
-    temp1->setTitle("HOW TO WIN at chess");
-    temp2->setTitle("Batman beyond");
-    temp3->setTitle("duck you");
-    temp4->setTitle("Hai");
-
-    /**
-      HERE ITEMS SHOULD BE GRABBED FROM SERVER
-     **/
-
-    reqHandler = new RequestHandler(this);
-QList<Item> items;
-    //QList<Item> items = reqHandler->booksOwned(((MainWindow*)parentWidget())->getUsername());
-    if (items.size() != 0){
-        Item literature[sizeof(items)];
-
-        for (int i =0; i < items.size(); i++){
-            literature[i] = items.takeAt(i);
-        }
-
-        showItems(literature);
-    }
-
 }
+
 
 OwnedBooks::~OwnedBooks()
 {
@@ -44,7 +18,7 @@ OwnedBooks::~OwnedBooks()
 
 void OwnedBooks::on_pushButton_2_clicked()
 {
-    ((MainWindow*)parentWidget())->setStuViewItems();
+    ((MainWindow*)parentWidget())->setStuViewItems(username);
 }
 
 void OwnedBooks::on_pushButton_clicked()
@@ -86,3 +60,41 @@ void OwnedBooks::showItems(Item list[]){
    ui->gridLayout->addItem(vert,sizeof(list)+1,0,1,0);
 }
 
+void OwnedBooks::setUsername(std::string username){
+    username=username;
+    updateUI();
+}
+
+
+void OwnedBooks::updateUI(){
+
+    Item *temp1 = new Item();
+    Item *temp2 = new Item();
+    Item *temp3 = new Item();
+    Item *temp4 = new Item();
+
+    temp1->setTitle("HOW TO WIN at chess");
+    temp2->setTitle("Batman beyond");
+    temp3->setTitle("duck you");
+    temp4->setTitle("Hai");
+
+    /**
+      HERE ITEMS SHOULD BE GRABBED FROM SERVER
+     **/
+
+    reqHandler = new RequestHandler(this);
+    QList<Item> items;
+
+    items = reqHandler->booksOwned(username);
+    //items = reqHandler->booksOwned();
+    if (items.size() != 0){
+        Item literature[sizeof(items)];
+
+        for (int i =0; i < items.size(); i++){
+            literature[i] = items.takeAt(i);
+        }
+
+        showItems(literature);
+    }
+
+}

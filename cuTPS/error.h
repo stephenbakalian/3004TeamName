@@ -15,6 +15,7 @@ public:
     explicit Error(QWidget *parent = 0);
     void setError(QString, int);
     ~Error();
+    void setUsername(std::string username);
 
 private slots:
     void on_pushButton_clicked();
@@ -25,6 +26,7 @@ private:
     Ui::Error *ui;
     QString errorMessage;
     int errorPage;
+    std::string username;
 };
 
 #endif // ERROR_H

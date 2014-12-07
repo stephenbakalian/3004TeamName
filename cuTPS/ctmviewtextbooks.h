@@ -14,6 +14,7 @@ class CTMViewTextbooks : public QWidget
 public:
     explicit CTMViewTextbooks(QWidget *parent = 0);
     ~CTMViewTextbooks();
+    void setUsername(std::string username);
 
 private slots:
     void on_pushButton_16_clicked();
@@ -24,6 +25,7 @@ private slots:
 
 private:
     Ui::CTMViewTextbooks *ui;
+    std::string username;
 };
 
 #endif // CTMVIEWTEXTBOOKS_H

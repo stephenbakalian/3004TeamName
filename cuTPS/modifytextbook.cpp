@@ -21,6 +21,11 @@ ModifyTextbook::~ModifyTextbook()
     delete ui;
 }
 
+void ModifyTextbook::setUsername(std::string user){
+    username=user;
+}
+
+
 void ModifyTextbook::on_pushButton_clicked()
 {
 
@@ -33,7 +38,7 @@ void ModifyTextbook::setData(QString* info)
 }
 void ModifyTextbook::on_pushButton_2_clicked()
 {
-    ((MainWindow*)parentWidget())->setCTMViewItems();
+    ((MainWindow*)parentWidget())->setCTMViewItems(username);
 }
 
 void ModifyTextbook::on_pushButton_3_clicked()

@@ -32,6 +32,11 @@ StudentViewTextbooks::~StudentViewTextbooks()
     delete ui;
 }
 
+void StudentViewTextbooks::setUsername(std::string user){
+    username=user;
+}
+
+
 void StudentViewTextbooks::on_pushButton_6_clicked()
 {
     ((MainWindow*)parentWidget())->setViewLogin();
@@ -40,12 +45,12 @@ void StudentViewTextbooks::on_pushButton_6_clicked()
 
 void StudentViewTextbooks::on_pushButton_7_clicked()
 {
-    ((MainWindow*)parentWidget())->setViewCart();
+    ((MainWindow*)parentWidget())->setViewCart(username);
 }
 
 void StudentViewTextbooks::on_pushButton_8_clicked()
 {
-    ((MainWindow*)parentWidget())->setViewOwnedItems();
+    ((MainWindow*)parentWidget())->setViewOwnedItems(username);
 }
 
 void StudentViewTextbooks::on_pushButton_5_clicked()
@@ -58,20 +63,20 @@ void StudentViewTextbooks::on_pushButton_5_clicked()
     checkedItems[1]="waffles";
     //TODO ends here
 
-    int resp = reqHandler->AddToCart(checkedItems, ((MainWindow*)parentWidget())->getUsername());
+    int resp = reqHandler->AddToCart(checkedItems, username);
     qDebug() << "Add to cart" << resp;
     switch (resp) {
     case -5:
-        ((MainWindow*)parentWidget())->setViewError("Database connection error",1);
+        ((MainWindow*)parentWidget())->setViewError("Database connection error",1, username);
         break;
     case -4:
-        ((MainWindow*)parentWidget())->setViewError("Unable to connect to the server... \n is it running?",0);
+        ((MainWindow*)parentWidget())->setViewError("Unable to connect to the server... \n is it running?",0, username);
         break;
     case -3:
-        ((MainWindow*)parentWidget())->setViewError("Opps/nSomething went very wrong",1);
+        ((MainWindow*)parentWidget())->setViewError("Opps/nSomething went very wrong",1, username);
         break;
     case -2:
-        ((MainWindow*)parentWidget())->setViewError("Unknown Json Parsing Error",1);
+        ((MainWindow*)parentWidget())->setViewError("Unknown Json Parsing Error",1,username);
         break;
     case 0://Socket Disconect
         break;
@@ -81,7 +86,7 @@ void StudentViewTextbooks::on_pushButton_5_clicked()
         //Add to cart
         break;
     default:
-        ((MainWindow*)parentWidget())->setViewError("An unhandeled error occured \n please contant a techincal assiant \n ERROR: " + resp,1);
+        ((MainWindow*)parentWidget())->setViewError("An unhandeled error occured \n please contant a techincal assiant \n ERROR: " + resp,1, username);
     }
 }
 void StudentViewTextbooks::showItems(Item list[]){

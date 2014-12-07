@@ -18,6 +18,7 @@ public:
     explicit OwnedBooks(QWidget *parent = 0);
     ~OwnedBooks();
     void showItems(Item[]);
+    void setUsername(std::string username);
 
 private slots:
     void on_pushButton_2_clicked();
@@ -25,6 +26,8 @@ private slots:
 
 private:
     Ui::OwnedBooks *ui;
+    std::string username;
+    void updateUI();
 };
 
 #endif // OWNEDBOOKS_H

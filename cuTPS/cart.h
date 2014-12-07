@@ -15,6 +15,7 @@ public:
     explicit Cart(QWidget *parent = 0);
     ~Cart();
     void showItems(Item[]);
+    void setUsername(std::string username);
 
 private slots:
     void on_pushButton_clicked();
@@ -23,6 +24,7 @@ private slots:
 
 private:
     Ui::Cart *ui;
+    std::string username;
 };
 
 #endif // CART_H

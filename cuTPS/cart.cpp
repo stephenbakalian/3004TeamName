@@ -30,6 +30,10 @@ Cart::~Cart()
     delete ui;
 }
 
+void Cart::setUsername(std::string user){
+    username=user;
+}
+
 void Cart::on_pushButton_clicked()
 {
     ((MainWindow*)parentWidget())->setViewLogin();
@@ -38,7 +42,7 @@ void Cart::on_pushButton_clicked()
 
 void Cart::on_pushButton_2_clicked()
 {
-    ((MainWindow*)parentWidget())->setStuViewItems();
+    ((MainWindow*)parentWidget())->setStuViewItems(username);
 
 }
 void Cart::showItems(Item list[]){

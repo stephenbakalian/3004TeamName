@@ -13,6 +13,7 @@ public:
     explicit ModifyTextbook(QWidget *parent = 0);
     void setData(QString*);
     ~ModifyTextbook();
+    void setUsername(std::string username);
 
 private slots:
     void on_pushButton_clicked();
@@ -28,6 +29,7 @@ private slots:
 private:
     Ui::ModifyTextbook *ui;
     void updateAvailableFeilds();
+    std::string username;
 };
 
 #endif // MODIFYTEXTBOOK_H

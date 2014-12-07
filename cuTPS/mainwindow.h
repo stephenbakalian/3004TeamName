@@ -21,16 +21,14 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = 0);
-    std::string getUsername();
-    void setUsername(std::string username);
-    void setStuViewItems();
-    void setCTMViewItems();
-    void setViewOwnedItems();
+    void setStuViewItems(std::string usernames);
+    void setCTMViewItems(std::string usernames);
+    void setViewOwnedItems(std::string usernames);
     void setViewLogin();
-    void setViewError(QString,int);
-    void setViewModItems();
-    void setViewModItems(QString[]);
-    void setViewCart();
+    void setViewError(QString,int, std::string usernames);
+    void setViewModItems(std::string usernames);
+    void setViewModItems(QString[], std::string usernames);
+    void setViewCart(std::string usernames);
     ~MainWindow();
 
 private slots:
@@ -45,7 +43,6 @@ private:
     CTMViewTextbooks *CTMViewTextsPage;
     StudentViewTextbooks *StuViewTextsPage;
     Cart *cartPage;
-    std::string username;
 
     Ui::MainWindow *ui;
 };

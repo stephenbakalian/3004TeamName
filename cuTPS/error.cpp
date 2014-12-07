@@ -16,6 +16,10 @@ void Error::setError(QString message, int pageNum){
 
 }
 
+void Error::setUsername(std::string user){
+    username=user;
+}
+
 Error::~Error()
 {
     delete ui;
@@ -28,16 +32,16 @@ void Error::on_pushButton_clicked()
         ((MainWindow*)parentWidget())->setViewLogin();
         break;
     case 1://stuViewText
-        ((MainWindow*)parentWidget())->setStuViewItems();
+        ((MainWindow*)parentWidget())->setStuViewItems(username);
         break;
     case 2:
-        ((MainWindow*)parentWidget())->setCTMViewItems();
+        ((MainWindow*)parentWidget())->setCTMViewItems(username);
         break;
     case 3:
-        ((MainWindow*)parentWidget())->setViewCart();
+        ((MainWindow*)parentWidget())->setViewCart(username);
         break;
     case 4:
-        ((MainWindow*)parentWidget())->setViewModItems();
+        ((MainWindow*)parentWidget())->setViewModItems(username);
         break;
        default:
         ((MainWindow*)parentWidget())->setViewLogin();
