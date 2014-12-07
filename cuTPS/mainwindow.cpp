@@ -47,6 +47,11 @@ void MainWindow::setViewOwnedItems(){
     ownedPage = new OwnedBooks();
     this->setCentralWidget(ownedPage);
 }
+void MainWindow::setViewAdmin(){
+    adminPage = new admin();
+    this->setCentralWidget(adminPage);
+}
+
 
 std::string MainWindow::getUsername(){
     return username;

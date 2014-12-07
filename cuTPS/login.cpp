@@ -55,7 +55,7 @@ void Login::on_pushButton_released()
         ((MainWindow*)parentWidget())->setCTMViewItems();
         break;
     case 4: //Admin Logs in
-        ((MainWindow*)parentWidget())->setCTMViewItems();
+        ((MainWindow*)parentWidget())->setViewAdmin();
         break;
     }
 }
