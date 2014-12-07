@@ -379,7 +379,8 @@ QList<Item> RequestHandler::viewCart(std::string username){
         }
 
         response = rawResponse.object();
-
+        qDebug()<< rawResponse.toVariant().toString();
+        qDebug()<< rawResponse;
         itemCount=response["itemCount"].toDouble();
 
         qDebug() << itemCount;

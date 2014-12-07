@@ -126,13 +126,13 @@ void Connection::run() {
             qDebug() << itemCount;
             for (int i = 0; i < itemCount; i++){
                 Item item;
-                item.setAuthor(request["author"+i].toString().toStdString());
-                item.setCourse(request["course"+i].toString().toStdString());
-                item.setDescription(request["description"+i].toString().toStdString());
-                item.setPrice(request["price"+i].toString().toStdString());
-                item.setPurchaseDate(request["purchasedate"+i].toString().toStdString());
-                item.setTitle(request["title"+i].toString().toStdString());
-                item.setType(request["type"+itemCount].toString().toStdString());
+                item.setAuthor(response["author"+i].toString().toStdString());
+                item.setCourse(response["course"+i].toString().toStdString());
+                item.setDescription(response["description"+i].toString().toStdString());
+                item.setPrice(response["price"+i].toString().toStdString());
+                item.setPurchaseDate(response["purchasedate"+i].toString().toStdString());
+                item.setTitle(response["title"+i].toString().toStdString());
+                item.setType(response["type"+i].toString().toStdString());
                 checkoutBooks.push_back(item);
                 qDebug() << checkoutBooks.value(i).getTitle().c_str();
             }
