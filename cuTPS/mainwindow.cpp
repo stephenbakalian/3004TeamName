@@ -27,7 +27,7 @@ void MainWindow::setViewLogin()
 }
 void MainWindow::setViewError(QString errorMessage, int refPage){
     errorPage = new Error();
-    errorPage->setError(errorMessage, refPage);
+
     this->setCentralWidget(errorPage);
 }
 void MainWindow::setViewModItems(){
@@ -51,8 +51,8 @@ void MainWindow::setViewOwnedItems(){
 std::string MainWindow::getUsername(){
     return username;
 }
-void MainWindow::setUsername(std::string username){
-    this->username=username;
+void MainWindow::setUsername(std::string newUsername){
+    this->username=newUsername;
 }
 
 MainWindow::~MainWindow()

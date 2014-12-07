@@ -47,14 +47,15 @@ void Login::on_pushButton_released()
     case 1: //Successfull
         break;
     case 2: //Student logs in
-        ((MainWindow*)parentWidget())->setStuViewItems();
         ((MainWindow*)parentWidget())->setUsername(ui->LoginUsername->text().toStdString());
+        ((MainWindow*)parentWidget())->setStuViewItems();
         break;
     case 3: //CTM logs in
-        ((MainWindow*)parentWidget())->setCTMViewItems();
         ((MainWindow*)parentWidget())->setUsername(ui->LoginUsername->text().toStdString());
+        ((MainWindow*)parentWidget())->setCTMViewItems();
         break;
     case 4: //Admin Logs in
+        ((MainWindow*)parentWidget())->setCTMViewItems();
         break;
     }
 }
