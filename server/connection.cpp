@@ -1,10 +1,12 @@
 #include <QDebug>
 #include <QtNetwork>
 #include <QJsonDocument>
+#include <QList>
 
 #include "connection.h"
 #include "sharedmanager.h"
 #include "studentmanager.h"
+#include "item.h"
 
 Connection::Connection(QObject *parent, int socketDesc) :
 QThread(parent) {
@@ -60,9 +62,33 @@ void Connection::run() {
 
             response["status"] = StudentManager().addToCart(user, itemKey);
 
-        } else if (request["request"] == QString("books owned")){
+        } else if (request["request"] == QString("booksOwned")){
 
             qDebug() << "owned books request made";
+            std::string user        = request["user"].toString().toStdString();
+            QList<Item> ownedBooks  = StudentManager().viewPurchasedItems(user);
+            int         itemCount   = 0;
+
+            Item bookList[ownedBooks.size()];
+
+            for (int i =0; i < ownedBooks.size(); i++){
+                bookList[i] = ownedBooks.value(i);
+            }
+            qDebug() << ownedBooks.size();
+            for (int i =0; i< ownedBooks.size(); i++){
+                response["title"+itemCount]         = QString(bookList[i].getTitle().c_str());
+                response["author"+itemCount]        = QString(bookList[i].getAuthor().c_str());
+                response["description"+itemCount]   = QString(bookList[i].getDescription().c_str());
+                response["course"+itemCount]        = QString(bookList[i].getCourse().c_str());
+                response["purchasedate"+itemCount]  = QString(bookList[i].getPurchaseDate().c_str());
+                response["price"+itemCount]         = QString(bookList[i].getPrice().c_str());
+                response["type"+itemCount]          = QString(bookList[i].getType().c_str());
+                itemCount++;
+            //    qDebug() << bookList[i];
+            }
+
+            response["itemCount"] = itemCount;
+
 
         } else if (request["request"] == QString("addbook")) {
 

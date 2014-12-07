@@ -27,7 +27,6 @@ void OwnedBooks::on_pushButton_clicked()
 
 }
 void OwnedBooks::showItems(Item list[]){
-    //qDebug() << (list==NULL); //<< sizeof(list);
    int x;
    QLabel *titles[sizeof(list)];
    QLabel *type[sizeof(list)];
@@ -85,15 +84,12 @@ void OwnedBooks::updateUI(){
     QList<Item> items;
 
     items = reqHandler->booksOwned(username);
-    //items = reqHandler->booksOwned();
-    if (items.size() != 0){
-        Item literature[sizeof(items)];
+    Item literature[sizeof(items)];
 
-        for (int i =0; i < items.size(); i++){
-            literature[i] = items.takeAt(i);
-        }
-
-        showItems(literature);
+    for (int i =0; i < items.size(); i++){
+        literature[i] = items.value(i);
     }
+
+    showItems(literature);
 
 }

@@ -3,8 +3,8 @@
 
 #include <QObject>
 #include <QTcpSocket>
-//#include <list>
 #include <QList>
+#include <QJsonValueRef>
 
 #include "item.h"
 
@@ -37,6 +37,7 @@ private:
 
     void init();
     void kill();
+    Item jasonToItem(QJsonValueRef json);
 };
 
 #endif // REQUESTHANDLER_H

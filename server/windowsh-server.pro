@@ -20,11 +20,13 @@ SOURCES += main.cpp \
     connection.cpp \
     studentmanager.cpp \
     sharedmanager.cpp \
-    ctmmanager.cpp
+    ctmmanager.cpp \
+    item.cpp
 
 HEADERS += \
     server.h \
     connection.h \
     studentmanager.h \
     sharedmanager.h \
-    ctmmanager.h
+    ctmmanager.h \
+    item.h

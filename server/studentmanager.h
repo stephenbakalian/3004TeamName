@@ -2,6 +2,9 @@
 #define STUDENTMANAGER_H
 
 #include <string>
+#include <QList>
+
+#include "item.h"
 
 class StudentManager
 {
@@ -10,6 +13,7 @@ public:
 
     int addToPreviouslyPurchasedItems(std::string studentName, std::string itemKeys[]);
     int addToCart(std::string studentName, std::string itemKeys[]);
+    QList<Item> viewPurchasedItems(std::string studentName);
 };
 
 #endif // STUDENTMANAGER_H
