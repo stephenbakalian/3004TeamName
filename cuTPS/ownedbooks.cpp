@@ -66,25 +66,11 @@ void OwnedBooks::setUsername(std::string username){
 
 void OwnedBooks::updateUI(){
 
-    Item *temp1 = new Item();
-    Item *temp2 = new Item();
-    Item *temp3 = new Item();
-    Item *temp4 = new Item();
-
-    temp1->setTitle("HOW TO WIN at chess");
-    temp2->setTitle("Batman beyond");
-    temp3->setTitle("duck you");
-    temp4->setTitle("Hai");
-
-    /**
-      HERE ITEMS SHOULD BE GRABBED FROM SERVER
-     **/
-
     reqHandler = new RequestHandler(this);
     QList<Item> items;
 
     items = reqHandler->booksOwned(username);
-    Item literature[sizeof(items)];
+    Item literature[items.size()+2];
 
     for (int i =0; i < items.size(); i++){
         literature[i] = items.value(i);

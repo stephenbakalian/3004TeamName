@@ -339,6 +339,76 @@ QList<Item> RequestHandler::booksOwned(std::string username){
     return ownedBooks;
 }
 
+QList<Item> RequestHandler::viewCart(std::string username){
+    QByteArray buffer;
+    QJsonDocument rawRequest;
+    QJsonObject request;
+    QJsonDocument rawResponse;
+    QJsonObject response;
+    QJsonParseError jsonError;
+    QList<Item> ownedBooks;
+    int itemCount;
+
+    /* Connect to the server. */
+    init();
+
+    /* Generate the request object. */
+    request["request"] = QString("viewCart");
+    request["user"] = QString(username.c_str());
+    rawRequest.setObject(request);
+
+    double req=-10;
+    socket = new QTcpSocket(this);
+    socket->connectToHost(SERVER, PORT);
+
+    if(socket->waitForConnected(3000))
+    {
+        // send
+        socket->write(rawRequest.toJson());
+        socket->waitForBytesWritten(1000);
+        socket->waitForReadyRead(3000);
+        //qDebug() << "Reading: " << socket->bytesAvailable();
+
+        buffer= (socket->readAll());
+        //qDebug() << "Reading: " <<buffer;
+
+        rawResponse = QJsonDocument::fromJson(buffer, &jsonError);
+
+        if (jsonError.error) {
+            return ownedBooks;//-2 error
+        }
+
+        response = rawResponse.object();
+
+        itemCount=response["itemCount"].toDouble();
+
+        qDebug() << itemCount;
+        for (int i = 0; i < itemCount; i++){
+
+            //ownedBooks.insert(i, response["items"+i]);
+
+            Item item;
+            item.setAuthor(response["author"+i].toString().toStdString());
+            item.setCourse(response["course"+i].toString().toStdString());
+            item.setDescription(response["description"+i].toString().toStdString());
+            item.setPrice(response["price"+i].toString().toStdString());
+            item.setPurchaseDate(response["purchasedate"+i].toString().toStdString());
+            item.setTitle(response["title"+i].toString().toStdString());
+            item.setType(response["type"+itemCount].toString().toStdString());
+            ownedBooks.push_back(item);
+            qDebug() << ownedBooks.value(i).getTitle().c_str();
+        }
+        return ownedBooks;
+        socket->close();
+    }else{
+        return ownedBooks;//-4 error
+    }
+
+    qDebug() << req;
+
+    return ownedBooks;
+}
+
 void RequestHandler::socketChanged(QAbstractSocket::SocketState state) {
     switch(state) {
     case QAbstractSocket::UnconnectedState:
@@ -359,10 +429,4 @@ void RequestHandler::socketChanged(QAbstractSocket::SocketState state) {
     case QAbstractSocket::ClosingState:
         break;
     }
-}
-
-Item RequestHandler::jasonToItem(QJsonValueRef json){
-    Item temp;
-    temp.setTitle("too many cooks");
-    return temp;
 }

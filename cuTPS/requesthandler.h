@@ -17,10 +17,12 @@ public:
     int Login(std::string username);
     int AddToCart(std::string itemKey[], std::string username);
     QList<Item> booksOwned(std::string username);
+    QList<Item> viewCart(std::string username);
 
     void AddBook(std::string, double, std::string, double, double, std::string);
     void AddCoruse(std::string,std::string,std::string,double,std::string);
     void BuyBook(std::string, std::string);
+
 
 private slots:
     void socketChanged(QAbstractSocket::SocketState state);
@@ -37,7 +39,6 @@ private:
 
     void init();
     void kill();
-    Item jasonToItem(QJsonValueRef json);
 };
 
 #endif // REQUESTHANDLER_H

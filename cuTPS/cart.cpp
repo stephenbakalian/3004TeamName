@@ -6,6 +6,19 @@ Cart::Cart(QWidget *parent) :
     ui(new Ui::Cart)
 {
     ui->setupUi(this);
+}
+
+Cart::~Cart()
+{
+    delete ui;
+}
+
+void Cart::setUsername(std::string user){
+    username=user;
+    updateUI();
+}
+
+void Cart::updateUI(){
 
     Item *temp1 = new Item();
     Item *temp2 = new Item();
@@ -17,21 +30,22 @@ Cart::Cart(QWidget *parent) :
     temp3->setTitle("duck you");
     temp4->setTitle("Hai");
 
-    Item literature[]={*temp1,*temp2,*temp3,*temp4};
     /**
       HERE ITEMS SHOULD BE GRABBED FROM SERVER
      **/
+
+    reqHandler = new RequestHandler(this);
+    QList<Item> items;
+
+    items = reqHandler->viewCart(username);
+    Item literature[items.size()+1];
+
+    for (int i =0; i < items.size(); i++){
+        literature[i] = items.value(i);
+    }
+
     showItems(literature);
 
-}
-
-Cart::~Cart()
-{
-    delete ui;
-}
-
-void Cart::setUsername(std::string user){
-    username=user;
 }
 
 void Cart::on_pushButton_clicked()
@@ -76,4 +90,9 @@ void Cart::showItems(Item list[]){
 
    QSpacerItem *vert = new QSpacerItem(1, 1000, QSizePolicy::Expanding, QSizePolicy::Minimum);
    ui->gridLayout->addItem(vert,sizeof(list)+1,0,1,0);
+}
+
+void Cart::on_pushButton_3_clicked()
+{
+
 }
