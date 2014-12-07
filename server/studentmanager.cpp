@@ -53,7 +53,7 @@ QList<Item> StudentManager::viewCart(std::string studentName) {
     temp3->setTitle("waffles");
     temp4->setTitle("Hai");
     temp5->setTitle("too many cooks");
-    temp5->setTitle("teamNAme");
+    temp6->setTitle("teamNAme");
 
     QList<Item> books;
     books.push_back(*temp1);

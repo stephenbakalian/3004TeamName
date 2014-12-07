@@ -1,7 +1,6 @@
 3004TeamName
 ============
 
-
 ## Members
 
   * Jon Penny 
@@ -11,3 +10,8 @@
 
   * Stephen Bakalian
 
+## Instructions
+
+  * Run server 
+
+  * Run client
