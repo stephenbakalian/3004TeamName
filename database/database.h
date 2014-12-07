@@ -23,11 +23,13 @@ class DataBase : public QObject
         QString createBook(int, int, QString, QString, QString, int);
         QString createSection(int, int, int, int, int);
         QString createChapter(int, int, int, int, int, QString);
-        QString createCourse(QString, QString, QString, int, QString, QString);
+        QString createCourse(QString, QString, QString, int, QString, QString); 
         QString createTransaction(int, int, int, QString);
         QString createBilling(int, QString);
         QString createStudentCourseRelation(int, QString);
 
+
+// For these get functions tell me how you want the delimited so you can use them later...
         //Retrieving from DB
         void getUser();
         void getAllUsers();
