@@ -27,8 +27,7 @@ void OwnedBooks::on_pushButton_clicked()
 
 }
 void OwnedBooks::showItems(Item list[]){
-   if(sizeof(list)==4){return;}
-   //ui->gridLayout
+    //qDebug() << (list==NULL); //<< sizeof(list);
    int x;
    QLabel *titles[sizeof(list)];
    QLabel *type[sizeof(list)];

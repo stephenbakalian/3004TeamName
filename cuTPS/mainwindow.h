@@ -10,6 +10,7 @@
 #include "studentviewtextbooks.h"
 #include "cart.h"
 #include "ownedbooks.h"
+#include "admin.h"
 #include <string>
 namespace Ui {
 class MainWindow;
@@ -29,13 +30,14 @@ public:
     void setViewModItems(std::string usernames);
     void setViewModItems(QString[], std::string usernames);
     void setViewCart(std::string usernames);
+    void setViewAdmin();
     ~MainWindow();
 
 private slots:
     void on_pushButton_clicked();
 
 private:
-
+    admin *adminPage;
     ModifyTextbook *ModTextPage;
     Login *loginPage;
     Error *errorPage;

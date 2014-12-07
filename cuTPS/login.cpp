@@ -51,8 +51,10 @@ void Login::on_pushButton_released()
         break;
     case 3: //CTM logs in
         ((MainWindow*)parentWidget())->setCTMViewItems(ui->LoginUsername->text().toStdString());
+
         break;
     case 4: //Admin Logs in
+        ((MainWindow*)parentWidget())->setViewAdmin();
         break;
     }
 }

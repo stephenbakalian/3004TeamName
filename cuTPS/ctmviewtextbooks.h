@@ -1,6 +1,6 @@
 #ifndef CTMVIEWTEXTBOOKS_H
 #define CTMVIEWTEXTBOOKS_H
-
+#include <item.h>
 #include <QWidget>
 
 namespace Ui {
@@ -15,6 +15,7 @@ public:
     explicit CTMViewTextbooks(QWidget *parent = 0);
     ~CTMViewTextbooks();
     void setUsername(std::string username);
+    void showItems(Item list[]);
 
 private slots:
     void on_pushButton_16_clicked();
