@@ -26,6 +26,7 @@ class DataBase : public QObject
         QString createCourse(QString, QString, QString, int, QString, QString);
         QString createTransaction(int, int, int, QString);
         QString createBilling(int, QString);
+        QString createStudentCourseRelation(int, QString);
 
         //Retrieving from DB
         void getUser();

@@ -24,7 +24,7 @@ bool DataBase::createTables(){
 
         ret = qry.exec("CREATE TABLE purchased "
                        "(purchase_id INTEGER PRIMARY KEY NOT NULL, "
-                       "purchased_isbn INTEGER NOT NULL, "
+                       "purchase_isbn INTEGER NOT NULL, "
                        "purchase_price INTEGER NOT NULL, "
                        "date TEXT NOT NULL) ");
 
@@ -91,7 +91,7 @@ bool DataBase::getDBOpen(){
 
 }
 
-QString DataBase::insertItems(QString title, QString description, QString type, int cost){
+QString DataBase::createTransaction(int purchaseID, int purchaseISBN, int purchasePrice, QString date){
 
     QString newInsert = "Failed to insert new query";
     bool ret = false;
@@ -100,110 +100,284 @@ QString DataBase::insertItems(QString title, QString description, QString type, 
 
         QSqlQuery qry;
 
-        ret = qry.exec(QString("insert into items values(NULL, '%1', '%2', '%3', '%4')")
-                       .arg(title).arg(description).arg(type).arg(cost));
+        ret = qry.exec(QString("INSERT INTO purchased VALUES(NULL, '%1', '%2', '%3', '%4')")
+                       .arg(purchaseID).arg(purchaseISBN).arg(purchasePrice).arg(date));
 
         if (ret){
-            newInsert = QString("Inserting %1 successful!").arg(title);
+            newInsert = QString("Inserting %1 successful!").arg(purchaseID);
         }
 
     }
     return newInsert;
 }
 
-void DataBase:: getItems(){
+QString DataBase::createUser(int userID, QString name, QString email, QString role){
+
+    QString newInsert = "Failed to insert new query";
+    bool ret = false;
 
     if (mydb.isOpen()){
 
         QSqlQuery qry;
-        qry.exec("SELECT id,title,description,type,cost FROM items");
 
-        while (qry.next()) {
+        ret = qry.exec(QString("INSERT INTO user VALUES(NULL, '%1', '%2', '%3', '%4')")
+                       .arg(userID).arg(name).arg(email).arg(role));
 
-            int id = qry.value(0).toInt();
-            QString title = qry.value(1).toString();
-            QString description = qry.value(2).toString();
-            QString type = qry.value(3).toString();
-            int cost = qry.value(4).toInt();
-            qDebug() << id << title << description << type << cost;
-
+        if (ret){
+            newInsert = QString("Inserting %1 successful!").arg(userID);
         }
+
     }
+    return newInsert;
 }
 
-void DataBase::getStudentList(){
+QString DataBase::createBook(int ISBN, int price, QString name, QString cover, QString author, int yearPublished){
+
+    QString newInsert = "Failed to insert new query";
+    bool ret = false;
 
     if (mydb.isOpen()){
 
         QSqlQuery qry;
-        qry.exec("SELECT username FROM students");
+
+        ret = qry.exec(QString("INSERT INTO book VALUES(NULL, '%1', '%2', '%3', '%4', '%5', '%6')")
+                       .arg(ISBN).arg(price).arg(name).arg(cover).arg(author).arg(yearPublished));
+
+        if (ret){
+            newInsert = QString("Inserting %1 successful!").arg(ISBN);
+        }
+
+    }
+    return newInsert;
+}
+
+QString DataBase::createSection(int sectionID, int chapterID, int startPage, int endPage, int price){
+
+    QString newInsert = "Failed to insert new query";
+    bool ret = false;
+
+    if (mydb.isOpen()){
+
+        QSqlQuery qry;
+
+        ret = qry.exec(QString("INSERT INTO section VALUES(NULL, '%1', '%2', '%3', '%4', '%5')")
+                       .arg(sectionID).arg(chapterID).arg(startPage).arg(endPage).arg(price));
+
+        if (ret){
+            newInsert = QString("Inserting %1 successful!").arg(sectionID);
+        }
+
+    }
+    return newInsert;
+}
+
+QString DataBase::createChapter(int chapterID, int ISBN, int startPage, int endPage, int price, QString title){
+
+    QString newInsert = "Failed to insert new query";
+    bool ret = false;
+
+    if (mydb.isOpen()){
+
+        QSqlQuery qry;
+
+        ret = qry.exec(QString("INSERT INTO chapter VALUES(NULL, '%1', '%2', '%3', '%4', '%5', '%6')")
+                       .arg(chapterID).arg(ISBN).arg(startPage).arg(endPage).arg(price).arg(title));
+
+        if (ret){
+            newInsert = QString("Inserting %1 successful!").arg(chapterID);
+        }
+
+    }
+    return newInsert;
+}
+
+QString DataBase::createCourse(QString courseCode, QString instructor, QString term, int courseNum, QString building, QString room){
+
+    QString newInsert = "Failed to insert new query";
+    bool ret = false;
+
+    if (mydb.isOpen()){
+
+        QSqlQuery qry;
+
+        ret = qry.exec(QString("INSERT INTO course VALUES(NULL, '%1', '%2', '%3', '%4', '%5', '%6')")
+                       .arg(courseCode).arg(instructor).arg(term).arg(courseNum).arg(building).arg(room));
+
+        if (ret){
+            newInsert = QString("Inserting %1%2 successful!").arg(courseCode).arg(courseNum);
+        }
+
+    }
+    return newInsert;
+}
+
+QString DataBase::createBilling(int userID, QString address){
+
+    QString newInsert = "Failed to insert new query";
+    bool ret = false;
+
+    if (mydb.isOpen()){
+
+        QSqlQuery qry;
+
+        ret = qry.exec(QString("INSERT INTO billinginfo VALUES(NULL, '%1', '%2')")
+                       .arg(userID).arg(address));
+
+        if (ret){
+            newInsert = QString("Inserting %1 successful!").arg(userID);
+        }
+
+    }
+    return newInsert;
+}
+
+QString DataBase::createStudentCourseRelation(int studentNum, QString courseCode){
+
+    QString newInsert = "Failed to insert new query";
+    bool ret = false;
+
+    if (mydb.isOpen()){
+
+        QSqlQuery qry;
+
+        ret = qry.exec(QString("INSERT INTO student_course_relation VALUES(NULL, '%1', '%2')")
+                       .arg(studentNum).arg(courseCode));
+
+        if (ret){
+            newInsert = QString("Inserting %1 successful!").arg(studentNum);
+        }
+
+    }
+    return newInsert;
+}
+
+
+void DataBase::getAllUsers(){
+
+    if (mydb.isOpen()){
+
+        QSqlQuery qry;
+        qry.exec("SELECT id,name,email,role FROM user");
 
          while (qry.next()) {
 
-                QString username = qry.value(0).toString();
-                qDebug() << username;
+             int userID = qry.value(0).toInt();
+             QString name = qry.value(1).toString();
+             QString email = qry.value(2).toString();
+             QString role = qry.value(3).toString();
+             qDebug() << userID << name << email << role;
 
          }
     }
 }
 
-void DataBase::getCtmList(){
+void DataBase:: getAllBooks(){
 
     if (mydb.isOpen()){
 
         QSqlQuery qry;
-        qry.exec("SELECT username FROM ctm");
+        qry.exec("SELECT isbn,price,name,cover,author,year_published FROM book");
 
         while (qry.next()) {
 
-            QString username = qry.value(0).toString();
-            qDebug() << username;
+            int ISBN = qry.value(0).toInt();
+            int price = qry.value(1).toInt();
+            QString name = qry.value(2).toString();
+            QString cover = qry.value(3).toString();
+            QString author = qry.value(4).toString();
+            int yearPublished = qry.value(5).toInt();
+
+            qDebug() << ISBN << price << name << cover << author << yearPublished;
 
         }
     }
 }
 
-QString DataBase::insertStudent (QString username){
-
-    QString newInsert = "Failed to insert new query";
-    bool ret = false;
+void DataBase:: getAllChapters(){
 
     if (mydb.isOpen()){
 
         QSqlQuery qry;
+        qry.exec("SELECT chapter_id,isbn,start_page,end_page,price,title FROM chapter");
 
-        ret = qry.exec(QString("insert into students values('%1')")
-                       .arg(username));
+        while (qry.next()) {
 
-        if (ret){
-            newInsert = QString("Inserting %1 successful!").arg(username);
+            int chapterID = qry.value(0).toInt();
+            int isbn = qry.value(1).toInt();
+            int startPage = qry.value(2).toInt();
+            int endPage = qry.value(3).toInt();
+            int price = qry.value(4).toInt();
+            QString title = qry.value(5).toString();
+
+            qDebug() << chapterID << isbn << startPage << endPage << price << title;
+
         }
-
     }
-    return newInsert;
 }
 
-
-QString DataBase::insertCtm(QString username){
-
-    QString newInsert = "Failed to insert new query";
-    bool ret = false;
+void DataBase:: getAllSections(){
 
     if (mydb.isOpen()){
 
         QSqlQuery qry;
+        qry.exec("SELECT section_id,chapter_id,start_page,end_page,price FROM section");
 
-        ret = qry.exec(QString("insert into ctm values('%1')")
-                       .arg(username));
+        while (qry.next()) {
 
-        if (ret){
-            newInsert = QString("Inserting %1 successful!").arg(username);
+            int sectionID = qry.value(0).toInt();
+            int chapterID = qry.value(1).toInt();
+            int startPage = qry.value(2).toInt();
+            int endPage = qry.value(3).toInt();
+            int price = qry.value(4).toInt();
+
+            qDebug() << sectionID << chapterID << startPage << endPage << price;
+
         }
-
     }
-    return newInsert;
 }
 
+void DataBase:: getAllCourses(){
+
+    if (mydb.isOpen()){
+
+        QSqlQuery qry;
+        qry.exec("SELECT course_code,instructor,term,course_num,building,room FROM course");
+
+        while (qry.next()) {
+
+            QString courseCode = qry.value(0).toString();
+            QString instructor = qry.value(1).toString();
+            QString term = qry.value(2).toString();
+            int courseNum = qry.value(3).toInt();
+            QString building = qry.value(4).toString();
+            QString room = qry.value(5).toString();
+
+            qDebug() << courseCode << instructor << term << courseNum << building << room;
+
+        }
+    }
+}
+
+void DataBase:: getAllTransactions(){
+
+    if (mydb.isOpen()){
+
+        QSqlQuery qry;
+        qry.exec("SELECT purchase_id,purchase_isbn,purchase_price,date FROM purchased");
+
+        while (qry.next()) {
+
+            int purchaseID = qry.value(0).toInt();
+            int purchaseISBN = qry.value(1).toInt();
+            int purchasePrice = qry.value(2).toInt();
+            QString date = qry.value(3).toString();
+
+            qDebug() << purchaseID << purchaseISBN << purchasePrice << date;
+
+        }
+    }
+}
+/*
 QString DataBase::deleteItem(int id){
 
     QString newDelete = "Failed to delete item";
