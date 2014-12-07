@@ -1,6 +1,7 @@
 #include "ownedbooks.h"
 #include "ui_ownedbooks.h"
 #include "mainwindow.h"
+
 OwnedBooks::OwnedBooks(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::OwnedBooks)
@@ -32,7 +33,7 @@ OwnedBooks::OwnedBooks(QWidget *parent) :
             literature[i] = items.takeAt(i);
         }
 
-        showItems(literature);
+       showItems(literature);
     }
 }
 
@@ -52,8 +53,7 @@ void OwnedBooks::on_pushButton_clicked()
 
 }
 void OwnedBooks::showItems(Item list[]){
-   if(sizeof(list)==4){return;}
-   //ui->gridLayout
+    //qDebug() << (list==NULL); //<< sizeof(list);
    int x;
    QLabel *titles[sizeof(list)];
    QLabel *type[sizeof(list)];
