@@ -24,8 +24,8 @@ OwnedBooks::OwnedBooks(QWidget *parent) :
      **/
 
     reqHandler = new RequestHandler(this);
-
-    QList<Item> items = reqHandler->booksOwned(((MainWindow*)parentWidget())->getUsername());
+QList<Item> items;
+    //QList<Item> items = reqHandler->booksOwned(((MainWindow*)parentWidget())->getUsername());
     if (items.size() != 0){
         Item literature[sizeof(items)];
 
@@ -35,6 +35,7 @@ OwnedBooks::OwnedBooks(QWidget *parent) :
 
        showItems(literature);
     }
+
 }
 
 OwnedBooks::~OwnedBooks()
