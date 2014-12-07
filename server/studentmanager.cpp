@@ -68,6 +68,11 @@ QList<Item> StudentManager::viewCart(std::string studentName) {
 
 int StudentManager::checkout(std::string user,QList<Item> checkoutBooks){
     //TODO
-
+    removeCartItems(user);
     return -5;
+}
+
+bool StudentManager::removeCartItems(std::string user){
+    //TODO
+    return false;
 }

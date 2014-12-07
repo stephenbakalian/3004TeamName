@@ -1,6 +1,8 @@
 #ifndef MODIFYTEXTBOOK_H
 #define MODIFYTEXTBOOK_H
 #include <QWidget>
+#include "item.h"
+#include "requesthandler.h"
 
 namespace Ui {
     class ModifyTextbook;
@@ -10,6 +12,7 @@ class ModifyTextbook : public QWidget
     Q_OBJECT
 
 public:
+    RequestHandler *reqHandler;
     explicit ModifyTextbook(QWidget *parent = 0);
     void setData(QString*);
     ~ModifyTextbook();

@@ -7,3 +7,8 @@
 CTMManager::CTMManager()
 {
 }
+
+int CTMManager::additem(Item item){
+    //TODO
+    return -5;
+}

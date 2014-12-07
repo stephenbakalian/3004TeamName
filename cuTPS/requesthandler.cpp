@@ -480,6 +480,64 @@ int RequestHandler::checkout(QList<Item> cartItems, std::string username){
     return req;
 }
 
+int RequestHandler::addItem(Item item){
+    QByteArray buffer;
+    QJsonDocument rawRequest;
+    QJsonObject request;
+    QJsonDocument rawResponse;
+    QJsonObject response;
+    QJsonParseError jsonError;
+
+    /* Connect to the server. */
+    init();
+
+    /* Generate the request object. */
+    request["request"] = QString("addItem");
+    request["title"]         = QString(item.getTitle().c_str());
+    request["author"]        = QString(item.getAuthor().c_str());
+    request["description"]   = QString(item.getDescription().c_str());
+    request["course"]        = QString(item.getCourse().c_str());
+    request["purchasedate"]  = QString(item.getPurchaseDate().c_str());
+    request["price"]         = QString(item.getPrice().c_str());
+    request["type"]          = QString(item.getType().c_str());
+    rawRequest.setObject(request);
+
+    double req=-10;
+    socket = new QTcpSocket(this);
+    socket->connectToHost(SERVER, PORT);
+
+    if(socket->waitForConnected(3000))
+    {
+        //qDebug() << "Connected!";
+
+        // send
+        socket->write(rawRequest.toJson());
+        socket->waitForBytesWritten(1000);
+        socket->waitForReadyRead(3000);
+        //qDebug() << "Reading: " << socket->bytesAvailable();
+
+        buffer= (socket->readAll());
+        //qDebug() << "Reading: " <<buffer;
+
+        rawResponse = QJsonDocument::fromJson(buffer, &jsonError);
+
+        if (jsonError.error) {
+            return -2;
+        }
+
+        response = rawResponse.object();
+        return (response["status"].toDouble());
+        socket->close();
+    }
+    else
+    {
+        //qDebug() << "No Connecion";
+        return -4;
+    }
+    qDebug() << req;
+    return req;
+}
+
 void RequestHandler::socketChanged(QAbstractSocket::SocketState state) {
     switch(state) {
     case QAbstractSocket::UnconnectedState:

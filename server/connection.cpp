@@ -6,6 +6,7 @@
 #include "connection.h"
 #include "sharedmanager.h"
 #include "studentmanager.h"
+#include "ctmmanager.h"
 #include "item.h"
 
 Connection::Connection(QObject *parent, int socketDesc) :
@@ -137,6 +138,20 @@ void Connection::run() {
             }
 
             response["status"] = StudentManager().checkout(user, checkoutBooks);
+        } else if (request["request"] == QString("addItem")){
+
+            qDebug() << "mod item request made";
+            Item item;
+            item.setTitle(request["title"].toString().toStdString());
+            item.setAuthor(request["author"].toString().toStdString());
+            item.setDescription(request["description"].toString().toStdString());
+            item.setCourse(request["course"].toString().toStdString());
+            item.setPurchaseDate(request["purchasedate"].toString().toStdString());
+            item.setPrice(request["price"].toString().toStdString());
+            item.setType(request["type"].toString().toStdString());
+
+            response["status"] = CTMManager().additem(item);
+
         }else {
             response["status"] = -403;
             response["message"] = QString("unknown request");
@@ -150,38 +165,3 @@ void Connection::run() {
     socket.flush();
     socket.disconnectFromHost();
 }
-
-
-//================================================================
-//          Methods to enter data into the database
-//================================================================
-
-// add a book to the database, but if it already exists then update the entry
-bool addBook(std::string textbookName, int edition, std::string author, int yearPusblihed, double price, std::string ISBN) {
-//TODO
-    return false;
-}
-
-bool addCourse(std::string courseCode, std::string instructor, std::string term, int courseNum, std::string location){
-//TODO
-    return false;
-}
-
-void selectCourses(){
-//TODO
-}
-
-void selectBooks(){
-//TODO
-}
-
-bool addChapter(int startPage, int endPage, double price, std::string title, std::string bookISBN){
-//TODO
-    return false;
-}
-
-bool addSection(int startPage, int endPage, double price, std::string ISBN, std::string chpTitle){
-//TODO
-    return false;
-}
-
