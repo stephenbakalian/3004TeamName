@@ -112,7 +112,7 @@ void Connection::run() {
                 response["price"+itemCount]         = QString(bookList[i].getPrice().c_str());
                 response["type"+itemCount]          = QString(bookList[i].getType().c_str());
                 itemCount++;
-            //    qDebug() << bookList[i];
+                qDebug() << bookList[i].getTitle().c_str();
             }
 
             response["itemCount"] = itemCount;

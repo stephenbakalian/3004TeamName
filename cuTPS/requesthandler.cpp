@@ -384,9 +384,6 @@ QList<Item> RequestHandler::viewCart(std::string username){
 
         qDebug() << itemCount;
         for (int i = 0; i < itemCount; i++){
-
-            //ownedBooks.insert(i, response["items"+i]);
-
             Item item;
             item.setAuthor(response["author"+i].toString().toStdString());
             item.setCourse(response["course"+i].toString().toStdString());
@@ -394,7 +391,7 @@ QList<Item> RequestHandler::viewCart(std::string username){
             item.setPrice(response["price"+i].toString().toStdString());
             item.setPurchaseDate(response["purchasedate"+i].toString().toStdString());
             item.setTitle(response["title"+i].toString().toStdString());
-            item.setType(response["type"+itemCount].toString().toStdString());
+            item.setType(response["type"+i].toString().toStdString());
             ownedBooks.push_back(item);
             qDebug() << ownedBooks.value(i).getTitle().c_str();
         }
