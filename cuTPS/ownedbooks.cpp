@@ -23,6 +23,7 @@ OwnedBooks::OwnedBooks(QWidget *parent) :
      **/
 
     reqHandler = new RequestHandler(this);
+
     QList<Item> items = reqHandler->booksOwned(((MainWindow*)parentWidget())->getUsername());
     if (items.size() != 0){
         Item literature[sizeof(items)];
@@ -52,6 +53,7 @@ void OwnedBooks::on_pushButton_clicked()
 
 }
 void OwnedBooks::showItems(Item list[]){
+   if(sizeof(list)==4){return;}
    //ui->gridLayout
    int x;
    QLabel *titles[sizeof(list)];
