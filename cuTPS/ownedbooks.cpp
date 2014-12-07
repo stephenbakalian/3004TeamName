@@ -33,6 +33,7 @@ OwnedBooks::OwnedBooks(QWidget *parent) :
 
         showItems(literature);
     }
+
 }
 
 OwnedBooks::~OwnedBooks()
