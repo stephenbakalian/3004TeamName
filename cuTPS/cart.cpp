@@ -39,7 +39,7 @@ void Cart::updateUI(){
 
     items = reqHandler->viewCart(username);
     Item literature[items.size()+1];
-
+    qDebug()<<items.size();
     for (int i =0; i < items.size(); i++){
         literature[i] = items.value(i);
     }
@@ -94,5 +94,42 @@ void Cart::showItems(Item list[]){
 
 void Cart::on_pushButton_3_clicked()
 {
+    reqHandler = new RequestHandler(this);
 
+    //TODO cart items here
+    Item item;
+    item.setTitle("test");
+    QList<Item> cartItems;
+    cartItems.push_back(item);
+    //TODO ends here
+
+    int resp = reqHandler->checkout(cartItems, username);
+
+    qDebug() << "purchase cart" << resp;
+
+    switch (resp) {
+    case -5:
+        ((MainWindow*)parentWidget())->setViewError("Database connection error",1, username);
+        break;
+    case -4:
+        ((MainWindow*)parentWidget())->setViewError("Unable to connect to the server... \n is it running?",0, username);
+        break;
+    case -3:
+        ((MainWindow*)parentWidget())->setViewError("Opps/nSomething went very wrong",1, username);
+        break;
+    case -2:
+        ((MainWindow*)parentWidget())->setViewError("Unknown Json Parsing Error",1,username);
+        break;
+    case 0://Socket Disconect
+        break;
+    case 1: //Successfull
+        break;
+    case 2: //Student logs in
+        //Add to cart
+        break;
+    default:
+        ((MainWindow*)parentWidget())->setViewError("An unhandeled error occured \n please contant a techincal assiant \n ERROR: " + resp,1, username);
+    }
 }
+
+

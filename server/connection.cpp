@@ -117,13 +117,26 @@ void Connection::run() {
             response["itemCount"] = itemCount;
 
 
-        } else if (request["request"] == QString("addbook")) {
+        } else if (request["request"] == QString("checkout")) {
+            QList<Item> checkoutBooks;
+            int         itemCount   = request["itemCount"].toDouble();
+            std::string user        = request["username"].toString().toStdString();
 
-        } else if (request["request"] == QString("addcourse")) {
+            qDebug() << itemCount;
+            for (int i = 0; i < itemCount; i++){
+                Item item;
+                item.setAuthor(request["author"+i].toString().toStdString());
+                item.setCourse(request["course"+i].toString().toStdString());
+                item.setDescription(request["description"+i].toString().toStdString());
+                item.setPrice(request["price"+i].toString().toStdString());
+                item.setPurchaseDate(request["purchasedate"+i].toString().toStdString());
+                item.setTitle(request["title"+i].toString().toStdString());
+                item.setType(request["type"+itemCount].toString().toStdString());
+                checkoutBooks.push_back(item);
+                qDebug() << checkoutBooks.value(i).getTitle().c_str();
+            }
 
-        } else if (request["request"] == QString("buybook")) {
-
-
+            response["status"] = StudentManager().checkout(user, checkoutBooks);
         }else {
             response["status"] = -403;
             response["message"] = QString("unknown request");
