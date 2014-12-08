@@ -13,9 +13,10 @@ public:
     std::string getPurchaseDate();
     std::string getPrice();
     std::string getType();
+    std::string getLength();
+    std::string getISBN();
 
-
-
+    void setISBN(std::string);
     void setTitle(std::string);
     void setAuthor(std::string);
     void setDescription(std::string);
@@ -23,7 +24,10 @@ public:
     void setPurchaseDate(std::string);
     void setPrice(std::string);
     void setType(std::string);
+    void setLength(std::string);
+
 private:
+    std::string ISBN;
     std::string title;
     std::string author;
     std::string description;
@@ -31,6 +35,8 @@ private:
     std::string purchaseDate;
     std::string price;
     std::string type;
+    std::string length;
+
 };
 
 #endif // ITEM_H

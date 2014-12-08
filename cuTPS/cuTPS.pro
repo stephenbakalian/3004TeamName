@@ -23,7 +23,9 @@ SOURCES += main.cpp\
     requesthandler.cpp \
     ownedbooks.cpp \
     item.cpp \
-    admin.cpp
+    admin.cpp \
+    section.cpp \
+    chapter.cpp
 
 HEADERS  += mainwindow.h \
     login.h \
@@ -35,7 +37,9 @@ HEADERS  += mainwindow.h \
     requesthandler.h \
     ownedbooks.h \
     item.h \
-    admin.h
+    admin.h \
+    section.h \
+    chapter.h
 
 FORMS    += mainwindow.ui \
     login.ui \

@@ -133,3 +133,23 @@ void StudentViewTextbooks::showItems(Item list[]){
    ui->gridLayout->addItem(vert,sizeof(list)+1,0,1,0);
 }
 
+//TODO: UPDATE SECTION AND CHAPTER AREAS TO CAST AN USE INHERITED FUNCTIONS
+void StudentViewTextbooks::showDetails(Item showItem){
+    //Title,length,price,author,ISBN,course, description,type
+     //OPtional->chapter->textbook
+    ui->SelectedTitle->setText (QString::fromUtf8(showItem.getTitle().c_str()));
+    ui->SelectedAuthor->setText(QString::fromUtf8(showItem.getAuthor().c_str()));
+    ui->SelectedCourse->setText(QString::fromUtf8(showItem.getCourse().c_str()));
+    ui->SelectedType->setText  (QString::fromUtf8(showItem.getType().c_str()));
+    ui->SelectedISBN->setText  (QString::fromUtf8(showItem.getISBN().c_str()));
+    ui->SelectedLength->setText(QString::fromUtf8(showItem.getLength().c_str()));
+    ui->SelectedPrice->setText (QString::fromUtf8(showItem.getPrice().c_str()));
+    if(showItem.getType()=="asdf"){
+        ui->SelectedTexbook->setText (QString::fromUtf8(showItem.getPrice().c_str()));
+    }
+    if(showItem.getType()=="asdf"){
+        ui->SelectedTexbook->setText (QString::fromUtf8(showItem.getPrice().c_str()));
+        ui->SelectedChapter->setText(QString::fromUtf8(showItem.getPrice().c_str()));
+    }
+}
+

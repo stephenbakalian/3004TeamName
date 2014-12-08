@@ -4,6 +4,8 @@
 #include <QWidget>
 #include "item.h"
 #include "requesthandler.h"
+#include "section.h"
+#include "chapter.h"
 
 namespace Ui {
 class StudentViewTextbooks;
@@ -19,6 +21,7 @@ public:
     ~StudentViewTextbooks();
     void showItems(Item list[]);
     void setUsername(std::string username);
+    void showDetails(Item);
 
 private slots:
     void on_pushButton_6_clicked();

@@ -59,8 +59,6 @@ void CTMViewTextbooks::showItems(Item list[]){
    QLabel *description[sizeof(list)];
    QPushButton *details[sizeof(list)];
 
-
-
    for(x=0;x < sizeof(list); x++){
          titles[x] = new QLabel(QString::fromUtf8(list[x].getTitle().c_str()));
          ui->itemGrid->addWidget(titles[x],x+1,0,1,1);
@@ -85,4 +83,22 @@ void CTMViewTextbooks::showItems(Item list[]){
 
    QSpacerItem *vert = new QSpacerItem(1, 1000, QSizePolicy::Expanding, QSizePolicy::Minimum);
    ui->itemGrid->addItem(vert,sizeof(list)+1,0,1,0);
+}
+void CTMViewTextbooks::showDetails(Item showItem){
+    //Title,length,price,author,ISBN,course, description,type
+     //OPtional->chapter->textbook
+    ui->SelectedTitle->setText (QString::fromUtf8(showItem.getTitle().c_str()));
+    ui->SelectedAuthor->setText(QString::fromUtf8(showItem.getAuthor().c_str()));
+    ui->SelectedCourse->setText(QString::fromUtf8(showItem.getCourse().c_str()));
+    ui->SelectedType->setText  (QString::fromUtf8(showItem.getType().c_str()));
+    ui->SelectedISBN->setText  (QString::fromUtf8(showItem.getISBN().c_str()));
+    ui->SelectedLength->setText(QString::fromUtf8(showItem.getLength().c_str()));
+    ui->SelectedPrice->setText (QString::fromUtf8(showItem.getPrice().c_str()));
+    if(showItem.getType()=="asdf"){
+        ui->SelectedTexbook->setText (QString::fromUtf8(showItem.getPrice().c_str()));
+    }
+    if(showItem.getType()=="asdf"){
+        ui->SelectedTexbook->setText (QString::fromUtf8(showItem.getPrice().c_str()));
+        ui->SelectedChapter->setText(QString::fromUtf8(showItem.getPrice().c_str()));
+    }
 }

@@ -74,6 +74,9 @@ void ModifyTextbook::setData(QString* info)
     ui->type->setCurrentIndex(info[0].toInt());
     updateAvailableFeilds();
     ui->title->setText(info[1]);
+    ui->description->setText(info[1]);
+    ui->author->setText(info[1]);
+
 }
 void ModifyTextbook::on_pushButton_2_clicked()
 {

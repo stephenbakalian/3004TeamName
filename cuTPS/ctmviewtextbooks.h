@@ -16,7 +16,7 @@ public:
     ~CTMViewTextbooks();
     void setUsername(std::string username);
     void showItems(Item list[]);
-
+    void showDetails(Item);
 private slots:
     void on_pushButton_16_clicked();
 
