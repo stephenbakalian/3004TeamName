@@ -36,7 +36,10 @@ std::string Item::getISBN(){
 void Item::setISBN(std::string newISBN){
     ISBN=newISBN;
 }
-void Item::setTitle(std::string newLength){
+void Item::setTitle(std::string newTitle){
+    title=newTitle;
+}
+void Item::setLength(std::string newLength){
     length=newLength;
 }
 void Item::setAuthor(std::string newAuthor){

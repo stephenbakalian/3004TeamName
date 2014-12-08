@@ -1,7 +1,7 @@
 #include "studentviewtextbooks.h"
 #include "ui_studentviewtextbooks.h"
 #include "mainwindow.h"
-
+#include <QDebug>
 StudentViewTextbooks::StudentViewTextbooks(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::StudentViewTextbooks)
@@ -102,6 +102,7 @@ void StudentViewTextbooks::showItems(Item list[]){
 
 
    for(x=0;x < sizeof(list); x++){
+         qDebug() << QString::fromUtf8(list[x].getTitle().c_str());
          titles[x] = new QLabel(QString::fromUtf8(list[x].getTitle().c_str()));
          ui->gridLayout->addWidget(titles[x],x+1,0,1,1);
 
@@ -121,9 +122,6 @@ void StudentViewTextbooks::showItems(Item list[]){
 
          details[x] = new QPushButton("Details");
          ui->gridLayout->addWidget(details[x],x+1,5,1,1);
-
-
-
 
    }
    QSpacerItem *spacer = new QSpacerItem(20, 40, QSizePolicy::Expanding, QSizePolicy::Maximum);
