@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
 //   w.deleteCtm(9);
   //  w.getCtmList();
   // w.updateItems(11,"hello","hello","Textbook",50);
-   TcpServer server;
+   //TcpServer server;
 
    return a.exec();
 

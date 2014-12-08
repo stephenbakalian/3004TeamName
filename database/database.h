@@ -27,41 +27,42 @@ class DataBase : public QObject
         QString createTransaction(int, int, int, QString);
         QString createBilling(int, QString);
         QString createStudentCourseRelation(int, QString);
+        QString DataBase::createPurchaseRelation(int, int);
 
 
 // For these get functions tell me how you want the delimited so you can use them later...
         //Retrieving from DB
-        void getUser();
+        void getUser(int);
         void getAllUsers();
-        void getBook();
+        void getBook(int);
         void getAllBooks();
-        void getChapter();
+        void getChapter(int);
         void getAllChapters();
-        void getSection();
+        void getSection(int);
         void getAllSections();
-        void getCourse();
+        void getCourse(QString);
         void getAllCourses();
-        void getTransaction();
+        void getTransaction(int);
         void getAllTransactions();
-        void getBilling();
+        void getBilling(int);
 
         //Updating the DB
-        QString updateUser();
-        QString updateBook();
-        QString updateSection();
-        QString updateChapter();
-        QString updateCourse();
-        QString updateTransaction();
-        QString updateBilling();
+        QString updateUser(int, QString, QString, QString);
+        QString updateBook(int, int, QString, QString, QString, int);
+        QString updateSection(int, int, int, int, int);
+        QString updateChapter(int, int, int, int, int, QString);
+        QString updateCourse(QString, QString, QString, int, QString, QString);
+        QString updateTransaction(int, int, int, QString);
+        QString updateBilling(int, QString);
 
         //Deleting from DB
-        QString deleteUser();
-        QString deleteBook();
-        QString deleteSection();
-        QString deleteChapter();
-        QString deleteCourse();
-        QString deleteTransaction();
-        QString deleteBilling();
+        QString deleteUser(int);
+        QString deleteBook(int);
+        QString deleteSection(int);
+        QString deleteChapter(int);
+        QString deleteCourse(QString);
+        QString deleteTransaction(int);
+        QString deleteBilling(int);
 
         //Initializatin functions
         bool createTables();
