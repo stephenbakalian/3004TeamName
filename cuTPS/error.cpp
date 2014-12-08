@@ -13,7 +13,7 @@ void Error::setError(QString message, int pageNum){
     if(errorPage==0){
         ui->pushButton_2->setVisible(false);
     }
-
+    ui->plainTextEdit->setPlainText(message);
 }
 
 void Error::setUsername(std::string user){
