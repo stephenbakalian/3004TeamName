@@ -36,7 +36,9 @@ QList<Item> StudentManager::viewPurchasedItems(std::string studentName) {
     books.push_back(*temp1);
     books.push_back(*temp2);
     books.push_back(*temp3);
-    books.push_back(*temp4);
+    books.push_back(*temp4);    //TODO
+    removeCartItems(studentName);
+    //return -5;
     return books;
 
 }
