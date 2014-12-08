@@ -19,7 +19,7 @@ public:
     RequestHandler *reqHandler;
     explicit StudentViewTextbooks(QWidget *parent = 0);
     ~StudentViewTextbooks();
-    void showItems(Item list[]);
+    void showItems(QList<Item> list);
     void setUsername(std::string username);
     void showDetails(Item);
 

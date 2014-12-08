@@ -18,7 +18,7 @@ public:
     RequestHandler *reqHandler;
     explicit Cart(QWidget *parent = 0);
     ~Cart();
-    void showItems(Item[]);
+    void showItems(QList<Item>);
     void setUsername(std::string username);
 
 private slots:

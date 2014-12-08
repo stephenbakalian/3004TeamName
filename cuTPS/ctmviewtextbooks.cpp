@@ -6,8 +6,6 @@ CTMViewTextbooks::CTMViewTextbooks(QWidget *parent) :
     ui(new Ui::CTMViewTextbooks)
 {
     ui->setupUi(this);
-
-
     Item *temp1 = new Item();
     Item *temp2 = new Item();
     Item *temp3 = new Item();
@@ -18,11 +16,16 @@ CTMViewTextbooks::CTMViewTextbooks(QWidget *parent) :
     temp3->setTitle("duck you");
     temp4->setTitle("Hai");
 
-    Item literature[]={*temp1,*temp2,*temp3,*temp4};
+    QList<Item> lit;
+    lit.append(*temp1);
+    lit.append(*temp2);
+    lit.append(*temp3);
+    lit.append(*temp4);
     /**
       HERE ITEMS SHOULD BE GRABBED FROM SERVER
      **/
-    showItems(literature);
+    showItems(lit);
+
 }
 
 CTMViewTextbooks::~CTMViewTextbooks()
@@ -50,28 +53,28 @@ void CTMViewTextbooks::on_pushButton_clicked()//new Button has been pressed
     ((MainWindow*)parentWidget())->setViewModItems(username);
 
 }
-void CTMViewTextbooks::showItems(Item list[]){
+void CTMViewTextbooks::showItems(QList<Item> list){
    //ui->gridLayout
    int x;
-   QLabel *titles[sizeof(list)];
-   QLabel *type[sizeof(list)];
-   QLabel *price[sizeof(list)];
-   QLabel *description[sizeof(list)];
-   QPushButton *details[sizeof(list)];
+   QLabel *titles[list.size()];
+   QLabel *type[list.size()];
+   QLabel *price[list.size()];
+   QLabel *description[list.size()];
+   QPushButton *details[list.size()];
 
-   for(x=0;x < sizeof(list); x++){
-         titles[x] = new QLabel(QString::fromUtf8(list[x].getTitle().c_str()));
+   for(x=0;x < list.size(); x++){
+         titles[x] = new QLabel(QString::fromUtf8(list.value(x).getTitle().c_str()));
          ui->itemGrid->addWidget(titles[x],x+1,0,1,1);
 
-         type[x] = new QLabel(QString::fromUtf8(list[x].getType().c_str()));
+         type[x] = new QLabel(QString::fromUtf8(list.value(x).getType().c_str()));
          ui->itemGrid->addWidget(type[x],x+1,1,1,1);
 
 
-         price[x] = new QLabel(QString::fromUtf8(list[x].getPrice().c_str()));
+         price[x] = new QLabel(QString::fromUtf8(list.value(x).getPrice().c_str()));
          ui->itemGrid->addWidget(price[x],x+1,2,1,1);
 
 
-         description[x] = new QLabel(QString::fromUtf8(list[x].getDescription().c_str()));
+         description[x] = new QLabel(QString::fromUtf8(list.value(x).getDescription().c_str()));
          ui->itemGrid->addWidget(description[x],x+1,3,1,1);
 
          details[x] = new QPushButton("Details");
@@ -79,10 +82,10 @@ void CTMViewTextbooks::showItems(Item list[]){
 
    }
    QSpacerItem *spacer = new QSpacerItem(20, 40, QSizePolicy::Expanding, QSizePolicy::Maximum);
-   ui->itemGrid->addItem(spacer,sizeof(list),4,1,1);
+   ui->itemGrid->addItem(spacer,list.size(),4,1,1);
 
    QSpacerItem *vert = new QSpacerItem(1, 1000, QSizePolicy::Expanding, QSizePolicy::Minimum);
-   ui->itemGrid->addItem(vert,sizeof(list)+1,0,1,0);
+   ui->itemGrid->addItem(vert,list.size()+1,0,1,0);
 }
 void CTMViewTextbooks::showDetails(Item showItem){
     //Title,length,price,author,ISBN,course, description,type
