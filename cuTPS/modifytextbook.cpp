@@ -75,14 +75,14 @@ void ModifyTextbook::setData(Item item)
         ui->type->setCurrentIndex(0);
     }
     else if(item.getType()=="section"){
-        section *temp = (section*)&item;
-        ui->chapter->setText((QString::fromUtf8(temp->getChapter().c_str())));
-        ui->textbook->setText((QString::fromUtf8(temp->getTextbookName().c_str())));
+        //section *temp = (section*)&item;
+        //ui->chapter->setText((QString::fromUtf8(temp->getChapter().c_str())));
+        //ui->textbook->setText((QString::fromUtf8(temp->getTextbookName().c_str())));
         ui->type->setCurrentIndex(2);
     }
     else if(item.getType()=="chapter"){
-        Chapter *temp = (Chapter*)&item;
-        ui->chapter->setText((QString::fromUtf8(temp->getTextbookName().c_str())));
+        //Chapter *temp = (Chapter*)&item;
+        //ui->chapter->setText((QString::fromUtf8(temp->getTextbookName().c_str())));
         ui->type->setCurrentIndex(1);
     }
     updateAvailableFeilds();
@@ -91,7 +91,9 @@ void ModifyTextbook::setData(Item item)
     ui->description->setText((QString::fromUtf8(item.getDescription().c_str())));
     ui->author->setText((QString::fromUtf8(item.getAuthor().c_str())));
     ui->course->setText((QString::fromUtf8(item.getCourse().c_str())));
-
+    ui->ISBN->setText((QString::fromUtf8(item.getISBN().c_str())));
+    ui->price->setText((QString::fromUtf8(item.getPrice().c_str())));
+    ui->length->setText((QString::fromUtf8(item.getLength().c_str())));
 }
 void ModifyTextbook::on_pushButton_2_clicked()
 {
