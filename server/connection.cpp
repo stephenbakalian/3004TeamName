@@ -50,7 +50,7 @@ void Connection::run() {
             response["status"] = SharedManager().loginHandler(username);
 
         } else if (request["request"] == QString("addToCart")){
-
+/*
             qDebug() << "add to cart request made";
 
             int         itemCount   = request["itemCount"].toDouble();
@@ -64,7 +64,27 @@ void Connection::run() {
             }
 
             response["status"] = StudentManager().addToCart(user, itemKey, itemCount, myDB);
+*/
 
+            QList<Item> addToCarItems;
+            int         itemCount   = request["itemCount"].toDouble();
+            std::string user        = request["user"].toString().toStdString();
+
+            qDebug() << itemCount;
+            for (int i = 0; i < itemCount; i++){
+                Item item;
+                item.setAuthor(response[concatStrInt("author",i).c_str()].toString().toStdString());
+                item.setCourse(response[concatStrInt("course",i).c_str()].toString().toStdString());
+                item.setDescription(response[concatStrInt("description",i).c_str()].toString().toStdString());
+                item.setPrice(response[concatStrInt("price",i).c_str()].toString().toStdString());
+                item.setPurchaseDate(response[concatStrInt("purchasedate",i).c_str()].toString().toStdString());
+                item.setTitle(response[concatStrInt("title",i).c_str()].toString().toStdString());
+                item.setType(response[concatStrInt("type",i).c_str()].toString().toStdString());
+                addToCarItems.push_back(item);
+                qDebug() << addToCarItems.value(i).getTitle().c_str();
+            }
+
+            response["status"] = StudentManager().addToCart(user, addToCarItems, myDB);
         } else if (request["request"] == QString("booksOwned")){
 
             qDebug() << "owned books request made";

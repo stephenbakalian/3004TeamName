@@ -15,10 +15,10 @@ int StudentManager::addToPreviouslyPurchasedItems(std::string studentName, std::
     return -5;
 }
 
-int StudentManager::addToCart(std::string studentName, std::string itemKeys[], int itemCount, DataBase *myDB) {
+int StudentManager::addToCart(std::string studentName, QList<Item> items, DataBase *myDB) {
     //TODO
-    for (int i = 0; i < itemCount; i++){
-        myDB->createCart(QString::fromStdString(studentName), QString::fromStdString(itemKeys[i]));
+    for (int i = 0; i < items.size(); i++){
+        //myDB->createCart(QString::fromStdString(studentName), QString::fromStdString(itemKeys[i]));
     }
     return -5;
 }

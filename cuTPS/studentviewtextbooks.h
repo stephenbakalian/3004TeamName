@@ -7,7 +7,7 @@
 #include "section.h"
 #include "chapter.h"
 #include <QSignalMapper>
-
+#include <QCheckBox>
 namespace Ui {
 class StudentViewTextbooks;
 }
@@ -37,6 +37,8 @@ private:
     void updateUI();
     QList<Item> items;
     QList<QSignalMapper*> mapper;
+    QList<QCheckBox*> addToCart;
+
 
 };
 
