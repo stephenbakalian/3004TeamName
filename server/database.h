@@ -37,7 +37,7 @@ class DataBase : public QObject
         int getUser(QString);
         void getAllUsers();
         QList<Item> getAllItems();
-        QString getItem(QString);
+        Item getItem(QString);
         QList<Item> getBook(QString);
         QList<Item> getAllBooks();
         QList<Item> getChapter(QString);

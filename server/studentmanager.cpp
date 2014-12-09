@@ -36,32 +36,12 @@ QList<Item> StudentManager::viewCart(std::string studentName, DataBase *myDB) {
 
     QList<Item> item = myDB->getCart(QString::fromStdString(studentName));
     QList<Item>::iterator i;
-    QList<Item>::iterator c;
     QList<Item> books;
 
-    QList <Item> temp = myDB->getAllItems();
-
-<<<<<<< HEAD
-    for (c = temp.begin(); c != temp.end(); ++c){
-        for (i = item.begin(); i != item.end(); ++i){
-                        qDebug() << QString::fromStdString(i->getISBN());
-           if (c->getISBN() == i->getISBN()){
-                   books.push_back(*i);
-            }
-        }
-    }
-=======
-   // for (c = temp.begin(); c != temp.end(); ++c){
-        for (i = item.begin(); i != item.end(); ++i){
-            //if (c->getISBN() == i->getISBN()){
+    for (i = item.begin(); i != item.end(); ++i){
             //qDebug() << QString::fromStdString(i->getISBN());
-                   books.push_back(*i);
-           // }
-        }
-   // }
->>>>>>> 417b81004c7a958c825423fce6900f7d21da9f3c
-
-
+            books.push_back(myDB->getItem(QString::fromStdString(i->getISBN())));
+    }
 
     return books;
 }

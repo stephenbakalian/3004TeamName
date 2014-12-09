@@ -328,29 +328,39 @@ void DataBase::getAllUsers(){
          }
     }
 }
-QString DataBase:: getItem(QString search){
+Item DataBase:: getItem(QString search){
 
     Item item;
 
     if (mydb.isOpen()){
 
         QSqlQuery qry;
-        qry.prepare("SELECT isbn,price,name,author,description,length,type,course FROM item WHERE isbn = ?");
+        qry.prepare("SELECT isbn,price,name,author,description,length,type,course FROM item WHERE item.isbn = ?");
         qry.addBindValue(search);
         qry.exec();
 
 
-        item.setISBN(qry.value(0).toString().toStdString());
-        item.setPrice(qry.value(1).toString().toStdString());
-        item.setTitle(qry.value(2).toString().toStdString());
-        item.setAuthor(qry.value(3).toString().toStdString());
-        item.setDescription(qry.value(4).toString().toStdString());
-        item.setLength(qry.value(5).toString().toStdString());
-        item.setType(qry.value(6).toString().toStdString());
-        item.setCourse(qry.value(7).toString().toStdString());
+        qDebug() << qry.value(0).toString();
+        qDebug() << qry.value(1).toString();
+        qDebug() << qry.value(2).toString();
+        qDebug() << qry.value(3).toString();
+        qDebug() << qry.value(4).toString();
+        qDebug() << qry.value(5).toString();
+        qDebug() << qry.value(6).toString();
+        qDebug() << qry.value(7).toString();
 
+        while (qry.next()) {
+            item.setISBN(qry.value(0).toString().toStdString());
+            item.setPrice(qry.value(1).toString().toStdString());
+            item.setTitle(qry.value(2).toString().toStdString());
+            item.setAuthor(qry.value(3).toString().toStdString());
+            item.setDescription(qry.value(4).toString().toStdString());
+            item.setLength(qry.value(5).toString().toStdString());
+            item.setType(qry.value(6).toString().toStdString());
+            item.setCourse(qry.value(7).toString().toStdString());
+        }
     }
-    return QString::fromStdString(item.getISBN());
+    return item;
 }
 
 
