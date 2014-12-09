@@ -68,8 +68,8 @@ void OwnedBooks::showItems(Item list[]){
    ui->scrollAreaWidgetContents->setMinimumHeight(28*sizeof(list)+1);
 }
 //sets the username
-void OwnedBooks::setUsername(std::string username){
-    username=username;
+void OwnedBooks::setUsername(std::string newUsername){
+    username=newUsername;
     updateUI();
 }
 

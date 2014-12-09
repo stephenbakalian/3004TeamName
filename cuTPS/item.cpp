@@ -1,5 +1,11 @@
 #include "item.h"
 
+
+/**
+ * Item used to represent Textbooks, yes i know it should have been called Textbook, but too late now
+ *
+ *@brief Item::Item
+ */
 Item::Item()
 {
 
