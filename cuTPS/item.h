@@ -16,6 +16,7 @@ public:
     std::string getLength();
     std::string getISBN();
 
+
     void setISBN(std::string);
     void setTitle(std::string);
     void setAuthor(std::string);

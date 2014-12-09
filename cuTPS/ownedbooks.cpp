@@ -56,6 +56,9 @@ void OwnedBooks::showItems(Item list[]){
 
    QSpacerItem *vert = new QSpacerItem(1, 1000, QSizePolicy::Expanding, QSizePolicy::Minimum);
    ui->gridLayout->addItem(vert,sizeof(list)+1,0,1,0);
+   ui->scrollArea->setStyleSheet("background-color:transparent;");
+
+   ui->scrollAreaWidgetContents->setMinimumHeight(28*sizeof(list)+1);
 }
 
 void OwnedBooks::setUsername(std::string username){

@@ -137,6 +137,10 @@ void StudentViewTextbooks::showItems(QList<Item> list){
 
    QSpacerItem *vert = new QSpacerItem(1, 1000, QSizePolicy::Expanding, QSizePolicy::Minimum);
    ui->gridLayout->addItem(vert,list.size()+1,0,1,0);
+
+   ui->scrollAreaWidgetContents->setMaximumHeight(28*list.size()+1);
+   ui->scrollArea->setStyleSheet("background-color:transparent;");
+
 }
 
 //TODO: UPDATE SECTION AND CHAPTER AREAS TO CAST AN USE INHERITED FUNCTIONS
@@ -150,12 +154,17 @@ void StudentViewTextbooks::showDetails(Item showItem){
     ui->SelectedISBN->setText  (QString::fromUtf8(showItem.getISBN().c_str()));
     ui->SelectedLength->setText(QString::fromUtf8(showItem.getLength().c_str()));
     ui->SelectedPrice->setText (QString::fromUtf8(showItem.getPrice().c_str()));
-    if(showItem.getType()=="asdf"){
-        ui->SelectedTexbook->setText (QString::fromUtf8(showItem.getPrice().c_str()));
+
+    ui->SelectedTexbook->setText ("");
+    ui->SelectedChapter->setText("");
+    if(showItem.getType()=="chapter"){
+        Chapter *steveSucks = (Chapter*)&showItem;
+        ui->SelectedTexbook->setText (QString::fromUtf8((steveSucks)->getTextbookName().c_str()));
     }
-    if(showItem.getType()=="asdf"){
-        ui->SelectedTexbook->setText (QString::fromUtf8(showItem.getPrice().c_str()));
-        ui->SelectedChapter->setText(QString::fromUtf8(showItem.getPrice().c_str()));
+    if(showItem.getType()=="section"){
+        section *steveSucks = (section*)&showItem;
+        ui->SelectedTexbook->setText (QString::fromUtf8(steveSucks->getTextbookName().c_str()));
+        ui->SelectedChapter->setText(QString::fromUtf8(steveSucks->getChapter().c_str()));
     }
 }
 

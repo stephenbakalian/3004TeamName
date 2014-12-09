@@ -38,43 +38,6 @@
      <height>531</height>
     </rect>
    </property>
-   <widget class="QWidget" name="verticalLayoutWidget_3">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>80</y>
-      <width>461</width>
-      <height>411</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="verticalLayout_3">
-     <item>
-      <layout class="QGridLayout" name="itemGrid">
-       <item row="0" column="0">
-        <widget class="QLabel" name="NameTitle">
-         <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Item Name&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="2">
-        <widget class="QLabel" name="TypeTitle">
-         <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Item Type&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QLabel" name="CourseTitle">
-         <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Course&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-    </layout>
-   </widget>
    <widget class="QPushButton" name="pushButton_16">
     <property name="geometry">
      <rect>
@@ -113,6 +76,83 @@
     <property name="orientation">
      <enum>Qt::Vertical</enum>
     </property>
+   </widget>
+   <widget class="QScrollArea" name="scrollArea">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>60</y>
+      <width>461</width>
+      <height>431</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Plain</enum>
+    </property>
+    <property name="lineWidth">
+     <number>0</number>
+    </property>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+    <widget class="QWidget" name="scrollAreaWidgetContents">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>445</width>
+       <height>700</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>700</height>
+      </size>
+     </property>
+     <widget class="QWidget" name="verticalLayoutWidget_3">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>451</width>
+        <height>431</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <layout class="QGridLayout" name="itemGrid">
+         <item row="0" column="0">
+          <widget class="QLabel" name="NameTitle">
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Item Name&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2">
+          <widget class="QLabel" name="TypeTitle">
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Item Type&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLabel" name="CourseTitle">
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Course&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <zorder></zorder>
+     <zorder>verticalLayoutWidget_3</zorder>
+    </widget>
    </widget>
   </widget>
   <widget class="Line" name="line_19">
@@ -209,7 +249,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Math 1067</string>
+    <string>HUMM4501</string>
    </property>
   </widget>
   <widget class="QLabel" name="SelectedType">
@@ -222,7 +262,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>124 Pages</string>
+    <string>Section</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_25">
@@ -274,7 +314,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>124 Pages</string>
+    <string>3023 Pages</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_20">
@@ -300,7 +340,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>124 Pages</string>
+    <string>Earth's Identity Crisis</string>
    </property>
   </widget>
   <widget class="QLabel" name="SelectedChapter">
@@ -313,7 +353,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>124 Pages</string>
+    <string>Humanity at its finest</string>
    </property>
   </widget>
   <widget class="QLabel" name="SelectedPrice">
@@ -326,7 +366,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>$300.99</string>
+    <string>$30.99</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_19">
@@ -378,7 +418,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Spelling 101</string>
+    <string>Goats are People Too</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_16">
@@ -404,7 +444,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Steve</string>
+    <string>Some not important guy</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_23">
