@@ -48,8 +48,6 @@ void Cart::showItems(QList<Item> list){
    QLabel *type[list.size()];
    QLabel *price[list.size()];
    QLabel *purchaseDate[list.size()];
-   QLabel *description[list.size()];
-
 
    for(x=0;x < list.size(); x++){
          titles[x] = new QLabel(QString::fromUtf8(list.value(x).getTitle().c_str()));
