@@ -14,7 +14,7 @@ class ModifyTextbook : public QWidget
 public:
     RequestHandler *reqHandler;
     explicit ModifyTextbook(QWidget *parent = 0);
-    void setData(QString*);
+    void setData(Item);
     ~ModifyTextbook();
     void setUsername(std::string username);
 

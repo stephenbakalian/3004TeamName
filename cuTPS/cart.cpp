@@ -1,6 +1,11 @@
 #include "cart.h"
 #include "ui_cart.h"
+#include <sstream>
 #include "mainwindow.h"
+
+#define SSTR( x ) dynamic_cast< std::ostringstream & >( \
+        ( std::ostringstream() << std::dec << x ) ).str()
+
 Cart::Cart(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Cart)
@@ -10,6 +15,7 @@ Cart::Cart(QWidget *parent) :
 
 Cart::~Cart()
 {
+
     delete ui;
 }
 
@@ -39,7 +45,8 @@ void Cart::on_pushButton_clicked()
 void Cart::on_pushButton_2_clicked()
 {
     ((MainWindow*)parentWidget())->setStuViewItems(username);
-
+#define SSTR( x ) dynamic_cast< std::ostringstream & >( \
+        ( std::ostringstream() << std::dec << x ) ).str()
 }
 void Cart::showItems(QList<Item> list){
    //ui->gridLayout
@@ -48,7 +55,7 @@ void Cart::showItems(QList<Item> list){
    QLabel *type[list.size()];
    QLabel *price[list.size()];
    QLabel *purchaseDate[list.size()];
-
+   double totalPrice=0;
    for(x=0;x < list.size(); x++){
          titles[x] = new QLabel(QString::fromUtf8(list.value(x).getTitle().c_str()));
          ui->gridLayout->addWidget(titles[x],x+1,0,1,1);
@@ -62,11 +69,16 @@ void Cart::showItems(QList<Item> list){
          purchaseDate[x] = new QLabel(QString::fromUtf8(list.value(x).getPurchaseDate().c_str()));
          ui->gridLayout->addWidget(purchaseDate[x],3,x);
 
+         totalPrice+= atoi(list.value(x).getPrice().c_str());
    }
    QSpacerItem *spacer = new QSpacerItem(20, 40, QSizePolicy::Expanding, QSizePolicy::Maximum);
-   ui->gridLayout->addItem(spacer,list.size(),5,1,1);
-   ui->scrollArea->setStyleSheet("background-color:transparent;");
+   ui->gridLayout->addItem(spacer,sizeof(list),5,1,1);
 
+   QSpacerItem *vert = new QSpacerItem(1, 1000, QSizePolicy::Expanding, QSizePolicy::Minimum);
+   ui->gridLayout->addItem(vert,sizeof(list)+1,0,1,0);
+
+   ui->scrollArea->setStyleSheet("background-color:transparent;");
+   ui->totalPrice->setText((SSTR(totalPrice)).c_str());
    ui->scrollAreaWidgetContents->setMinimumHeight(28*list.size()+1);
 }
 

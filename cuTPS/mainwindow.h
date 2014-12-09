@@ -27,8 +27,8 @@ public:
     void setViewOwnedItems(std::string usernames);
     void setViewLogin();
     void setViewError(QString,int, std::string usernames);
-    void setViewModItems(std::string usernames);
-    void setViewModItems(QString[], std::string usernames);
+    void setViewModItems(std::string,Item);
+    void setViewModItems(std::string username);
     void setViewCart(std::string usernames);
     void setViewAdmin();
     ~MainWindow();

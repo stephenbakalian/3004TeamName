@@ -102,14 +102,14 @@ p, li { white-space: pre-wrap; }
     </property>
     <layout class="QGridLayout" name="gridLayout">
      <item row="1" column="0">
-      <widget class="QLabel" name="label_16">
+      <widget class="QLabel" name="Title_2">
        <property name="text">
         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Title:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
       </widget>
      </item>
      <item row="5" column="1">
-      <widget class="QLineEdit" name="isbn">
+      <widget class="QLineEdit" name="ISBN">
        <property name="text">
         <string/>
        </property>
@@ -166,7 +166,7 @@ p, li { white-space: pre-wrap; }
       </widget>
      </item>
      <item row="2" column="0">
-      <widget class="QLabel" name="label_19">
+      <widget class="QLabel" name="Price">
        <property name="text">
         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Price:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
@@ -180,7 +180,7 @@ p, li { white-space: pre-wrap; }
       </widget>
      </item>
      <item row="3" column="0">
-      <widget class="QLabel" name="label_20">
+      <widget class="QLabel" name="author_2">
        <property name="text">
         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Author:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
@@ -283,7 +283,7 @@ p, li { white-space: pre-wrap; }
       </widget>
      </item>
      <item row="6" column="0">
-      <widget class="QLabel" name="label_23">
+      <widget class="QLabel" name="vourse">
        <property name="text">
         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Course:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>

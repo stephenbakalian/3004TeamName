@@ -91,7 +91,6 @@ void StudentViewTextbooks::showItems(QList<Item> list){
    QLabel *titles[list.size()];
    QLabel *type[list.size()];
    QLabel *price[list.size()];
-   QLabel *description[list.size()];
    QPushButton *details[list.size()];
 
 
@@ -110,9 +109,6 @@ void StudentViewTextbooks::showItems(QList<Item> list){
          addToCart.append(new QCheckBox(""));
          ui->gridLayout->addWidget(addToCart.value(x),x+1,3,1,1);
 
-
-         description[x] = new QLabel(QString::fromUtf8(list.value(x).getDescription().c_str()));
-         ui->gridLayout->addWidget(description[x],x+1,4,1,1);
 
          details[x] = new QPushButton("Details");
          ui->gridLayout->addWidget(details[x],x+1,5,1,1);
@@ -154,12 +150,12 @@ void StudentViewTextbooks::showDetails(int x){
     ui->SelectedChapter->setText("");
     if(showItem.getType()=="chapter"){
         Chapter *steveSucks = (Chapter*)&showItem;
-        ui->SelectedTexbook->setText (QString::fromUtf8((steveSucks)->getTextbookName().c_str()));
+       // ui->SelectedTexbook->setText (QString::fromUtf8((steveSucks)->getTextbookName().c_str()));
     }
     if(showItem.getType()=="section"){
         section *steveSucks = (section*)&showItem;
-        ui->SelectedTexbook->setText (QString::fromUtf8(steveSucks->getTextbookName().c_str()));
-        ui->SelectedChapter->setText(QString::fromUtf8(steveSucks->getChapter().c_str()));
+        //ui->SelectedTexbook->setText (QString::fromUtf8(steveSucks->getTextbookName().c_str()));
+        //ui->SelectedChapter->setText(QString::fromUtf8(steveSucks->getChapter().c_str()));
     }
 }
 
