@@ -115,3 +115,7 @@ QList<Course> StudentManager::getEnrolledCourse(std::string user){
     courses.push_back(temp1);
     return courses;
 }
+
+int StudentManager::emptyCart(std::string username, DataBase *db){
+    return -1;
+}

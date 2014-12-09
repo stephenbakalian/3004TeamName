@@ -114,5 +114,39 @@ void Cart::on_pushButton_3_clicked()
 
 void Cart::on_pushButton_4_clicked()
 {//empty the cart
+    reqHandler = new RequestHandler(this);
+
+    //TODO cart items here
+    Item item;
+    item.setTitle("test");
+    QList<Item> cartItems;
+    cartItems.push_back(item);
+    //TODO ends here
+
+    int resp = reqHandler->emptyCart(username);
+
+    qDebug() << "empty cart" << resp;
+
+    switch (resp) {
+    case -5:
+        ((MainWindow*)parentWidget())->setViewError("Database connection error",1, username);
+        break;
+    case -4:
+        ((MainWindow*)parentWidget())->setViewError("Unable to connect to the server... \n is it running?",0, username);
+        break;
+    case -3:
+        ((MainWindow*)parentWidget())->setViewError("Opps/nSomething went very wrong",1, username);
+        break;
+    case -2:
+        ((MainWindow*)parentWidget())->setViewError("Unknown Json Parsing Error",1,username);
+        break;
+    case 0://Socket Disconect
+        break;
+    case 1: //Successfull
+        break;
+    case 2: //Student logs in
+        //Add to cart
+        break;
+    }
     ((MainWindow*)parentWidget())->setStuViewItems(username);
 }

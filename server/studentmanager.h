@@ -16,6 +16,7 @@ public:
     int addToPreviouslyPurchasedItems(std::string studentName, std::string itemKeys[], DataBase *db);
     int addToCart(std::string studentName, QList<Item> items, DataBase *db);
     int checkout(std::string user,QList<Item> checkoutBooks, DataBase *db);
+    int emptyCart(std::string username, DataBase *db);
     bool removeCartItems(std::string user);
     QList<Item> viewPurchasedItems(std::string studentName);
     QList<Item> viewCart(std::string studentName, DataBase* myDB);
