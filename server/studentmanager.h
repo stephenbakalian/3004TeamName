@@ -13,12 +13,11 @@ class StudentManager
 public:
     StudentManager();
 
-    int addToPreviouslyPurchasedItems(std::string studentName, std::string itemKeys[], DataBase *db);
     int addToCart(std::string studentName, QList<Item> item, DataBase *db);
     int checkout(std::string user,QList<Item> checkoutBooks, DataBase *db);
     int emptyCart(std::string username, DataBase *db);
     bool removeCartItems(std::string user);
-    QList<Item> viewPurchasedItems(std::string studentName);
+    QList<Item> viewPurchasedItems(std::string studentName, DataBase* myDB);
     QList<Item> viewCart(std::string studentName, DataBase* myDB);
     QList<Course> getEnrolledCourse(std::string user, DataBase* myDB);
     QList<Item> getBooksFromCourse(QList<Course> regCourse, DataBase* myDB);

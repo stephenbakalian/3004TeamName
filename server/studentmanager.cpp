@@ -9,15 +9,9 @@ StudentManager::StudentManager()
 {
 }
 
-int StudentManager::addToPreviouslyPurchasedItems(std::string studentName, std::string itemKeys[], DataBase *myDB) {
-    //TODO
-    //myDB->createPurchaseRelation();
-    return -5;
-}
-
 int StudentManager::addToCart(std::string studentName, QList<Item> item, DataBase *myDB) {
 
-    int success = -5;
+    int success = -1;
     QList<Item>::iterator i;
 
     for (i = item.begin(); i != item.end(); ++i){
@@ -28,24 +22,11 @@ int StudentManager::addToCart(std::string studentName, QList<Item> item, DataBas
     return success;
 }
 
-QList<Item> StudentManager::viewPurchasedItems(std::string studentName) {
-    //TODO
-    Item *temp1 = new Item;
-    temp1->setTitle("waffles");
-    Item *temp2 = new Item;
-    temp2->setTitle("to many cooks");
-    Item *temp3 = new Item();
-    Item *temp4 = new Item();
-    temp3->setTitle("test");
-    temp4->setTitle("Hai");
+QList<Item> StudentManager::viewPurchasedItems(std::string studentName, DataBase* myDB) {
 
+    /*QList<Item> item = myDB->getCart(QString::fromStdString(studentName));
+    QList<Item>::iterator i;*/
     QList<Item> books;
-    books.push_back(*temp1);
-    books.push_back(*temp2);
-    books.push_back(*temp3);
-    books.push_back(*temp4);
-    removeCartItems(studentName);
-
     return books;
 
 }
@@ -75,7 +56,7 @@ QList<Item> StudentManager::viewCart(std::string studentName, DataBase *myDB) {
 
 int StudentManager::checkout(std::string user,QList<Item> checkoutBooks, DataBase* myDB){
 
-    int success = -5;
+    int success = -1;
 
     QList<Item>::iterator i;
 
@@ -83,14 +64,8 @@ int StudentManager::checkout(std::string user,QList<Item> checkoutBooks, DataBas
         myDB->createPurchaseRelation(QString::fromStdString(user), QString::fromStdString(i->getISBN()));
     }
 
-    success = myDB->deleteCart(QString::fromStdString(user));
-    removeCartItems(user);
+    success = emptyCart(user, myDB);
     return success;
-}
-
-bool StudentManager::removeCartItems(std::string user){
-    //TODO
-    return false;
 }
 
 QList<Item> StudentManager::getBooksFromCourse(QList<Course> regCourse, DataBase* myDB){
@@ -117,11 +92,15 @@ QList<Item> StudentManager::getBooksFromCourse(QList<Course> regCourse, DataBase
 QList<Course> StudentManager::getEnrolledCourse(std::string user, DataBase* myDB){
 
     QList<Course> course = myDB->getCourseRelation(QString::fromStdString(user));
-
     return course;
 
 }
 
 int StudentManager::emptyCart(std::string username, DataBase *db){
-    return -1;
+
+    int success = -1;
+
+    success = db->deleteCart(QString::fromStdString(username));
+
+    return success;
 }

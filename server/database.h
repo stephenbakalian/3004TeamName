@@ -37,6 +37,7 @@ class DataBase : public QObject
         int getUser(QString);
         void getAllUsers();
         QList<Item> getAllItems();
+        QString getItem(QString);
         QList<Item> getBook(QString);
         QList<Item> getAllBooks();
         QList<Item> getChapter(QString);
@@ -53,7 +54,7 @@ class DataBase : public QObject
 
         //Updating the DB
         QString updateUser(QString, QString, QString, QString);
-        QString updateItem(QString, QString, QString, QString, QString, QString, QString, QString);
+        int updateItem(QString, QString, QString, QString, QString, QString, QString, QString);
         QString updateCourse(QString, QString, QString, QString, QString, QString);
         QString updateTransaction(QString, QString, QString, QString);
         QString updateBilling(QString, QString);
