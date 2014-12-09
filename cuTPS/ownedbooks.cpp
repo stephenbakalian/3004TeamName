@@ -2,6 +2,11 @@
 #include "ui_ownedbooks.h"
 #include "mainwindow.h"
 
+/**
+ * Page used to display books already owned by the user
+ * @brief OwnedBooks::OwnedBooks
+ * @param parent
+ */
 OwnedBooks::OwnedBooks(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::OwnedBooks)
@@ -16,16 +21,18 @@ OwnedBooks::~OwnedBooks()
     delete ui;
 }
 
+//view student items was slected>send to view items page
 void OwnedBooks::on_pushButton_2_clicked()
 {
     ((MainWindow*)parentWidget())->setStuViewItems(username);
 }
-
+//logout pressed send to login
 void OwnedBooks::on_pushButton_clicked()
 {
     ((MainWindow*)parentWidget())->setViewLogin();
 
 }
+//show items that the user had in their cart
 void OwnedBooks::showItems(Item list[]){
    int x;
    QLabel *titles[sizeof(list)];
@@ -60,7 +67,7 @@ void OwnedBooks::showItems(Item list[]){
 
    ui->scrollAreaWidgetContents->setMinimumHeight(28*sizeof(list)+1);
 }
-
+//sets the username
 void OwnedBooks::setUsername(std::string username){
     username=username;
     updateUI();

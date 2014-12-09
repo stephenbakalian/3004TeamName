@@ -1,7 +1,11 @@
 #include "modifytextbook.h"
 #include "ui_modifytextbook.h"
 #include "mainwindow.h"
-
+/**
+ * Page used to create a new item or modify an existing one
+ *@brief ModifyTextbook::ModifyTextbook
+ * @param parent
+ */
 ModifyTextbook::ModifyTextbook(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::ModifyTextbook)
@@ -13,12 +17,12 @@ ModifyTextbook::~ModifyTextbook()
 {
     delete ui;
 }
-
+//sets the username of the current user
 void ModifyTextbook::setUsername(std::string user){
     username=user;
 }
 
-
+//add selected items to cart -> take items where selected box is ticked send to server->do resoponse
 void ModifyTextbook::on_pushButton_clicked()
 {
     reqHandler = new RequestHandler(this);
@@ -69,6 +73,7 @@ void ModifyTextbook::on_pushButton_clicked()
         ((MainWindow*)parentWidget())->setViewError("An unhandeled error occured \n please contant a techincal assiant \n ERROR: " + resp,1, username);
     }
 }
+//sets the data on the page to be relevant to a item selected in the previous page (if edit was chosen)
 void ModifyTextbook::setData(Item item)
 {
     if(item.getType()=="textbook"){
@@ -95,21 +100,23 @@ void ModifyTextbook::setData(Item item)
     ui->price->setText((QString::fromUtf8(item.getPrice().c_str())));
     ui->length->setText((QString::fromUtf8(item.getLength().c_str())));
 }
+//view list was pressed -> send user to view
 void ModifyTextbook::on_pushButton_2_clicked()
 {
     ((MainWindow*)parentWidget())->setCTMViewItems(username);
 }
-
+//logout was pressed -> send user to login
 void ModifyTextbook::on_pushButton_3_clicked()
 {
     ((MainWindow*)parentWidget())->setViewLogin();
 }
-
+//Dropdown type was chaned
 void ModifyTextbook::on_type_currentIndexChanged(const QString &arg1)
 {
     updateAvailableFeilds();
 
 }
+//-> update fields to show the correct avialbility
 void ModifyTextbook::updateAvailableFeilds(){
     int selected =  ui->type->currentIndex();
     switch (selected){
