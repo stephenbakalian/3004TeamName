@@ -58,9 +58,9 @@ bool DataBase::createTables(){
                        "(isbn VARCHAR(255) PRIMARY KEY NOT NULL, "
                        "price VARCHAR(255) NOT NULL, "
                        "name VARCHAR(255) NOT NULL, "
-                       "author VARCHAR(255) NOT NULL, "
+                       "author VARCHAR(255), "
                        "description VARCHAR(255), "
-                       "length VARCHAR(255) NOT NULL, "
+                       "length VARCHAR(255), "
                        "type VARCHAR(255) NOT NULL, "
                        "course VARCHAR(255)) ");
 
@@ -94,6 +94,7 @@ bool DataBase::createTables(){
         createCourse("COMP 3007", "Christine", "Winter 2014", "Tory Building", "TB232");
 
         createUser("100770196", "Jason", "Jason@hotmail.com", "2");
+        createUser("100884228", "Jon", "Jon@hotmail.com", "3");
 
         createStudentCourseRelation("100770196", "COMP 3004");
         createStudentCourseRelation("100770196", "COMP 3005");
@@ -152,7 +153,7 @@ QString DataBase::createUser(QString id, QString name, QString email, QString ro
 
 int DataBase::createItem(QString ISBN, QString price, QString name, QString author, QString description, QString length, QString type, QString course){
 
-    int newInsert = -5;
+    int newInsert = -1;
     bool ret = false;
 
     if (mydb.isOpen()){
@@ -254,7 +255,7 @@ QString DataBase::createPurchaseRelation(QString studentNum, QString purchaseID)
 
 int DataBase::createCart(QString studentNum, QString ISBN){
 
-    int newInsert = -5;
+    int newInsert = -1;
     bool ret = false;
 
     if (mydb.isOpen()){
@@ -323,6 +324,31 @@ void DataBase::getAllUsers(){
          }
     }
 }
+QString DataBase:: getItem(QString search){
+
+    Item item;
+
+    if (mydb.isOpen()){
+
+        QSqlQuery qry;
+        qry.prepare("SELECT isbn,price,name,author,description,length,type,course FROM item WHERE isbn = ?");
+        qry.addBindValue(search);
+        qry.exec();
+
+
+        item.setISBN(qry.value(0).toString().toStdString());
+        item.setPrice(qry.value(1).toString().toStdString());
+        item.setTitle(qry.value(2).toString().toStdString());
+        item.setAuthor(qry.value(3).toString().toStdString());
+        item.setDescription(qry.value(4).toString().toStdString());
+        item.setLength(qry.value(5).toString().toStdString());
+        item.setType(qry.value(6).toString().toStdString());
+        item.setCourse(qry.value(7).toString().toStdString());
+
+    }
+    return QString::fromStdString(item.getISBN());
+}
+
 
 QList<Item> DataBase:: getAllItems(){
 
@@ -723,9 +749,9 @@ QString DataBase:: updateUser(QString userID, QString name, QString email, QStri
     return newUpdate;
 }
 
-QString DataBase:: updateItem(QString ISBN, QString price, QString name, QString author, QString description, QString length, QString type, QString course){
+int DataBase:: updateItem(QString ISBN, QString price, QString name, QString author, QString description, QString length, QString type, QString course){
 
-    QString newUpdate = "Failed to update chapter table";
+    int newUpdate = -1;
     bool ret = false;
 
     if (mydb.isOpen()){
@@ -740,11 +766,12 @@ QString DataBase:: updateItem(QString ISBN, QString price, QString name, QString
         qry.addBindValue(length);
         qry.addBindValue(type);
         qry.addBindValue(course);
+        qry.addBindValue(ISBN);
         ret = qry.exec();
     }
 
     if (ret){
-        newUpdate = QString("Updating %1 successful!").arg(ISBN);
+        newUpdate = 1;
     }
 
     return newUpdate;
@@ -961,7 +988,7 @@ QString DataBase:: deleteBilling(QString search){
 
 int DataBase:: deleteCart(QString search){
 
-    int newDelete = -5;
+    int newDelete = -1;
     bool ret = false;
 
     if (mydb.isOpen()){
@@ -971,7 +998,7 @@ int DataBase:: deleteCart(QString search){
                        .arg(search));
 
         if (ret){
-            newDelete = 9;
+            newDelete = 1;
         }
     }
 

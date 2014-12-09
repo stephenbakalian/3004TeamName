@@ -75,7 +75,7 @@ void Connection::run() {
 
             qDebug() << "owned books request made";
             std::string user        = request["user"].toString().toStdString();
-            QList<Item> ownedBooks  = StudentManager().viewPurchasedItems(user);
+            QList<Item> ownedBooks  = StudentManager().viewPurchasedItems(user, myDB);
             int         itemCount   = 0;
 
             Item bookList[ownedBooks.size()];

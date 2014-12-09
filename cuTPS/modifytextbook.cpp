@@ -34,6 +34,8 @@ void ModifyTextbook::on_pushButton_clicked()
     item.setDescription(ui->description->toPlainText().toStdString());
     item.setPrice(ui->price->text().toStdString());
     item.setTitle(ui->title->text().toStdString());
+    item.setLength(ui->length->text().toStdString());
+    item.setISBN(ui->ISBN->text().toStdString());
 
     int selected =  ui->type->currentIndex();
     switch (selected){
