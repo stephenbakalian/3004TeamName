@@ -64,14 +64,12 @@ void Cart::showItems(QList<Item> list){
          purchaseDate[x] = new QLabel(QString::fromUtf8(list.value(x).getPurchaseDate().c_str()));
          ui->gridLayout->addWidget(purchaseDate[x],3,x);
 
-         description[x] = new QLabel(QString::fromUtf8(list.value(x).getDescription().c_str()));
-         ui->gridLayout->addWidget(description[x],4,x);
    }
    QSpacerItem *spacer = new QSpacerItem(20, 40, QSizePolicy::Expanding, QSizePolicy::Maximum);
    ui->gridLayout->addItem(spacer,list.size(),5,1,1);
+   ui->scrollArea->setStyleSheet("background-color:transparent;");
 
-   QSpacerItem *vert = new QSpacerItem(1, 1000, QSizePolicy::Expanding, QSizePolicy::Minimum);
-   ui->gridLayout->addItem(vert,list.size()+1,0,1,0);
+   ui->scrollAreaWidgetContents->setMinimumHeight(28*list.size()+1);
 }
 
 void Cart::on_pushButton_3_clicked()

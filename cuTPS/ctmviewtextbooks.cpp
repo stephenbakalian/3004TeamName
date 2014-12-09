@@ -86,6 +86,10 @@ void CTMViewTextbooks::showItems(QList<Item> list){
 
    QSpacerItem *vert = new QSpacerItem(1, 1000, QSizePolicy::Expanding, QSizePolicy::Minimum);
    ui->itemGrid->addItem(vert,list.size()+1,0,1,0);
+   ui->scrollArea->setStyleSheet("background-color:transparent;");
+
+   ui->scrollAreaWidgetContents->setMinimumHeight(28*list.size()+1);
+
 }
 void CTMViewTextbooks::showDetails(Item showItem){
     //Title,length,price,author,ISBN,course, description,type
@@ -97,11 +101,13 @@ void CTMViewTextbooks::showDetails(Item showItem){
     ui->SelectedISBN->setText  (QString::fromUtf8(showItem.getISBN().c_str()));
     ui->SelectedLength->setText(QString::fromUtf8(showItem.getLength().c_str()));
     ui->SelectedPrice->setText (QString::fromUtf8(showItem.getPrice().c_str()));
-    if(showItem.getType()=="asdf"){
-        ui->SelectedTexbook->setText (QString::fromUtf8(showItem.getPrice().c_str()));
+    if(showItem.getType()=="chapter"){
+        Chapter *steveSucks = (Chapter*)&showItem;
+        ui->SelectedTexbook->setText (QString::fromUtf8((steveSucks)->getTextbookName().c_str()));
     }
-    if(showItem.getType()=="asdf"){
-        ui->SelectedTexbook->setText (QString::fromUtf8(showItem.getPrice().c_str()));
-        ui->SelectedChapter->setText(QString::fromUtf8(showItem.getPrice().c_str()));
+    if(showItem.getType()=="section"){
+        section *steveSucks = (section*)&showItem;
+        ui->SelectedTexbook->setText (QString::fromUtf8(steveSucks->getTextbookName().c_str()));
+        ui->SelectedChapter->setText(QString::fromUtf8(steveSucks->getChapter().c_str()));
     }
 }
