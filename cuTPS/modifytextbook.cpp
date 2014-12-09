@@ -49,9 +49,18 @@ void ModifyTextbook::on_pushButton_clicked()
         item.setType("section");
         break;
     }
-    int resp = reqHandler->addItem(item);
+
+    int resp;
+    if (item.getISBN().empty() || item.getTitle().empty()){
+        resp = -6;
+    }else{
+        resp = reqHandler->addItem(item);
+    }
     qDebug() << "Add to cart" << resp;
     switch (resp) {
+    case -6:
+        ((MainWindow*)parentWidget())->setViewError("validation error, please fill out for correctly, thank you",4, username);
+        break;
     case -5:
         ((MainWindow*)parentWidget())->setViewError("Database connection error",4, username);
         break;
