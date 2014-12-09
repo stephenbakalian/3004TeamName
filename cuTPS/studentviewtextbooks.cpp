@@ -23,7 +23,6 @@ void StudentViewTextbooks::setUsername(std::string user){
 void StudentViewTextbooks::updateUI(){
     reqHandler = new RequestHandler(this);
 
-
     items = reqHandler->getStuCourseLoad(username);
 
     showItems(items);
@@ -54,9 +53,14 @@ void StudentViewTextbooks::on_pushButton_5_clicked()
     //TODO ends here
     for(int x=0; x<items.size();x++){
         if(addToCart.value(x)->isChecked()){
-            checkedItems.push_back(items.value(x));
+            Item newItem;
+            newItem.setISBN(items.value(x).getISBN());
+            qDebug() <<newItem.getTitle().c_str() << ":::" << items.value(x).getISBN().c_str();
+
+            checkedItems.push_back(newItem);
+
             addToCart.value(x)->setEnabled(false);
-            qDebug() << checkedItems.value(x).getTitle().c_str();
+            qDebug() <<newItem.getTitle().c_str() << ":::" << items.value(x).getISBN().c_str();
         }
     }
     int resp = reqHandler->AddToCart(checkedItems, username);

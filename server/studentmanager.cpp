@@ -41,6 +41,7 @@ QList<Item> StudentManager::viewCart(std::string studentName, DataBase *myDB) {
 
     QList <Item> temp = myDB->getAllItems();
 
+<<<<<<< HEAD
     for (c = temp.begin(); c != temp.end(); ++c){
         for (i = item.begin(); i != item.end(); ++i){
                         qDebug() << QString::fromStdString(i->getISBN());
@@ -49,6 +50,16 @@ QList<Item> StudentManager::viewCart(std::string studentName, DataBase *myDB) {
             }
         }
     }
+=======
+   // for (c = temp.begin(); c != temp.end(); ++c){
+        for (i = item.begin(); i != item.end(); ++i){
+            //if (c->getISBN() == i->getISBN()){
+            //qDebug() << QString::fromStdString(i->getISBN());
+                   books.push_back(*i);
+           // }
+        }
+   // }
+>>>>>>> 417b81004c7a958c825423fce6900f7d21da9f3c
 
 
 
