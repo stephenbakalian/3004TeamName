@@ -113,8 +113,7 @@ int RequestHandler::AddToCart(QList<Item> items, std::string username){
     for (int i =0; i < items.size(); i++){
         bookList[i] = items.value(i);
     }
-    qDebug() << items.size();
-    for (int i =0; i< items.size(); i++){
+     for (int i =0; i< items.size(); i++){
         request[concatStrInt("title",i).c_str()]                 = QString(bookList[i].getTitle().c_str());
         request[concatStrInt("author",itemCount).c_str()]        = QString(bookList[i].getAuthor().c_str());
         request[concatStrInt("description",itemCount).c_str()]   = QString(bookList[i].getDescription().c_str());
