@@ -67,12 +67,13 @@ void ModifyTextbook::on_pushButton_clicked()
     case 0://Socket Disconect
         break;
     case 1: //Successfull
+        ((MainWindow*)parentWidget())->setViewError("Unknown Json Parsing Error",2,username);
         break;
     case 2: //Student logs in
         //Add to cart
         break;
     default:
-        ((MainWindow*)parentWidget())->setViewError("An unhandeled error occured \n please contant a techincal assiant \n ERROR: " + resp,1, username);
+        ((MainWindow*)parentWidget())->setViewError("An unhandeled error occured \n please contant a techincal assiant \n ERROR: " + resp,2, username);
     }
 }
 //sets the data on the page to be relevant to a item selected in the previous page (if edit was chosen)
