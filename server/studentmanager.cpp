@@ -15,18 +15,24 @@ int StudentManager::addToCart(std::string studentName, QList<Item> item, DataBas
     QList<Item>::iterator i;
 
     for (i = item.begin(); i != item.end(); ++i){
-        qDebug() << QString::fromStdString(i->getISBN());
+       // qDebug() << QString::fromStdString(i->getISBN());
            success = myDB->createCart(QString::fromStdString(studentName), QString::fromStdString(i->getISBN()));
     }
 
     return success;
 }
 
-QList<Item> StudentManager::viewPurchasedItems(std::string studentName, DataBase* myDB) {
+QList<Item> StudentManager::viewPurchasedItems(std::string studentName, DataBase* myDB){
 
-    /*QList<Item> item = myDB->getCart(QString::fromStdString(studentName));
-    QList<Item>::iterator i;*/
+    QList<Item> item = myDB->getPurchaseRelation(QString::fromStdString(studentName));
+    QList<Item>::iterator i;
     QList<Item> books;
+
+    for (i = item.begin(); i != item.end(); ++i){
+            //qDebug() << QString::fromStdString(i->getISBN());
+            books.push_back(myDB->getItem(QString::fromStdString(i->getISBN())));
+    }
+
     return books;
 
 }

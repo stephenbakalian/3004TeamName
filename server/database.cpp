@@ -70,7 +70,7 @@ bool DataBase::createTables(){
         //qDebug() << ret;
         ret = qry.exec("CREATE TABLE purchase_relation "
                        "(student_number VARCHAR(255) NOT NULL, "
-                       "purchase_id VARCHAR(255) NOT NULL) ");
+                       "isbn VARCHAR(255) NOT NULL) ");
         //qDebug() << ret;
         ret = qry.exec("CREATE TABLE cart "
                        "(student_number VARCHAR(255) NOT NULL, "
@@ -238,7 +238,7 @@ QString DataBase::createStudentCourseRelation(QString studentNum, QString course
 
 
 
-QString DataBase::createPurchaseRelation(QString studentNum, QString purchaseID){
+QString DataBase::createPurchaseRelation(QString studentNum, QString isbn){
 
     QString newInsert = "Failed to insert new query";
     bool ret = false;
@@ -248,7 +248,7 @@ QString DataBase::createPurchaseRelation(QString studentNum, QString purchaseID)
         QSqlQuery qry;
 
         ret = qry.exec(QString("INSERT INTO purchase_relation VALUES('%1', '%2')")
-                       .arg(studentNum).arg(purchaseID));
+                       .arg(studentNum).arg(isbn));
 
         if (ret){
             newInsert = QString("Inserting %1 successful!").arg(studentNum);
@@ -666,6 +666,28 @@ void DataBase:: getAllTransactions(){
 
         }
     }
+}
+
+QList<Item> DataBase:: getPurchaseRelation(QString search){
+
+    QList<Item> itemList;
+
+    if (mydb.isOpen()){
+
+        QSqlQuery qry;
+
+        qry.prepare("SELECT isbn FROM purchase_relation WHERE student_number = ?");
+        qry.addBindValue(search);
+        qry.exec();
+
+        while (qry.next()) {
+
+            Item item;
+            item.setISBN(qry.value(0).toString().toStdString());
+            itemList.push_back(item);
+        }
+    }
+    return itemList;
 }
 
 QList<Course> DataBase:: getCourseRelation(QString search){

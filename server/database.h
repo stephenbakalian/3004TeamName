@@ -51,6 +51,7 @@ class DataBase : public QObject
         void getBilling(QString);
         QList<Item> getCart(QString);
         QList<Course> getCourseRelation(QString);
+        QList<Item> getPurchaseRelation(QString);
 
         //Updating the DB
         QString updateUser(QString, QString, QString, QString);

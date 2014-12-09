@@ -36,15 +36,6 @@ int CTMManager::additem(Item item, DataBase* myDB){
                                   QString::fromStdString(item.getType()),
                                   QString::fromStdString(item.getCourse()));
 
-    qDebug() << QString::fromStdString(item.getISBN());
-    qDebug() << QString::fromStdString(item.getPrice());
-    qDebug() << QString::fromStdString(item.getTitle());
-    qDebug() << QString::fromStdString(item.getAuthor());
-    qDebug() << QString::fromStdString(item.getDescription());
-    qDebug() << QString::fromStdString(item.getLength());
-    qDebug() << QString::fromStdString(item.getType());
-    qDebug() << QString::fromStdString(item.getCourse());
-
     return successful;
 }
 
