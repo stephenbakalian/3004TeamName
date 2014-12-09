@@ -45,7 +45,6 @@ QList<Item> StudentManager::viewCart(std::string studentName, DataBase *myDB) {
         for (i = item.begin(); i != item.end(); ++i){
                         qDebug() << QString::fromStdString(i->getISBN());
            if (c->getISBN() == i->getISBN()){
-
                    books.push_back(*i);
             }
         }
