@@ -34,6 +34,7 @@ private:
     Ui::Cart *ui;
     std::string username;
     void updateUI();
+    QList<Item> allList;
 };
 
 #endif // CART_H
