@@ -57,6 +57,7 @@ void StudentViewTextbooks::on_pushButton_5_clicked()
             checkedItems.push_back(items.value(x));
             addToCart.value(x)->setEnabled(false);
             qDebug() << checkedItems.value(x).getTitle().c_str();
+            qDebug() << items.value(x).getTitle().c_str();
         }
     }
     int resp = reqHandler->AddToCart(checkedItems, username);
