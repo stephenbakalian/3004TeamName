@@ -58,6 +58,7 @@ void Cart::on_pushButton_2_clicked()
 void Cart::showItems(QList<Item> list){
    //ui->gridLayout
    int x;
+   allList=list;
    QLabel *titles[list.size()];
    QLabel *type[list.size()];
    QLabel *price[list.size()];
@@ -94,13 +95,10 @@ void Cart::on_pushButton_3_clicked()
     reqHandler = new RequestHandler(this);
 
     //TODO cart items here
-    Item item;
-    item.setTitle("test");
-    QList<Item> cartItems;
-    cartItems.push_back(item);
+
     //TODO ends here
 
-    int resp = reqHandler->checkout(cartItems, username);
+    int resp = reqHandler->checkout(allList, username);
 
     qDebug() << "purchase cart" << resp;
 
