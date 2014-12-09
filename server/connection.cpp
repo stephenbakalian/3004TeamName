@@ -53,19 +53,19 @@ void Connection::run() {
             QList<Item> addToCarItems;
             int         itemCount   = request["itemCount"].toDouble();
             std::string user        = request["user"].toString().toStdString();
-
+            qDebug() << request;
             qDebug() << itemCount;
             for (int i = 0; i < itemCount; i++){
                 Item item;
-                item.setAuthor(response[concatStrInt("author",i).c_str()].toString().toStdString());
-                item.setCourse(response[concatStrInt("course",i).c_str()].toString().toStdString());
-                item.setDescription(response[concatStrInt("description",i).c_str()].toString().toStdString());
-                item.setPrice(response[concatStrInt("price",i).c_str()].toString().toStdString());
-                item.setPurchaseDate(response[concatStrInt("purchasedate",i).c_str()].toString().toStdString());
-                item.setTitle(response[concatStrInt("title",i).c_str()].toString().toStdString());
-                item.setType(response[concatStrInt("type",i).c_str()].toString().toStdString());
-                item.setISBN(response[concatStrInt("isbn",i).c_str()].toString().toStdString());
-                item.setLength(response[concatStrInt("length",i).c_str()].toString().toStdString());
+                item.setAuthor(request[concatStrInt("author",i).c_str()].toString().toStdString());
+                item.setCourse(request[concatStrInt("course",i).c_str()].toString().toStdString());
+                item.setDescription(request[concatStrInt("description",i).c_str()].toString().toStdString());
+                item.setPrice(request[concatStrInt("price",i).c_str()].toString().toStdString());
+                item.setPurchaseDate(request[concatStrInt("purchasedate",i).c_str()].toString().toStdString());
+                item.setTitle(request[concatStrInt("title",i).c_str()].toString().toStdString());
+                item.setType(request[concatStrInt("type",i).c_str()].toString().toStdString());
+                item.setISBN(request[concatStrInt("isbn",i).c_str()].toString().toStdString());
+                item.setLength(request[concatStrInt("length",i).c_str()].toString().toStdString());
                 addToCarItems.push_back(item);
                 qDebug() << addToCarItems.value(i).getTitle().c_str();
             }
