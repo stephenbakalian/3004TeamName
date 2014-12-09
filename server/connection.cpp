@@ -47,7 +47,7 @@ void Connection::run() {
         if (request["request"] == QString("login")) {
 
             std::string username    = request["username"].toString().toStdString();
-            response["status"] = SharedManager().loginHandler(username);
+            response["status"] = SharedManager().loginHandler(username, myDB);
 
         } else if (request["request"] == QString("addToCart")){
 /*
@@ -144,7 +144,7 @@ void Connection::run() {
             qDebug() << "student course load request made";
             std::string user        = request["user"].toString().toStdString();
 
-            QList<Course> regCourse = StudentManager().getEnrolledCourse(user);
+            QList<Course> regCourse = StudentManager().getEnrolledCourse(user, myDB);
 
             QList<Item> ownedBooks  = StudentManager().getBooksFromCourse(regCourse, myDB);
             int         itemCount   = 0;

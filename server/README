@@ -4,8 +4,11 @@
 0.  unconnected state 
 
 1. connected state
-2. student loged in
-3. ctm loigged in
+2. student logged in
+3. ctm logged in
 4. admin logged in
+
+-5. = unsuccessful
+9. = successful
 
 

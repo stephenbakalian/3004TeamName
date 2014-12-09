@@ -22,19 +22,19 @@ class DataBase : public QObject
     public:
 
         //Inserting QStringo DB
-        QString createUser(QString, QString, QString);
-        QString createItem(QString, QString, QString, QString, QString, QString, QString, QString);
-        QString createCourse(QString, QString, QString, QString, QString, QString);
+        QString createUser(QString, QString, QString, QString);
+        int createItem(QString, QString, QString, QString, QString, QString, QString, QString);
+        QString createCourse(QString, QString, QString, QString, QString);
         QString createTransaction(QString, QString, QString);
         QString createBilling(QString, QString);
         QString createStudentCourseRelation(QString, QString);
         QString createPurchaseRelation(QString, QString);
-        QString createCart(QString, QString);
+        int createCart(QString, QString);
 
 
 // For these get functions tell me how you want the delimited so you can use them later...
         //Retrieving from DB
-        void getUser(QString);
+        int getUser(QString);
         void getAllUsers();
         QList<Item> getAllItems();
         QList<Item> getBook(QString);
@@ -48,7 +48,8 @@ class DataBase : public QObject
         void getTransaction(QString);
         void getAllTransactions();
         void getBilling(QString);
-        void getCart(QString);
+        QList<Item> getCart(QString);
+        QList<Course> getCourseRelation(QString);
 
         //Updating the DB
         QString updateUser(QString, QString, QString, QString);
@@ -65,7 +66,7 @@ class DataBase : public QObject
         QString deleteCourse(QString);
         QString deleteTransaction(QString);
         QString deleteBilling(QString);
-        QString deleteCart(QString);
+        int deleteCart(QString);
 
         //Initializatin functions
         bool createTables();

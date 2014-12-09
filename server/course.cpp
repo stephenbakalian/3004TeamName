@@ -21,15 +21,7 @@ void Course::setBuilding(const std::string &value)
 {
     building = value;
 }
-std::string Course::getCourseNum() const
-{
-    return courseNum;
-}
 
-void Course::setCourseNum(const std::string &value)
-{
-    courseNum = value;
-}
 std::string Course::getTerm() const
 {
     return term;

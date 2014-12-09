@@ -14,9 +14,6 @@ public:
     std::string getBuilding() const;
     void setBuilding(const std::string &value);
 
-    std::string getCourseNum() const;
-    void setCourseNum(const std::string &value);
-
     std::string getTerm() const;
     void setTerm(const std::string &value);
 
@@ -30,7 +27,6 @@ private:
     std::string courseCode;
     std::string instructor;
     std::string term;
-    std::string courseNum;
     std::string building;
     std::string room;
 };
