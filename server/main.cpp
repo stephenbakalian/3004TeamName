@@ -5,6 +5,7 @@
 
 #include "../config.h"
 #include "server.h"
+#include "database.h"
 
 
 using namespace std;

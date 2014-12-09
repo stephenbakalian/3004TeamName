@@ -20,7 +20,7 @@ public:
     QList<Item> viewPurchasedItems(std::string studentName);
     QList<Item> viewCart(std::string studentName, DataBase* myDB);
     QList<Course> getEnrolledCourse(std::string user);
-    QList<Item> getBooksFromCourse(QList<Course> regCourse);
+    QList<Item> getBooksFromCourse(QList<Course> regCourse, DataBase* myDB);
 };
 
 #endif // STUDENTMANAGER_H

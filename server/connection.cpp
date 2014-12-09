@@ -131,7 +131,7 @@ void Connection::run() {
 
             QList<Course> regCourse = StudentManager().getEnrolledCourse(user);
 
-            QList<Item> ownedBooks  = StudentManager().getBooksFromCourse(regCourse);
+            QList<Item> ownedBooks  = StudentManager().getBooksFromCourse(regCourse, myDB);
             int         itemCount   = 0;
 
             Item bookList[ownedBooks.size()];
@@ -157,7 +157,7 @@ void Connection::run() {
 
             qDebug() << "all course request made";
 
-            QList<Item> ownedBooks  = CTMManager().getAllItems();
+            QList<Item> ownedBooks  = CTMManager().getAllItems(myDB);
             int         itemCount   = 0;
 
             Item bookList[ownedBooks.size()];
@@ -211,7 +211,7 @@ void Connection::run() {
             item.setPrice(request["price"].toString().toStdString());
             item.setType(request["type"].toString().toStdString());
 
-            response["status"] = CTMManager().additem(item);
+            response["status"] = CTMManager().additem(item, myDB);
 
         }else {
             response["status"] = -403;

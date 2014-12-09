@@ -1,5 +1,6 @@
 #include "database.h"
-
+#include "course.h"
+#include "item.h"
 
 DataBase::DataBase(QObject* parent) : QObject(parent){
 
@@ -26,6 +27,9 @@ bool DataBase::createTables(){
         qry.exec("drop table if exists book");
         qry.exec("drop table if exists chapter");
         qry.exec("drop table if exists section");
+        qry.exec("drop table if exists cart");
+        qry.exec("drop table if exists student_course_relation");
+        qry.exec("drop table if exists purchase_relation");
 
         ret = qry.exec("CREATE TABLE purchased "
                        "(purchase_id INTEGER PRIMARY KEY NOT NULL, "
@@ -48,32 +52,18 @@ bool DataBase::createTables(){
                        "room VARCHAR(255)) ");
 
         ret = qry.exec("CREATE TABLE billinginfo "
-                       "(user_id INTEGER PRIMARY KEY NOT NULL, "
+                       "(user_id VARCHAR(255) PRIMARY KEY NOT NULL, "
                        "address TEXT NOT NULL) ");
 
-        ret = qry.exec("CREATE TABLE book "
+        ret = qry.exec("CREATE TABLE item "
                        "(isbn VARCHAR(255) PRIMARY KEY NOT NULL, "
                        "price VARCHAR(255) NOT NULL, "
                        "name VARCHAR(255) NOT NULL, "
-                       "cover VARCHAR(255), "
                        "author VARCHAR(255) NOT NULL, "
-                       "year_published VARCHAR(255)) ");
-
-        ret = qry.exec("CREATE TABLE chapter "
-                       "(chapter_id VARCHAR(255) PRIMARY KEY NOT NULL, "
-                       "isbn VARCHAR(255), "
-                       "start_page VARCHAR(255) NOT NULL, "
-                       "end_page VARCHAR(255) NOT NULL, "
-                       "price VARCHAR(255), "
-                       "title VARCHAR(255)) ");
-
-        ret = qry.exec("CREATE TABLE section "
-                       "(section_id VARCHAR(255) PRIMARY KEY NOT NULL, "
-                       "chapter_id VARCHAR(255) NOT NULL, "
-                       "start_page VARCHAR(255) NOT NULL, "
-                       "end_page VARCHAR(255) NOT NULL, "
-                       "price VARCHAR(255), "
-                       "title VARCHAR(255)) ");
+                       "description VARCHAR(255), "
+                       "length VARCHAR(255) NOT NULL, "
+                       "type VARCHAR(255) NOT NULL, "
+                       "course VARCHAR(255)) ");
 
         ret = qry.exec("CREATE TABLE student_course_relation "
                        "(student_number VARCHAR(255) PRIMARY KEY NOT NULL, "
@@ -88,6 +78,23 @@ bool DataBase::createTables(){
                        "student_number VARCHAR(255) NOT NULL, "
                        "isbn VARCHAR(255) NOT NULL) ");
         //qDebug() << ret;
+
+        createItem("1000", "$100", "Software Engineering", "Christine", "A Book about Software Engineering", "500", "Textbook", "Comp 3005");
+        createItem("1001", "$50", "Intro to Database", "Christine", "A Book about Database", "550", "Textbook", "Comp 3004");
+        createItem("1002", "$1000", "Intro to Networking", "Christine", "A Book about Networking", "600", "Textbook", "Comp 3007");
+
+        createItem("100", "$25", "Chapter 1: Software Engineering", "Christine", "A chapter about Software Engineering", "30", "chapter", "Comp 3005");
+        createItem("101", "$30", "Chapter 2: Database", "Christine", "A chapter about Database", "24", "chapter", "Comp 3004");
+        createItem("102", "$20", "Chapter 3: Networking", "Christine", "A chapter about Networking", "25", "chapter", "Comp 3007");
+
+        createItem("10", "$5", "Section 2.1 Software Engineering", "Christine", "A Section about Software Engineering", "1", "section", "Comp 3005");
+        createItem("11", "$4", "Section 1,2 Database", "Christine", "A Section about Database", "2", "section", "Comp 3004");
+        createItem("12", "$3", "Section 3.3 Networking", "Christine", "A Section about Networking", "1", "section", "Comp 3007");
+
+        createCourse("COMP", "Christine", "Fall 2014", "3004", "Tory Building", "TB230");
+        createCourse("COMP", "Christine", "Fall 2015", "3005", "Tory Building", "TB231");
+        createCourse("COMP", "Christine", "Winter 2014", "3007", "Tory Building", "TB232");
+
     }
     return ret;
 }
@@ -141,7 +148,7 @@ QString DataBase::createUser(QString name, QString email, QString role){
     return newInsert;
 }
 
-QString DataBase::createBook(QString ISBN, QString price, QString name, QString cover, QString author, QString yearPublished){
+QString DataBase::createItem(QString ISBN, QString price, QString name, QString author, QString description, QString length, QString type, QString course){
 
     QString newInsert = "Failed to insert new query";
     bool ret = false;
@@ -150,51 +157,11 @@ QString DataBase::createBook(QString ISBN, QString price, QString name, QString 
 
         QSqlQuery qry;
 
-        ret = qry.exec(QString("INSERT INTO book VALUES('%1', '%2', '%3', '%4', '%5', '%6')")
-                       .arg(ISBN).arg(price).arg(name).arg(cover).arg(author).arg(yearPublished));
+        ret = qry.exec(QString("INSERT INTO item VALUES('%1', '%2', '%3', '%4', '%5','%6','%7','%8')")
+                       .arg(ISBN).arg(price).arg(name).arg(author).arg(description).arg(length).arg(type).arg(course));
 
         if (ret){
-            newInsert = QString("Inserting %1 successful!").arg(ISBN);
-        }
-
-    }
-    return newInsert;
-}
-
-QString DataBase::createSection(QString sectionID, QString chapterID, QString startPage, QString endPage, QString price, QString title){
-
-    QString newInsert = "Failed to insert new query";
-    bool ret = false;
-
-    if (mydb.isOpen()){
-
-        QSqlQuery qry;
-
-        ret = qry.exec(QString("INSERT INTO section VALUES('%1', '%2', '%3', '%4', '%5', '%6')")
-                       .arg(sectionID).arg(chapterID).arg(startPage).arg(endPage).arg(price).arg(title));
-
-        if (ret){
-            newInsert = QString("Inserting %1 successful!").arg(title);
-        }
-
-    }
-    return newInsert;
-}
-
-QString DataBase::createChapter(QString chapterID, QString ISBN, QString startPage, QString endPage, QString price, QString title){
-
-    QString newInsert = "Failed to insert new query";
-    bool ret = false;
-
-    if (mydb.isOpen()){
-
-        QSqlQuery qry;
-
-        ret = qry.exec(QString("INSERT INTO chapter VALUES('%1', '%2', '%3', '%4', '%5', '%6')")
-                       .arg(chapterID).arg(ISBN).arg(startPage).arg(endPage).arg(price).arg(title));
-
-        if (ret){
-            newInsert = QString("Inserting %1 successful!").arg(title);
+            newInsert = QString("Inserting %1 successful!").arg(name);
         }
 
     }
@@ -343,143 +310,226 @@ void DataBase::getAllUsers(){
          }
     }
 }
-void DataBase:: getBook(QString search){
+
+QList<Item> DataBase:: getAllItems(){
+
+    QList<Item> itemList;
 
     if (mydb.isOpen()){
 
         QSqlQuery qry;
-        qry.prepare("SELECT isbn,price,name,cover,author,year_published FROM book WHERE isbn = ?");
+        qry.exec("SELECT isbn,price,name,author,description,length,type,course FROM item");
+
+        while (qry.next()) {
+
+            Item item;
+
+            item.setISBN(qry.value(0).toString().toStdString());
+            item.setPrice(qry.value(1).toString().toStdString());
+            item.setTitle(qry.value(2).toString().toStdString());
+            item.setAuthor(qry.value(3).toString().toStdString());
+            item.setDescription(qry.value(4).toString().toStdString());
+            item.setLength(qry.value(5).toString().toStdString());
+            item.setType(qry.value(6).toString().toStdString());
+            item.setCourse(qry.value(7).toString().toStdString());
+
+            //qDebug() << ISBN << price << name << author << yearPublished;
+        itemList.push_back(item);
+        }
+    }
+    return itemList;
+}
+
+
+QList<Item> DataBase:: getBook(QString search){
+
+    QList<Item> itemList;
+
+    if (mydb.isOpen()){
+
+        QSqlQuery qry;
+        qry.prepare("SELECT isbn,price,name,author,description,length,type,course FROM item WHERE isbn = ? and type = 'Textbook'");
         qry.addBindValue(search);
         qry.exec();
 
         while (qry.next()) {
 
-            QString ISBN = qry.value(0).toString();
-            QString price = qry.value(1).toString();
-            QString name = qry.value(2).toString();
-            QString cover = qry.value(3).toString();
-            QString author = qry.value(4).toString();
-            QString yearPublished = qry.value(5).toString();
+            Item item;
 
-            qDebug() << ISBN << price << name << cover << author << yearPublished;
+            item.setISBN(qry.value(0).toString().toStdString());
+            item.setPrice(qry.value(1).toString().toStdString());
+            item.setTitle(qry.value(2).toString().toStdString());
+            item.setAuthor(qry.value(3).toString().toStdString());
+            item.setDescription(qry.value(4).toString().toStdString());
+            item.setLength(qry.value(5).toString().toStdString());
+            item.setType(qry.value(6).toString().toStdString());
+            item.setCourse(qry.value(7).toString().toStdString());
 
+            //qDebug() << ISBN << price << name << author << yearPublished;
+        itemList.push_back(item);
         }
     }
+    return itemList;
 }
 
-void DataBase:: getAllBooks(){
+QList<Item> DataBase:: getAllBooks(){
+
+    QList<Item> itemList;
 
     if (mydb.isOpen()){
 
         QSqlQuery qry;
-        qry.exec("SELECT isbn,price,name,cover,author,year_published FROM book");
+        qry.exec("SELECT isbn,price,name,author,description,length,type,course FROM item where type = 'Textbook'");
 
         while (qry.next()) {
 
-            QString ISBN = qry.value(0).toString();
-            QString price = qry.value(1).toString();
-            QString name = qry.value(2).toString();
-            QString cover = qry.value(3).toString();
-            QString author = qry.value(4).toString();
-            QString yearPublished = qry.value(5).toString();
+            Item item;
 
-            qDebug() << ISBN << price << name << cover << author << yearPublished;
+            item.setISBN(qry.value(0).toString().toStdString());
+            item.setPrice(qry.value(1).toString().toStdString());
+            item.setTitle(qry.value(2).toString().toStdString());
+            item.setAuthor(qry.value(3).toString().toStdString());
+            item.setDescription(qry.value(4).toString().toStdString());
+            item.setLength(qry.value(5).toString().toStdString());
+            item.setType(qry.value(6).toString().toStdString());
+            item.setCourse(qry.value(7).toString().toStdString());
 
+            //qDebug() << ISBN << price << name << author << yearPublished;
+        itemList.push_back(item);
         }
     }
+    return itemList;
 }
 
-void DataBase:: getChapter(QString search){
+QList<Item> DataBase:: getChapter(QString search){
+
+    QList<Item> itemList;
 
     if (mydb.isOpen()){
 
         QSqlQuery qry;
-        qry.prepare("SELECT chapter_id,isbn,start_page,end_page,price,title FROM chapter WHERE chapter_id = ?");
+        qry.prepare("SELECT isbn,price,name,author,description,length,type,course FROM item WHERE isbn = ? and type = 'chapter'");
         qry.addBindValue(search);
         qry.exec();
 
         while (qry.next()) {
 
-            QString chapterID = qry.value(0).toString();
-            QString isbn = qry.value(1).toString();
-            QString startPage = qry.value(2).toString();
-            QString endPage = qry.value(3).toString();
-            QString price = qry.value(4).toString();
-            QString title = qry.value(5).toString();
+            Item item;
 
-            qDebug() << chapterID << isbn << startPage << endPage << price << title;
+            item.setISBN(qry.value(0).toString().toStdString());
+            item.setPrice(qry.value(1).toString().toStdString());
+            item.setTitle(qry.value(2).toString().toStdString());
+            item.setAuthor(qry.value(3).toString().toStdString());
+            item.setDescription(qry.value(4).toString().toStdString());
+            item.setLength(qry.value(5).toString().toStdString());
+            item.setType(qry.value(6).toString().toStdString());
+            item.setCourse(qry.value(7).toString().toStdString());
 
+            //qDebug() << chapterID << isbn << startPage << endPage << price << title;
+    QList<Item> books;
+         itemList.push_back(item);
         }
     }
+    return itemList;
 }
 
-void DataBase:: getAllChapters(){
+QList<Item> DataBase:: getAllChapters(){
+
+    QList<Item> itemList;
 
     if (mydb.isOpen()){
 
         QSqlQuery qry;
-        qry.exec("SELECT chapter_id,isbn,start_page,end_page,price,title FROM chapter");
+        qry.exec("SELECT isbn,price,name,author,description,length,type,course FROM item WHERE type = 'chapter'");
 
         while (qry.next()) {
 
-            QString chapterID = qry.value(0).toString();
-            QString isbn = qry.value(1).toString();
-            QString startPage = qry.value(2).toString();
-            QString endPage = qry.value(3).toString();
-            QString price = qry.value(4).toString();
-            QString title = qry.value(5).toString();
+            Item item;
 
-            qDebug() << chapterID << isbn << startPage << endPage << price << title;
+            item.setISBN(qry.value(0).toString().toStdString());
+            item.setPrice(qry.value(1).toString().toStdString());
+            item.setTitle(qry.value(2).toString().toStdString());
+            item.setAuthor(qry.value(3).toString().toStdString());
+            item.setDescription(qry.value(4).toString().toStdString());
+            item.setLength(qry.value(5).toString().toStdString());
+            item.setType(qry.value(6).toString().toStdString());
+            item.setCourse(qry.value(7).toString().toStdString());
+
+            //qDebug() << chapterID << isbn << startPage << endPage << price << title;
+
+         itemList.push_back(item);
 
         }
     }
+    return itemList;
 }
 
-void DataBase:: getSection(QString search){
+QList<Item> DataBase:: getSection(QString search){
+
+    QList<Item> itemList;
 
     if (mydb.isOpen()){
 
         QSqlQuery qry;
-        qry.prepare("SELECT section_id,chapter_id,start_page,end_page,price FROM section WHERE section_id = ?");
+        qry.prepare("SELECT isbn,price,name,author,description,length,type,course FROM item WHERE isbn = ? and type = 'section'");
         qry.addBindValue(search);
         qry.exec();
 
         while (qry.next()) {
 
-            QString sectionID = qry.value(0).toString();
-            QString chapterID = qry.value(1).toString();
-            QString startPage = qry.value(2).toString();
-            QString endPage = qry.value(3).toString();
-            QString price = qry.value(4).toString();
+            Item item;
 
-            qDebug() << sectionID << chapterID << startPage << endPage << price;
+            item.setISBN(qry.value(0).toString().toStdString());
+            item.setPrice(qry.value(1).toString().toStdString());
+            item.setTitle(qry.value(2).toString().toStdString());
+            item.setAuthor(qry.value(3).toString().toStdString());
+            item.setDescription(qry.value(4).toString().toStdString());
+            item.setLength(qry.value(5).toString().toStdString());
+            item.setType(qry.value(6).toString().toStdString());
+            item.setCourse(qry.value(7).toString().toStdString());
 
+            //qDebug() << chapterID << isbn << startPage << endPage << price << title;        QString createSection(QString, QString, QString, QString, QString, QString, QString, QString);
+            QString createChapter(QString, QString, QString, QString, QString, QString, QString, QString);
+
+         itemList.push_back(item);
         }
-    }
+   }
+   return itemList;
 }
 
-void DataBase:: getAllSections(){
+QList<Item> DataBase:: getAllSections(){
+
+    QList<Item> itemList;
 
     if (mydb.isOpen()){
 
         QSqlQuery qry;
-        qry.exec("SELECT section_id,chapter_id,start_page,end_page,price FROM section");
+        qry.exec("SELECT isbn,price,name,author,description,length,type,course FROM section where type = 'section'");
 
         while (qry.next()) {
 
-            QString sectionID = qry.value(0).toString();
-            QString chapterID = qry.value(1).toString();
-            QString startPage = qry.value(2).toString();
-            QString endPage = qry.value(3).toString();
-            QString price = qry.value(4).toString();
+            Item item;
 
-            qDebug() << sectionID << chapterID << startPage << endPage << price;
+            item.setISBN(qry.value(0).toString().toStdString());
+            item.setPrice(qry.value(1).toString().toStdString());
+            item.setTitle(qry.value(2).toString().toStdString());
+            item.setAuthor(qry.value(3).toString().toStdString());
+            item.setDescription(qry.value(4).toString().toStdString());
+            item.setLength(qry.value(5).toString().toStdString());
+            item.setType(qry.value(6).toString().toStdString());
+            item.setCourse(qry.value(7).toString().toStdString());
 
+            //qDebug() << chapterID << isbn << startPage << endPage << price << title;
+
+         itemList.push_back(item);
         }
-    }
+   }
+   return itemList;
 }
 
-void DataBase:: getCourse(QString search){
+QList<Course> DataBase:: getCourse(QString search){
+
+    QList<Course> courseList;
 
     if (mydb.isOpen()){
 
@@ -490,21 +540,26 @@ void DataBase:: getCourse(QString search){
 
         while (qry.next()) {
 
-            QString courseCode = qry.value(0).toString();
-            QString instructor = qry.value(1).toString();
-            QString term = qry.value(2).toString();
-            QString courseNum = qry.value(3).toString();
-            QString building = qry.value(4).toString();
-            QString room = qry.value(5).toString();
+            Course course;
 
-            qDebug() << courseCode << instructor << term << courseNum << building << room;
+            course.setCourseCode(qry.value(0).toString().toStdString());
+            course.setInstructor(qry.value(1).toString().toStdString());
+            course.setTerm(qry.value(2).toString().toStdString());
+            course.setCourseNum(qry.value(3).toString().toStdString());
+            course.setBuilding(qry.value(4).toString().toStdString());
+            course.setRoom(qry.value(5).toString().toStdString());
 
+            //qDebug() << courseCode << instructor << term << courseNum << building << room;
+
+            courseList.push_back(course);
         }
     }
+    return courseList;
 }
 
-void DataBase:: getAllCourses(){
+QList<Course> DataBase:: getAllCourses(){
 
+    QList<Course> courseList;
     if (mydb.isOpen()){
 
         QSqlQuery qry;
@@ -512,17 +567,21 @@ void DataBase:: getAllCourses(){
 
         while (qry.next()) {
 
-            QString courseCode = qry.value(0).toString();
-            QString instructor = qry.value(1).toString();
-            QString term = qry.value(2).toString();
-            QString courseNum = qry.value(3).toString();
-            QString building = qry.value(4).toString();
-            QString room = qry.value(5).toString();
+        Course course;
 
-            qDebug() << courseCode << instructor << term << courseNum << building << room;
+        course.setCourseCode(qry.value(0).toString().toStdString());
+        course.setInstructor(qry.value(1).toString().toStdString());
+        course.setTerm(qry.value(2).toString().toStdString());
+        course.setCourseNum(qry.value(3).toString().toStdString());
+        course.setBuilding(qry.value(4).toString().toStdString());
+        course.setRoom(qry.value(5).toString().toStdString());
 
+        //qDebug() << courseCode << instructor << term << courseNum << building << room;
+
+        courseList.push_back(course);
         }
     }
+    return courseList;
 }
 
 void DataBase:: getTransaction(QString search){
@@ -628,21 +687,23 @@ QString DataBase:: updateUser(QString userID, QString name, QString email, QStri
     return newUpdate;
 }
 
-QString DataBase:: updateBook(QString ISBN, QString price, QString name, QString cover, QString author, QString yearPublished){
+QString DataBase:: updateItem(QString ISBN, QString price, QString name, QString author, QString description, QString length, QString type, QString course){
 
-    QString newUpdate = "Failed to update book table";
+    QString newUpdate = "Failed to update chapter table";
     bool ret = false;
 
     if (mydb.isOpen()){
 
         QSqlQuery qry;
-        qry.prepare("UPDATE book SET price = ?, name = ?, cover = ?, author = ?, year_published = ? WHERE isbn = ?");
+        qry.prepare("UPDATE chapter SET isbn = ?, price = ?, name = ?, author = ?, description = ?, length = ?, type = ?, course = ? WHERE isbn = ?");
+        qry.addBindValue(ISBN);
         qry.addBindValue(price);
         qry.addBindValue(name);
-        qry.addBindValue(cover);
         qry.addBindValue(author);
-        qry.addBindValue(yearPublished);
-        qry.addBindValue(ISBN);
+        qry.addBindValue(description);
+        qry.addBindValue(length);
+        qry.addBindValue(type);
+        qry.addBindValue(course);
         ret = qry.exec();
     }
 
@@ -651,59 +712,8 @@ QString DataBase:: updateBook(QString ISBN, QString price, QString name, QString
     }
 
     return newUpdate;
-}
-
-QString DataBase:: updateSection(QString sectionID, QString chapterID, QString startPage, QString endPage, QString price){
-
-    QString newUpdate = "Failed to update section table";
-    bool ret = false;
-
-    if (mydb.isOpen()){
-
-        QSqlQuery qry;
-        qry.prepare("UPDATE section SET chapter_ID = ?, start_page = ?, end_page = ?, price = ?, WHERE section_id = ?");
-        qry.addBindValue(chapterID);
-        qry.addBindValue(startPage);
-        qry.addBindValue(endPage);
-        qry.addBindValue(price);
-        qry.addBindValue(sectionID);
-        ret = qry.exec();
-    }
-
-    if (ret){
-        newUpdate = QString("Updating %1 successful!").arg(sectionID);
-    }
-
-    return newUpdate;
-}
-
-
-QString DataBase:: updateChapter(QString chapterID, QString ISBN, QString startPage, QString endPage, QString price, QString title){
-
-    QString newUpdate = "Failed to update chapter table";
-    bool ret = false;
-
-    if (mydb.isOpen()){
-
-        QSqlQuery qry;
-        qry.prepare("UPDATE chapter SET isbn = ?, start_page = ?, end_page = ?, price = ?, title = ?, WHERE chapter_id = ?");
-        qry.addBindValue(ISBN);
-        qry.addBindValue(startPage);
-        qry.addBindValue(endPage);
-        qry.addBindValue(price);
-        qry.addBindValue(title);
-        qry.addBindValue(chapterID);
-        ret = qry.exec();
-    }
-
-    if (ret){
-        newUpdate = QString("Updating %1 successful!").arg(chapterID);
-    }
-
-    return newUpdate;
 
 }
-
 
 QString DataBase:: updateCourse(QString courseCode, QString instructor, QString term, QString courseNum, QString building, QString room){
 

@@ -10,6 +10,9 @@
 #include <QFileInfo>
 #include <QDebug>
 
+#include "course.h"
+#include "item.h"
+
 class DataBase : public QObject
 {
     public:
@@ -20,9 +23,7 @@ class DataBase : public QObject
 
         //Inserting QStringo DB
         QString createUser(QString, QString, QString);
-        QString createBook(QString,QString, QString, QString, QString, QString);
-        QString createSection(QString, QString, QString, QString, QString, QString);
-        QString createChapter(QString, QString, QString, QString, QString, QString);
+        QString createItem(QString, QString, QString, QString, QString, QString, QString, QString);
         QString createCourse(QString, QString, QString, QString, QString, QString);
         QString createTransaction(QString, QString, QString);
         QString createBilling(QString, QString);
@@ -35,14 +36,15 @@ class DataBase : public QObject
         //Retrieving from DB
         void getUser(QString);
         void getAllUsers();
-        void getBook(QString);
-        void getAllBooks();
-        void getChapter(QString);
-        void getAllChapters();
-        void getSection(QString);
-        void getAllSections();
-        void getCourse(QString);
-        void getAllCourses();
+        QList<Item> getAllItems();
+        QList<Item> getBook(QString);
+        QList<Item> getAllBooks();
+        QList<Item> getChapter(QString);
+        QList<Item> getAllChapters();
+        QList<Item> getSection(QString);
+        QList<Item> getAllSections();
+        QList<Course> getCourse(QString);
+        QList<Course> getAllCourses();
         void getTransaction(QString);
         void getAllTransactions();
         void getBilling(QString);
@@ -50,9 +52,7 @@ class DataBase : public QObject
 
         //Updating the DB
         QString updateUser(QString, QString, QString, QString);
-        QString updateBook(QString, QString, QString, QString, QString, QString);
-        QString updateSection(QString, QString, QString, QString, QString);
-        QString updateChapter(QString, QString, QString, QString, QString, QString);
+        QString updateItem(QString, QString, QString, QString, QString, QString, QString, QString);
         QString updateCourse(QString, QString, QString, QString, QString, QString);
         QString updateTransaction(QString, QString, QString, QString);
         QString updateBilling(QString, QString);

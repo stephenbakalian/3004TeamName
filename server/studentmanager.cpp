@@ -88,30 +88,22 @@ bool StudentManager::removeCartItems(std::string user){
     return false;
 }
 
-QList<Item> StudentManager::getBooksFromCourse(QList<Course> regCourse){
+QList<Item> StudentManager::getBooksFromCourse(QList<Course> regCourse, DataBase* myDB){
+
     QList<Item> books;
+    QList<Item> item;
+    QList<Item>::iterator i;
+
+    item = myDB->getAllItems();
+
+    for (i = item.begin(); i != item.end(); ++i){
+        books.push_back(*i);
+    }
+
     if (regCourse.isEmpty()){
         return books;
     }
-    Item temp1;
-    Item temp2;
-    Item temp3;
-    Item temp4;
-    Item temp5;
-    Item temp6;
-    temp1.setTitle("HOW TO WIN at chess");
-    temp2.setTitle("Batman beyond");
-    temp3.setTitle("waffles are nigh");
-    temp4.setTitle("Hai");
-    temp5.setTitle("too many cooks");
-    temp6.setTitle("teamNAme");
 
-    books.push_back(temp1);
-    books.push_back(temp2);
-    books.push_back(temp3);
-    books.push_back(temp4);
-    books.push_back(temp5);
-    books.push_back(temp6);
     return books;
 }
 
