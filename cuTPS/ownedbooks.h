@@ -17,7 +17,7 @@ public:
     RequestHandler *reqHandler;
     explicit OwnedBooks(QWidget *parent = 0);
     ~OwnedBooks();
-    void showItems(Item[]);
+    void showItems(QList<Item>);
     void setUsername(std::string username);
 
 private slots:
