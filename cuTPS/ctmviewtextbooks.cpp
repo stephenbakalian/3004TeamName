@@ -3,6 +3,12 @@
 #include "mainwindow.h"
 #include "requesthandler.h"
 
+
+/**
+ * CTM viewer for the textbooks
+ *@brief CTMViewTextbooks::CTMViewTextbooks
+ * @param parent
+ */
 CTMViewTextbooks::CTMViewTextbooks(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::CTMViewTextbooks)
@@ -26,22 +32,22 @@ void CTMViewTextbooks::updateUI(){
     showItems(items);
 }
 
-void CTMViewTextbooks::on_pushButton_16_clicked() //edit button had been pressed
+void CTMViewTextbooks::on_pushButton_16_clicked() //edit button had been pressed->send to edit page with data from the item seleceted
 {
     ((MainWindow*)parentWidget())->setViewModItems(username,showItem);
 }
 
-void CTMViewTextbooks::on_pushButton_3_clicked()
+void CTMViewTextbooks::on_pushButton_3_clicked()// logout pressed -> send to login page
 {
     ((MainWindow*)parentWidget())->setViewLogin();
 }
 
-void CTMViewTextbooks::on_pushButton_clicked()//new Button has been pressed
+void CTMViewTextbooks::on_pushButton_clicked()//"new" Button has been pressed-> send to empty edit page
 {
     ((MainWindow*)parentWidget())->setViewModItems(username);
 
 }
-void CTMViewTextbooks::showItems(QList<Item> list){
+void CTMViewTextbooks::showItems(QList<Item> list){ //->gives list of items display them to page
    //ui->gridLayout
    int x;
    QLabel *titles[list.size()];

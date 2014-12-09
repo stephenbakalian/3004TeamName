@@ -1,5 +1,9 @@
 #include "course.h"
 
+/**
+ * Course object used to represent the a course
+ *@brief Course::Course
+ */
 Course::Course()
 {
 }
