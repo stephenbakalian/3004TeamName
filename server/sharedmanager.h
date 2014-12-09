@@ -4,12 +4,13 @@
 #include <string>
 #include <QDebug>
 #include <QString>
+#include "database.h"
 
 class SharedManager
 {
 public:
     SharedManager();
-    int loginHandler(std::string username);
+    int loginHandler(std::string username, DataBase* myDB);
 };
 
 #endif // SHAREDMANAGER_H

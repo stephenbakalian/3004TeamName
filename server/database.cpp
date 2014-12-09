@@ -38,7 +38,7 @@ bool DataBase::createTables(){
                        "date TEXT NOT NULL) ");
 
         ret = qry.exec("CREATE TABLE user "
-                        "(id INTEGER PRIMARY KEY NOT NULL, "
+                       "(id VARCHAR(255) PRIMARY KEY NOT NULL, "
                         "name VARCHAR(255) NOT NULL, "
                         "email VARCHAR(255) NOT NULL, "
                         "role VARCHAR(20) NOT NULL) ");
@@ -47,7 +47,6 @@ bool DataBase::createTables(){
                        "(course_code VARCHAR(10) PRIMARY KEY NOT NULL, "
                        "instructor VARCHAR(255) NOT NULL, "
                        "term VARCHAR(6) NOT NULL, "
-                       "course_num VARCHAR(255) NOT NULL, "
                        "building VARCHAR(255), "
                        "room VARCHAR(255)) ");
 
@@ -66,34 +65,38 @@ bool DataBase::createTables(){
                        "course VARCHAR(255)) ");
 
         ret = qry.exec("CREATE TABLE student_course_relation "
-                       "(student_number VARCHAR(255) PRIMARY KEY NOT NULL, "
+                       "(student_number VARCHAR(255) NOT NULL, "
                        "course_code varchar(255) NOT NULL) ");
         //qDebug() << ret;
         ret = qry.exec("CREATE TABLE purchase_relation "
-                       "(student_number VARCHAR(255) PRIMARY KEY NOT NULL, "
+                       "(student_number VARCHAR(255) NOT NULL, "
                        "purchase_id VARCHAR(255) NOT NULL) ");
         //qDebug() << ret;
         ret = qry.exec("CREATE TABLE cart "
-                       "(cartID INTEGER PRIMARYflightdb KEY NOT NULL, "
-                       "student_number VARCHAR(255) NOT NULL, "
+                       "(student_number VARCHAR(255) NOT NULL, "
                        "isbn VARCHAR(255) NOT NULL) ");
         //qDebug() << ret;
 
-        createItem("1000", "$100", "Software Engineering", "Christine", "A Book about Software Engineering", "500", "Textbook", "Comp 3005");
-        createItem("1001", "$50", "Intro to Database", "Christine", "A Book about Database", "550", "Textbook", "Comp 3004");
-        createItem("1002", "$1000", "Intro to Networking", "Christine", "A Book about Networking", "600", "Textbook", "Comp 3007");
+        createItem("1000", "100", "Software Engineering", "Christine", "A Book about Software Engineering", "500", "Textbook", "Comp 3005");
+        createItem("1001", "50", "Intro to Database", "Christine", "A Book about Database", "550", "Textbook", "Comp 3004");
+        createItem("1002", "1000", "Intro to Networking", "Christine", "A Book about Networking", "600", "Textbook", "Comp 3007");
 
-        createItem("100", "$25", "Chapter 1: Software Engineering", "Christine", "A chapter about Software Engineering", "30", "chapter", "Comp 3005");
-        createItem("101", "$30", "Chapter 2: Database", "Christine", "A chapter about Database", "24", "chapter", "Comp 3004");
-        createItem("102", "$20", "Chapter 3: Networking", "Christine", "A chapter about Networking", "25", "chapter", "Comp 3007");
+        createItem("100", "25", "Chapter 1: Software Engineering", "Christine", "A chapter about Software Engineering", "30", "chapter", "Comp 3005");
+        createItem("101", "30", "Chapter 2: Database", "Christine", "A chapter about Database", "24", "chapter", "Comp 3004");
+        createItem("102", "20", "Chapter 3: Networking", "Christine", "A chapter about Networking", "25", "chapter", "Comp 3007");
 
-        createItem("10", "$5", "Section 2.1 Software Engineering", "Christine", "A Section about Software Engineering", "1", "section", "Comp 3005");
-        createItem("11", "$4", "Section 1,2 Database", "Christine", "A Section about Database", "2", "section", "Comp 3004");
-        createItem("12", "$3", "Section 3.3 Networking", "Christine", "A Section about Networking", "1", "section", "Comp 3007");
+        createItem("10", "5", "Section 2.1 Software Engineering", "Christine", "A Section about Software Engineering", "1", "section", "Comp 3005");
+        createItem("11", "4", "Section 1,2 Database", "Christine", "A Section about Database", "2", "section", "Comp 3004");
+        createItem("12", "3", "Section 3.3 Networking", "Christine", "A Section about Networking", "1", "section", "Comp 3007");
 
-        createCourse("COMP", "Christine", "Fall 2014", "3004", "Tory Building", "TB230");
-        createCourse("COMP", "Christine", "Fall 2015", "3005", "Tory Building", "TB231");
-        createCourse("COMP", "Christine", "Winter 2014", "3007", "Tory Building", "TB232");
+        createCourse("COMP 3005", "Christine", "Fall 2014", "Tory Building", "TB230");
+        createCourse("COMP 3004", "Christine", "Fall 2015", "Tory Building", "TB231");
+        createCourse("COMP 3007", "Christine", "Winter 2014", "Tory Building", "TB232");
+
+        createUser("100770196", "Jason", "Jason@hotmail.com", "2");
+
+        createStudentCourseRelation("100770196", "COMP 3004");
+        createStudentCourseRelation("100770196", "COMP 3005");
 
     }
     return ret;
@@ -128,7 +131,7 @@ QString DataBase::createTransaction(QString purchaseISBN, QString purchasePrice,
     return newInsert;
 }
 
-QString DataBase::createUser(QString name, QString email, QString role){
+QString DataBase::createUser(QString id, QString name, QString email, QString role){
 
     QString newInsert = "Failed to insert new query";
     bool ret = false;
@@ -137,20 +140,20 @@ QString DataBase::createUser(QString name, QString email, QString role){
 
         QSqlQuery qry;
 
-        ret = qry.exec(QString("insert INTO user values(NULL, '%1', '%2', '%3')")
-                       .arg(name).arg(email).arg(role));
+        ret = qry.exec(QString("insert INTO user values('%1', '%2', '%3','%4')")
+                       .arg(id).arg(name).arg(email).arg(role));
 
         if (ret){
-            newInsert = QString("Inserting %1 successful!").arg(name);
+            newInsert = QString("Inserting %1 successful!").arg(id);
         }
 
     }
     return newInsert;
 }
 
-QString DataBase::createItem(QString ISBN, QString price, QString name, QString author, QString description, QString length, QString type, QString course){
+int DataBase::createItem(QString ISBN, QString price, QString name, QString author, QString description, QString length, QString type, QString course){
 
-    QString newInsert = "Failed to insert new query";
+    int newInsert = -5;
     bool ret = false;
 
     if (mydb.isOpen()){
@@ -161,14 +164,14 @@ QString DataBase::createItem(QString ISBN, QString price, QString name, QString 
                        .arg(ISBN).arg(price).arg(name).arg(author).arg(description).arg(length).arg(type).arg(course));
 
         if (ret){
-            newInsert = QString("Inserting %1 successful!").arg(name);
+            newInsert = 1;
         }
 
     }
     return newInsert;
 }
 
-QString DataBase::createCourse(QString courseCode, QString instructor, QString term, QString courseNum, QString building, QString room){
+QString DataBase::createCourse(QString courseCode, QString instructor, QString term, QString building, QString room){
 
     QString newInsert = "Failed to insert new query";
     bool ret = false;
@@ -177,11 +180,11 @@ QString DataBase::createCourse(QString courseCode, QString instructor, QString t
 
         QSqlQuery qry;
 
-        ret = qry.exec(QString("INSERT INTO course VALUES('%1', '%2', '%3', '%4', '%5', '%6')")
-                       .arg(courseCode).arg(instructor).arg(term).arg(courseNum).arg(building).arg(room));
+        ret = qry.exec(QString("INSERT INTO course VALUES('%1', '%2', '%3', '%4', '%5')")
+                       .arg(courseCode).arg(instructor).arg(term).arg(building).arg(room));
 
         if (ret){
-            newInsert = QString("Inserting %1%2 successful!").arg(courseCode).arg(courseNum);
+            newInsert = QString("Inserting %1 successful!").arg(courseCode);
         }
 
     }
@@ -250,9 +253,9 @@ QString DataBase::createPurchaseRelation(QString studentNum, QString purchaseID)
     return newInsert;
 }
 
-QString DataBase::createCart(QString studentNum, QString ISBN){
+int DataBase::createCart(QString studentNum, QString ISBN){
 
-    QString newInsert = "Failed to insert new query";
+    int newInsert = -5;
     bool ret = false;
 
     if (mydb.isOpen()){
@@ -263,7 +266,7 @@ QString DataBase::createCart(QString studentNum, QString ISBN){
                        .arg(studentNum).arg(ISBN));
 
         if (ret){
-            newInsert = QString("Inserting to cart %1 successful!").arg(ISBN);
+            newInsert = 1;
         }
 
     }
@@ -271,7 +274,9 @@ QString DataBase::createCart(QString studentNum, QString ISBN){
 }
 
 
-void DataBase::getUser(QString search){
+int DataBase::getUser(QString search){
+
+    int userType = -1;
 
     if (mydb.isOpen()){
 
@@ -286,10 +291,19 @@ void DataBase::getUser(QString search){
              QString name = qry.value(1).toString();
              QString email = qry.value(2).toString();
              QString role = qry.value(3).toString();
-             qDebug() << userID << name << email << role;
-
+             //qDebug() << userID << name << email << role;
+             if (role == "2"){
+                 userType = 2;
+             }
+             if (role == "3"){
+                 userType = 3;
+             }
+             if (role == "4"){
+                 userType = 4;
+             }
          }
     }
+    return userType;
 }
 
 void DataBase::getAllUsers(){
@@ -426,7 +440,7 @@ QList<Item> DataBase:: getChapter(QString search){
             item.setCourse(qry.value(7).toString().toStdString());
 
             //qDebug() << chapterID << isbn << startPage << endPage << price << title;
-    QList<Item> books;
+
          itemList.push_back(item);
         }
     }
@@ -534,7 +548,7 @@ QList<Course> DataBase:: getCourse(QString search){
     if (mydb.isOpen()){
 
         QSqlQuery qry;
-        qry.prepare("SELECT course_code,instructor,term,course_num,building,room FROM course WHERE course_code = ?");
+        qry.prepare("SELECT course_code,instructor,term,building,room FROM course WHERE course_code = ?");
         qry.addBindValue(search);
         qry.exec();
 
@@ -545,9 +559,8 @@ QList<Course> DataBase:: getCourse(QString search){
             course.setCourseCode(qry.value(0).toString().toStdString());
             course.setInstructor(qry.value(1).toString().toStdString());
             course.setTerm(qry.value(2).toString().toStdString());
-            course.setCourseNum(qry.value(3).toString().toStdString());
-            course.setBuilding(qry.value(4).toString().toStdString());
-            course.setRoom(qry.value(5).toString().toStdString());
+            course.setBuilding(qry.value(3).toString().toStdString());
+            course.setRoom(qry.value(4).toString().toStdString());
 
             //qDebug() << courseCode << instructor << term << courseNum << building << room;
 
@@ -563,7 +576,7 @@ QList<Course> DataBase:: getAllCourses(){
     if (mydb.isOpen()){
 
         QSqlQuery qry;
-        qry.exec("SELECT course_code,instructor,term,course_num,building,room FROM course");
+        qry.exec("SELECT course_code,instructor,term,building,room FROM course");
 
         while (qry.next()) {
 
@@ -572,9 +585,8 @@ QList<Course> DataBase:: getAllCourses(){
         course.setCourseCode(qry.value(0).toString().toStdString());
         course.setInstructor(qry.value(1).toString().toStdString());
         course.setTerm(qry.value(2).toString().toStdString());
-        course.setCourseNum(qry.value(3).toString().toStdString());
-        course.setBuilding(qry.value(4).toString().toStdString());
-        course.setRoom(qry.value(5).toString().toStdString());
+        course.setBuilding(qry.value(3).toString().toStdString());
+        course.setRoom(qry.value(4).toString().toStdString());
 
         //qDebug() << courseCode << instructor << term << courseNum << building << room;
 
@@ -626,6 +638,28 @@ void DataBase:: getAllTransactions(){
     }
 }
 
+QList<Course> DataBase:: getCourseRelation(QString search){
+
+    QList<Course> courseList;
+
+    if (mydb.isOpen()){
+
+        QSqlQuery qry;
+
+        qry.prepare("SELECT course_code FROM student_course_relation WHERE student_number = ?");
+        qry.addBindValue(search);
+        qry.exec();
+
+        while (qry.next()) {
+
+            Course course;
+            course.setCourseCode(qry.value(0).toString().toStdString());
+            courseList.push_back(course);
+        }
+    }
+    return courseList;
+}
+
 void DataBase:: getBilling(QString search){
 
     if (mydb.isOpen()){
@@ -646,7 +680,9 @@ void DataBase:: getBilling(QString search){
     }
 }
 
-void DataBase::getCart(QString search){
+QList<Item> DataBase::getCart(QString search){
+
+    QList<Item> itemList;
 
     if (mydb.isOpen()){
 
@@ -657,11 +693,12 @@ void DataBase::getCart(QString search){
 
          while (qry.next()) {
 
-             QString ISBN = qry.value(0).toString();
-             qDebug() << ISBN;
-
+             Item item;
+             item.setISBN(qry.value(0).toString().toStdString());
+             itemList.push_back(item);
          }
     }
+    return itemList;
 }
 
 QString DataBase:: updateUser(QString userID, QString name, QString email, QString role){
@@ -923,9 +960,9 @@ QString DataBase:: deleteBilling(QString search){
 
 }
 
-QString DataBase:: deleteCart(QString search){
+int DataBase:: deleteCart(QString search){
 
-    QString newDelete = "Failed to delete cart";
+    int newDelete = -5;
     bool ret = false;
 
     if (mydb.isOpen()){
@@ -935,7 +972,7 @@ QString DataBase:: deleteCart(QString search){
                        .arg(search));
 
         if (ret){
-            newDelete = QString("Deleting %1 successful!").arg(search);
+            newDelete = 9;
         }
     }
 
