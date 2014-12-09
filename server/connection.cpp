@@ -26,11 +26,11 @@ void Connection::run() {
         return;
     }
 
-    QByteArray buffer;
-    QJsonDocument rawRequest;
-    QJsonObject request;
-    QJsonDocument rawResponse;
-    QJsonObject response;
+    QByteArray      buffer;
+    QJsonDocument   rawRequest;
+    QJsonObject     request;
+    QJsonDocument   rawResponse;
+    QJsonObject     response;
     QJsonParseError jsonError;
 
     while (socket.waitForReadyRead()) {

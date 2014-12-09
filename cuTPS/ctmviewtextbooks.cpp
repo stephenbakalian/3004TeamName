@@ -28,8 +28,7 @@ void CTMViewTextbooks::updateUI(){
 
 void CTMViewTextbooks::on_pushButton_16_clicked() //edit button had been pressed
 {
-    QString temp[]= {"1","THIS IS A PLACEHOLDER"};
-    ((MainWindow*)parentWidget())->setViewModItems(temp, username);
+    ((MainWindow*)parentWidget())->setViewModItems(username,showItem);
 }
 
 void CTMViewTextbooks::on_pushButton_3_clicked()
@@ -90,7 +89,7 @@ void CTMViewTextbooks::showItems(QList<Item> list){
 void CTMViewTextbooks::showDetails(int x){
     //Title,length,price,author,ISBN,course, description,type
      //OPtional->chapter->textbook
-    Item showItem = items.value(x);
+    showItem = items.value(x);
 
     ui->SelectedTitle->setText (QString::fromUtf8(showItem.getTitle().c_str()));
     ui->SelectedAuthor->setText(QString::fromUtf8(showItem.getAuthor().c_str()));
