@@ -33,10 +33,6 @@ private slots:
     void socketChanged(QAbstractSocket::SocketState state);
 
 signals:
-    void login(int result);
-    void addbook(int result);
-    void buybook(int result);
-    void addcourse(int result);
     void connection(int status);
 
 private:
