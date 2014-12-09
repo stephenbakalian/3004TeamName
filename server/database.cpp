@@ -100,6 +100,7 @@ bool DataBase::createTables(){
         createUser("ctm", "Jon", "Jon@hotmail.com", "3");
         createUser("admin", "Jon", "Jon@hotmail.com", "4");
 
+        createStudentCourseRelation("student", "COMP 3004");
         createStudentCourseRelation("100770196", "COMP 3004");
         createStudentCourseRelation("100770196", "COMP 3005");
     }

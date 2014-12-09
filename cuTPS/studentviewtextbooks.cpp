@@ -60,7 +60,6 @@ void StudentViewTextbooks::on_pushButton_5_clicked()
             checkedItems.push_back(newItem);
 
             addToCart.value(x)->setEnabled(false);
-            qDebug() <<newItem.getTitle().c_str() << ":::" << items.value(x).getISBN().c_str();
         }
     }
     int resp = reqHandler->AddToCart(checkedItems, username);
