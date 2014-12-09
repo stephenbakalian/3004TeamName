@@ -68,21 +68,21 @@ void Cart::showItems(QList<Item> list){
          ui->gridLayout->addWidget(titles[x],x+1,0,1,1);
 
          type[x] = new QLabel(QString::fromUtf8(list.value(x).getType().c_str()));
-         ui->gridLayout->addWidget(type[x],1,x);
+         ui->gridLayout->addWidget(type[x],x+1,1,1,1);
 
          price[x] = new QLabel(QString::fromUtf8(list.value(x).getPrice().c_str()));
-         ui->gridLayout->addWidget(price[x],2,x);
+         ui->gridLayout->addWidget(price[x],x+1,3,1,1);
 
          purchaseDate[x] = new QLabel(QString::fromUtf8(list.value(x).getPurchaseDate().c_str()));
-         ui->gridLayout->addWidget(purchaseDate[x],3,x);
+         ui->gridLayout->addWidget(purchaseDate[x],x+1,3,1,1);
 
          totalPrice+= atoi(list.value(x).getPrice().c_str());
    }
    QSpacerItem *spacer = new QSpacerItem(20, 40, QSizePolicy::Expanding, QSizePolicy::Maximum);
-   ui->gridLayout->addItem(spacer,sizeof(list),5,1,1);
+   ui->gridLayout->addItem(spacer,list.size(),5,1,1);
 
    QSpacerItem *vert = new QSpacerItem(1, 1000, QSizePolicy::Expanding, QSizePolicy::Minimum);
-   ui->gridLayout->addItem(vert,sizeof(list)+1,0,1,0);
+   ui->gridLayout->addItem(vert,list.size()+1,0,1,0);
 
    ui->scrollArea->setStyleSheet("background-color:transparent;");
    ui->totalPrice->setText((SSTR(totalPrice)).c_str());

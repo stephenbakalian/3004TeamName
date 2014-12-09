@@ -420,7 +420,7 @@ p, li { white-space: pre-wrap; }
             <number>0</number>
            </property>
            <property name="text">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Course&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Price&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
           </widget>
          </item>
@@ -430,31 +430,6 @@ p, li { white-space: pre-wrap; }
      </widget>
     </widget>
    </widget>
-   <zorder>label_19</zorder>
-   <zorder>SelectedDescription</zorder>
-   <zorder>label_20</zorder>
-   <zorder>label_21</zorder>
-   <zorder>SelectedTitle</zorder>
-   <zorder>SelectedLength</zorder>
-   <zorder>SelectedPrice</zorder>
-   <zorder>text</zorder>
-   <zorder>SelectedISBN</zorder>
-   <zorder>pushButton_7</zorder>
-   <zorder>pushButton_8</zorder>
-   <zorder>checkBox</zorder>
-   <zorder>line</zorder>
-   <zorder>label_22</zorder>
-   <zorder>SelectedCourse</zorder>
-   <zorder>SelectedType</zorder>
-   <zorder>label_23</zorder>
-   <zorder>SelectedChapter</zorder>
-   <zorder>label_25</zorder>
-   <zorder>SelectedAuthor</zorder>
-   <zorder>SelectedTexbook</zorder>
-   <zorder>pushButton_5</zorder>
-   <zorder>scrollArea</zorder>
-   <zorder>label_13</zorder>
-   <zorder>label_13</zorder>
   </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
