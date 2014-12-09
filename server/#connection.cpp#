@@ -14,13 +14,9 @@
 Connection::Connection(QObject *parent, int socketDesc) :
 QThread(parent) {
 // Connect to the database
-startDB();
+
 this->socketDesc = socketDesc;
 // ***** END OF DATABASE TESTING *****
-}
-
-void Connection::startDB(){
-    myDB = new DataBase();
 }
 
 void Connection::run() {
@@ -68,7 +64,7 @@ void Connection::run() {
                 qDebug() << itemKey[i].c_str();
             }
 
-            response["status"] = StudentManager().addToCart(user, itemKey, itemCount, myDB);
+            response["status"] = StudentManager().addToCart(user, itemKey);
 
         } else if (request["request"] == QString("booksOwned")){
 
@@ -101,7 +97,7 @@ void Connection::run() {
 
             qDebug() << "view cart request made";
             std::string user        = request["user"].toString().toStdString();
-            QList<Item> ownedBooks  = StudentManager().viewCart(user, myDB);
+            QList<Item> ownedBooks  = StudentManager().viewCart(user);
             int         itemCount   = 0;
 
             Item bookList[ownedBooks.size()];
@@ -198,7 +194,7 @@ void Connection::run() {
                 qDebug() << checkoutBooks.value(i).getTitle().c_str();
             }
 
-            response["status"] = StudentManager().checkout(user, checkoutBooks, myDB);
+            response["status"] = StudentManager().checkout(user, checkoutBooks);
         } else if (request["request"] == QString("addItem")){
 
             qDebug() << "mod item request made";

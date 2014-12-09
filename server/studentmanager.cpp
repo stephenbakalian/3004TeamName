@@ -9,15 +9,17 @@ StudentManager::StudentManager()
 {
 }
 
-int StudentManager::addToPreviouslyPurchasedItems(std::string studentName, std::string itemKeys[]) {
+int StudentManager::addToPreviouslyPurchasedItems(std::string studentName, std::string itemKeys[], DataBase *myDB) {
     //TODO
-
+    //myDB->createPurchaseRelation();
     return -5;
 }
 
-int StudentManager::addToCart(std::string studentName, std::string itemKeys[]) {
+int StudentManager::addToCart(std::string studentName, std::string itemKeys[], int itemCount, DataBase *myDB) {
     //TODO
-
+    for (int i = 0; i < itemCount; i++){
+        myDB->createCart(QString::fromStdString(studentName), QString::fromStdString(itemKeys[i]));
+    }
     return -5;
 }
 
@@ -43,8 +45,10 @@ QList<Item> StudentManager::viewPurchasedItems(std::string studentName) {
 
 }
 
-QList<Item> StudentManager::viewCart(std::string studentName) {
-    Item temp1;
+QList<Item> StudentManager::viewCart(std::string studentName, DataBase *myDB) {
+
+    myDB->getCart(QString::fromStdString(studentName));
+    /*Item temp1;
     Item temp2;
     Item temp3;
     Item temp4;
@@ -65,11 +69,16 @@ QList<Item> StudentManager::viewCart(std::string studentName) {
     books.push_back(temp5);
     books.push_back(temp6);
 
-    return books;
+    return books;*/
 }
 
-int StudentManager::checkout(std::string user,QList<Item> checkoutBooks){
+int StudentManager::checkout(std::string user,QList<Item> checkoutBooks, DataBase* myDB){
     //TODO
+    for (int i = 0; i < checkoutBooks.length(); i++){
+        //myDB->createPurchaseRelation(QString::fromStdString(user), checkoutBooks.)
+    }
+
+    myDB->deleteCart(QString::fromStdString(user));
     removeCartItems(user);
     return -5;
 }

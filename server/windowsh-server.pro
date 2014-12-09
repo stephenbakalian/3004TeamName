@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 QT       += core network
-
+QT  += sql
 QT       -= gui
 
 TARGET = windowsh-server
@@ -16,6 +16,7 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp \
+    database.cpp \
     server.cpp \
     connection.cpp \
     studentmanager.cpp \
@@ -25,6 +26,7 @@ SOURCES += main.cpp \
     course.cpp
 
 HEADERS += \
+    database.h \
     server.h \
     connection.h \
     studentmanager.h \

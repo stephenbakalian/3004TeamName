@@ -5,6 +5,7 @@
 
 #include <QThread>
 #include <QTcpSocket>
+#include "database.h"
 
 bool addBook(std::string, int, std::string, int, double, std::string);
 bool addCourse(std::string, std::string, std::string, int, std::string);
@@ -20,6 +21,9 @@ public:
     Connection(QObject *parent = 0, int socketDesc = -1);
     void run();
 
+protected:
+    void startDB();
+
 
 signals:
     void error(QTcpSocket::SocketError socketError);
@@ -27,6 +31,7 @@ signals:
 
 private:
     int socketDesc;
+    DataBase* myDB;
     std::string concatStrInt(std::string str, int num);
 };
 
