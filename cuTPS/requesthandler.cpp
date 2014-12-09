@@ -214,7 +214,7 @@ int RequestHandler::Login(std::string username) {
         return req;
 }
 
-int RequestHandler::AddToCart(std::string itemKey[], std::string username){
+int RequestHandler::AddToCart(QList<Item> items, std::string username){
     QByteArray buffer;
     QJsonDocument rawRequest;
     QJsonObject request;
@@ -222,19 +222,30 @@ int RequestHandler::AddToCart(std::string itemKey[], std::string username){
     QJsonObject response;
     QJsonParseError jsonError;
     int itemCount = 0;
+    Item bookList[items.size()];
+
     /* Connect to the server. */
     init();
 
     /* Generate the request object. */
     request["request"] = QString("addToCart");
 
-    for (int i =0; i< sizeof(itemKey); i++){
-        if (!itemKey[i].empty()){
-            request["items"+itemCount] = QString(itemKey[i].c_str());
-            itemCount++;
-            qDebug() << itemKey[i].c_str();
-        }
+
+    for (int i =0; i < items.size(); i++){
+        bookList[i] = items.value(i);
     }
+    qDebug() << items.size();
+    for (int i =0; i< items.size(); i++){
+        request[concatStrInt("title",i).c_str()]   = QString(bookList[i].getTitle().c_str());
+        request[concatStrInt("author",itemCount).c_str()]        = QString(bookList[i].getAuthor().c_str());
+        request[concatStrInt("description",itemCount).c_str()]   = QString(bookList[i].getDescription().c_str());
+        request[concatStrInt("course",itemCount).c_str()]        = QString(bookList[i].getCourse().c_str());
+        request[concatStrInt("purchasedate",itemCount).c_str()]  = QString(bookList[i].getPurchaseDate().c_str());
+        request[concatStrInt("price",itemCount).c_str()]         = QString(bookList[i].getPrice().c_str());
+        request[concatStrInt("type",itemCount).c_str()]          = QString(bookList[i].getType().c_str());
+        itemCount++;
+    }
+
     request["itemCount"] = itemCount;
     request["user"] = QString(username.c_str());
     rawRequest.setObject(request);
