@@ -117,7 +117,7 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
     <property name="text">
-     <string>Spelling 101</string>
+     <string>When monkeys attack</string>
     </property>
    </widget>
    <widget class="QLabel" name="SelectedLength">
@@ -247,7 +247,7 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
     <property name="text">
-     <string>Math 1067</string>
+     <string>ENGL1067</string>
     </property>
    </widget>
    <widget class="QLabel" name="SelectedType">
@@ -260,7 +260,7 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
     <property name="text">
-     <string>124 Pages</string>
+     <string>Section</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_23">
@@ -286,7 +286,7 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
     <property name="text">
-     <string>124 Pages</string>
+     <string>Where to bananas roam</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_25">
@@ -312,7 +312,7 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
     <property name="text">
-     <string>Steve</string>
+     <string>Steve Zombopolis</string>
     </property>
    </widget>
    <widget class="QLabel" name="SelectedTexbook">
@@ -325,7 +325,7 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
     <property name="text">
-     <string>124 Pages</string>
+     <string>Road to the northern southish east</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_5">

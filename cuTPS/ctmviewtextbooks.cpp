@@ -101,6 +101,8 @@ void CTMViewTextbooks::showDetails(Item showItem){
     ui->SelectedISBN->setText  (QString::fromUtf8(showItem.getISBN().c_str()));
     ui->SelectedLength->setText(QString::fromUtf8(showItem.getLength().c_str()));
     ui->SelectedPrice->setText (QString::fromUtf8(showItem.getPrice().c_str()));
+    ui->SelectedTexbook->setText ("");
+    ui->SelectedChapter->setText("");
     if(showItem.getType()=="chapter"){
         Chapter *steveSucks = (Chapter*)&showItem;
         ui->SelectedTexbook->setText (QString::fromUtf8((steveSucks)->getTextbookName().c_str()));
