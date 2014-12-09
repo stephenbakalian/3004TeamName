@@ -2,12 +2,12 @@
 #include "ui_studentviewtextbooks.h"
 #include "mainwindow.h"
 #include <QDebug>
+
 StudentViewTextbooks::StudentViewTextbooks(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::StudentViewTextbooks)
 {
     ui->setupUi(this);
-
 }
 
 StudentViewTextbooks::~StudentViewTextbooks()
@@ -38,7 +38,7 @@ void StudentViewTextbooks::updateUI(){
     lit.append(*temp4);
 
     reqHandler = new RequestHandler(this);
-    QList<Item> items;
+
 
     items = reqHandler->getStuCourseLoad(username);
 
@@ -64,7 +64,6 @@ void StudentViewTextbooks::on_pushButton_8_clicked()
 void StudentViewTextbooks::on_pushButton_5_clicked()
 {
     reqHandler = new RequestHandler(this);
-
 
     //TODO loop seleteditems
     std::string checkedItems[4];
@@ -108,7 +107,6 @@ void StudentViewTextbooks::showItems(QList<Item> list){
    QCheckBox *addToCart[list.size()];
 
 
-
    for(x=0;x < list.size(); x++){
          qDebug() << QString::fromUtf8(list[x].getTitle().c_str());
          titles[x] = new QLabel(QString::fromUtf8(list.value(x).getTitle().c_str()));
@@ -131,6 +129,12 @@ void StudentViewTextbooks::showItems(QList<Item> list){
          details[x] = new QPushButton("Details");
          ui->gridLayout->addWidget(details[x],x+1,5,1,1);
 
+         mapper.append(new QSignalMapper());
+
+         connect(details[x], SIGNAL(released()), mapper.value(x), SLOT(map()));
+         mapper.value(x)->setMapping(details[x], x); // Number to be passed in the slot
+
+         connect(mapper.value(x), SIGNAL(mapped(int)), this, SLOT(showDetails(int)));
    }
    QSpacerItem *spacer = new QSpacerItem(20, 40, QSizePolicy::Expanding, QSizePolicy::Maximum);
    ui->gridLayout->addItem(spacer,list.size(),5,1,1);
@@ -141,12 +145,15 @@ void StudentViewTextbooks::showItems(QList<Item> list){
    ui->scrollAreaWidgetContents->setMaximumHeight(28*list.size()+1);
    ui->scrollArea->setStyleSheet("background-color:transparent;");
 
+
+
 }
 
 //TODO: UPDATE SECTION AND CHAPTER AREAS TO CAST AN USE INHERITED FUNCTIONS
-void StudentViewTextbooks::showDetails(Item showItem){
+void StudentViewTextbooks::showDetails(int x){
     //Title,length,price,author,ISBN,course, description,type
      //OPtional->chapter->textbook
+    Item showItem = items.value(x);
     ui->SelectedTitle->setText (QString::fromUtf8(showItem.getTitle().c_str()));
     ui->SelectedAuthor->setText(QString::fromUtf8(showItem.getAuthor().c_str()));
     ui->SelectedCourse->setText(QString::fromUtf8(showItem.getCourse().c_str()));

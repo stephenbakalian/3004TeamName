@@ -6,6 +6,7 @@
 #include "requesthandler.h"
 #include "section.h"
 #include "chapter.h"
+#include <QSignalMapper>
 
 namespace Ui {
 class StudentViewTextbooks;
@@ -21,18 +22,22 @@ public:
     ~StudentViewTextbooks();
     void showItems(QList<Item> list);
     void setUsername(std::string username);
-    void showDetails(Item);
+    //void showDetails(int);
 
 private slots:
+    void showDetails(int);
+
     void on_pushButton_6_clicked();
     void on_pushButton_7_clicked();
     void on_pushButton_8_clicked();
     void on_pushButton_5_clicked();
-
 private:
     Ui::StudentViewTextbooks *ui;
     std::string username;
     void updateUI();
+    QList<Item> items;
+    QList<QSignalMapper*> mapper;
+
 };
 
 #endif // STUDENTVIEWTEXTBOOKS_H

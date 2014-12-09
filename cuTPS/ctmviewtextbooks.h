@@ -2,7 +2,7 @@
 #define CTMVIEWTEXTBOOKS_H
 #include <item.h>
 #include <QWidget>
-
+#include <QSignalMapper>
 namespace Ui {
 class CTMViewTextbooks;
 }
@@ -16,7 +16,7 @@ public:
     ~CTMViewTextbooks();
     void setUsername(std::string username);
     void showItems(QList<Item> list);
-    void showDetails(Item);
+    void showDetails(int);
 private slots:
     void on_pushButton_16_clicked();
 
@@ -27,6 +27,8 @@ private slots:
 private:
     Ui::CTMViewTextbooks *ui;
     std::string username;
+    QList<QSignalMapper*> mapper;
+
 };
 
 #endif // CTMVIEWTEXTBOOKS_H

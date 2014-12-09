@@ -80,20 +80,29 @@ void CTMViewTextbooks::showItems(QList<Item> list){
          details[x] = new QPushButton("Details");
          ui->itemGrid->addWidget(details[x],x+1,4,1,1);
 
+         mapper.append(new QSignalMapper());
+
+         connect(details[x], SIGNAL(released()), mapper.value(x), SLOT(map()));
+         mapper.value(x)->setMapping(details[x], x); // Number to be passed in the slot
+
+         connect(mapper.value(x), SIGNAL(mapped(int)), this, SLOT(showDetails(int)));
+
    }
    QSpacerItem *spacer = new QSpacerItem(20, 40, QSizePolicy::Expanding, QSizePolicy::Maximum);
    ui->itemGrid->addItem(spacer,list.size(),4,1,1);
 
    QSpacerItem *vert = new QSpacerItem(1, 1000, QSizePolicy::Expanding, QSizePolicy::Minimum);
    ui->itemGrid->addItem(vert,list.size()+1,0,1,0);
-   ui->scrollArea->setStyleSheet("background-color:transparent;");
 
+   ui->scrollArea->setStyleSheet("background-color:white;");
    ui->scrollAreaWidgetContents->setMinimumHeight(28*list.size()+1);
 
 }
-void CTMViewTextbooks::showDetails(Item showItem){
+void CTMViewTextbooks::showDetails(itn x){
     //Title,length,price,author,ISBN,course, description,type
      //OPtional->chapter->textbook
+    Item showItem = items.value(x);
+
     ui->SelectedTitle->setText (QString::fromUtf8(showItem.getTitle().c_str()));
     ui->SelectedAuthor->setText(QString::fromUtf8(showItem.getAuthor().c_str()));
     ui->SelectedCourse->setText(QString::fromUtf8(showItem.getCourse().c_str()));
