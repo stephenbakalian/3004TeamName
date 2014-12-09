@@ -111,3 +111,8 @@ void Cart::on_pushButton_3_clicked()
 }
 
 
+
+void Cart::on_pushButton_4_clicked()
+{//empty the cart
+    ((MainWindow*)parentWidget())->setStuViewItems(username);
+}
