@@ -329,7 +329,7 @@ void DataBase::getAllUsers(){
          }
     }
 }
-Item DataBase:: getItem(QString search){
+Item DataBase:: (QString search){
 
     Item item;
 
@@ -339,16 +339,6 @@ Item DataBase:: getItem(QString search){
         qry.prepare("SELECT isbn,price,name,author,description,length,type,course FROM item WHERE item.isbn = ?");
         qry.addBindValue(search);
         qry.exec();
-
-
-        qDebug() << qry.value(0).toString();
-        qDebug() << qry.value(1).toString();
-        qDebug() << qry.value(2).toString();
-        qDebug() << qry.value(3).toString();
-        qDebug() << qry.value(4).toString();
-        qDebug() << qry.value(5).toString();
-        qDebug() << qry.value(6).toString();
-        qDebug() << qry.value(7).toString();
 
         while (qry.next()) {
             item.setISBN(qry.value(0).toString().toStdString());
