@@ -336,19 +336,9 @@ Item DataBase:: getItem(QString search){
     if (mydb.isOpen()){
 
         QSqlQuery qry;
-        qry.prepare("SELECT isbn,price,name,author,description,length,type,course FROM item WHERE item.isbn = ?");
+        qry.prepare("SELECT isbn,price,name,author,description,length,type,course FROM item WHERE isbn = ?");
         qry.addBindValue(search);
         qry.exec();
-
-
-        qDebug() << qry.value(0).toString();
-        qDebug() << qry.value(1).toString();
-        qDebug() << qry.value(2).toString();
-        qDebug() << qry.value(3).toString();
-        qDebug() << qry.value(4).toString();
-        qDebug() << qry.value(5).toString();
-        qDebug() << qry.value(6).toString();
-        qDebug() << qry.value(7).toString();
 
         while (qry.next()) {
             item.setISBN(qry.value(0).toString().toStdString());
@@ -542,7 +532,7 @@ QList<Item> DataBase:: getSection(QString search){
             item.setType(qry.value(6).toString().toStdString());
             item.setCourse(qry.value(7).toString().toStdString());
 
-            //qDebug() << chapterID << isbn << startPage << endPage << price << title;        QString createSection(QString, QString, QString, QString, QString, QString, QString, QString);
+            //qDebug() << chapterID << isbn << startPage << endPage << price << title;
             QString createChapter(QString, QString, QString, QString, QString, QString, QString, QString);
 
          itemList.push_back(item);

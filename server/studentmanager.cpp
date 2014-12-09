@@ -53,6 +53,7 @@ int StudentManager::checkout(std::string user,QList<Item> checkoutBooks, DataBas
     QList<Item>::iterator i;
 
     for (i = checkoutBooks.begin(); i != checkoutBooks.end(); ++i){
+        qDebug() << QString::fromStdString(i->getISBN());
         myDB->createPurchaseRelation(QString::fromStdString(user), QString::fromStdString(i->getISBN()));
     }
 
