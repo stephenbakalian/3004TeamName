@@ -329,7 +329,7 @@ void DataBase::getAllUsers(){
          }
     }
 }
-Item DataBase:: (QString search){
+Item DataBase:: getItem(QString search){
 
     Item item;
 
