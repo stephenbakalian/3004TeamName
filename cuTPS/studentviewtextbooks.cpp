@@ -21,22 +21,6 @@ void StudentViewTextbooks::setUsername(std::string user){
 }
 
 void StudentViewTextbooks::updateUI(){
-    Item *temp1 = new Item();
-    Item *temp2 = new Item();
-    Item *temp3 = new Item();
-    Item *temp4 = new Item();
-
-    temp1->setTitle("HOW TO WIN at chess");
-    temp2->setTitle("Batman beyond");
-    temp3->setTitle("duck you");
-    temp4->setTitle("Hai");
-
-    QList<Item> lit;
-    lit.append(*temp1);
-    lit.append(*temp2);
-    lit.append(*temp3);
-    lit.append(*temp4);
-
     reqHandler = new RequestHandler(this);
 
 
@@ -161,7 +145,7 @@ void StudentViewTextbooks::showDetails(int x){
     ui->SelectedISBN->setText  (QString::fromUtf8(showItem.getISBN().c_str()));
     ui->SelectedLength->setText(QString::fromUtf8(showItem.getLength().c_str()));
     ui->SelectedPrice->setText (QString::fromUtf8(showItem.getPrice().c_str()));
-
+    ui->SelectedDescription->setText (QString::fromUtf8(showItem.getDescription().c_str()));
     ui->SelectedTexbook->setText ("");
     ui->SelectedChapter->setText("");
     if(showItem.getType()=="chapter"){

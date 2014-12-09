@@ -473,7 +473,7 @@
     <string>1255-3168-4621</string>
    </property>
   </widget>
-  <widget class="QTextBrowser" name="textBrowser">
+  <widget class="QTextBrowser" name="SelectedDescription">
    <property name="geometry">
     <rect>
      <x>510</x>
@@ -529,7 +529,7 @@ p, li { white-space: pre-wrap; }
   <zorder>SelectedAuthor</zorder>
   <zorder>label_23</zorder>
   <zorder>SelectedISBN</zorder>
-  <zorder>textBrowser</zorder>
+  <zorder>SelectedDescription</zorder>
  </widget>
  <resources/>
  <connections/>

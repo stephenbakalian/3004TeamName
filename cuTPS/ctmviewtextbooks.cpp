@@ -1,31 +1,13 @@
 #include "ctmviewtextbooks.h"
 #include "ui_ctmviewtextbooks.h"
 #include "mainwindow.h"
+#include "requesthandler.h"
+
 CTMViewTextbooks::CTMViewTextbooks(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::CTMViewTextbooks)
 {
     ui->setupUi(this);
-    Item *temp1 = new Item();
-    Item *temp2 = new Item();
-    Item *temp3 = new Item();
-    Item *temp4 = new Item();
-
-    temp1->setTitle("HOW TO WIN at chess");
-    temp2->setTitle("Batman beyond");
-    temp3->setTitle("duck you");
-    temp4->setTitle("Hai");
-
-    QList<Item> lit;
-    lit.append(*temp1);
-    lit.append(*temp2);
-    lit.append(*temp3);
-    lit.append(*temp4);
-    /**
-      HERE ITEMS SHOULD BE GRABBED FROM SERVER
-     **/
-    showItems(lit);
-
 }
 
 CTMViewTextbooks::~CTMViewTextbooks()
@@ -35,6 +17,13 @@ CTMViewTextbooks::~CTMViewTextbooks()
 
 void CTMViewTextbooks::setUsername(std::string user){
     username=user;
+    updateUI();
+}
+
+void CTMViewTextbooks::updateUI(){
+    reqHandler = new RequestHandler(this);
+    items = reqHandler->getAllItems();
+    showItems(items);
 }
 
 void CTMViewTextbooks::on_pushButton_16_clicked() //edit button had been pressed
@@ -94,11 +83,11 @@ void CTMViewTextbooks::showItems(QList<Item> list){
    QSpacerItem *vert = new QSpacerItem(1, 1000, QSizePolicy::Expanding, QSizePolicy::Minimum);
    ui->itemGrid->addItem(vert,list.size()+1,0,1,0);
 
-   ui->scrollArea->setStyleSheet("background-color:white;");
+   ui->scrollArea->setStyleSheet("background-color:transparent;");
    ui->scrollAreaWidgetContents->setMinimumHeight(28*list.size()+1);
 
 }
-void CTMViewTextbooks::showDetails(itn x){
+void CTMViewTextbooks::showDetails(int x){
     //Title,length,price,author,ISBN,course, description,type
      //OPtional->chapter->textbook
     Item showItem = items.value(x);
@@ -112,6 +101,7 @@ void CTMViewTextbooks::showDetails(itn x){
     ui->SelectedPrice->setText (QString::fromUtf8(showItem.getPrice().c_str()));
     ui->SelectedTexbook->setText ("");
     ui->SelectedChapter->setText("");
+    ui->SelectedDescription->setText (QString::fromUtf8(showItem.getDescription().c_str()));
     if(showItem.getType()=="chapter"){
         Chapter *steveSucks = (Chapter*)&showItem;
         ui->SelectedTexbook->setText (QString::fromUtf8((steveSucks)->getTextbookName().c_str()));

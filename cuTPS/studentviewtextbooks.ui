@@ -51,7 +51,7 @@
      <string>Price:</string>
     </property>
    </widget>
-   <widget class="QTextBrowser" name="textBrowser">
+   <widget class="QTextBrowser" name="SelectedDescription">
     <property name="geometry">
      <rect>
       <x>500</x>
@@ -438,7 +438,7 @@ p, li { white-space: pre-wrap; }
     </widget>
    </widget>
    <zorder>label_19</zorder>
-   <zorder>textBrowser</zorder>
+   <zorder>SelectedDescription</zorder>
    <zorder>label_20</zorder>
    <zorder>label_21</zorder>
    <zorder>SelectedTitle</zorder>
