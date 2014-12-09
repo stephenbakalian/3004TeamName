@@ -48,7 +48,7 @@ QList<Item> StudentManager::viewPurchasedItems(std::string studentName) {
 QList<Item> StudentManager::viewCart(std::string studentName, DataBase *myDB) {
 
     myDB->getCart(QString::fromStdString(studentName));
-    /*Item temp1;
+/*    Item temp1;
     Item temp2;
     Item temp3;
     Item temp4;
@@ -61,15 +61,15 @@ QList<Item> StudentManager::viewCart(std::string studentName, DataBase *myDB) {
     temp5.setTitle("too many cooks");
     temp6.setTitle("teamNAme");
 
-    QList<Item> books;
+
     books.push_back(temp1);
     books.push_back(temp2);
     books.push_back(temp3);
     books.push_back(temp4);
     books.push_back(temp5);
-    books.push_back(temp6);
-
-    return books;*/
+    books.push_back(temp6);*/
+    QList<Item> books;
+    return books;
 }
 
 int StudentManager::checkout(std::string user,QList<Item> checkoutBooks, DataBase* myDB){

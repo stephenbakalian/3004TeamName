@@ -21,8 +21,10 @@ public:
     Connection(QObject *parent = 0, int socketDesc = -1);
     void run();
 
+    DataBase *getMyDB() const;
+    void setMyDB(DataBase *value);
+
 protected:
-    void startDB();
 
 
 signals:

@@ -14,13 +14,8 @@
 Connection::Connection(QObject *parent, int socketDesc) :
 QThread(parent) {
 // Connect to the database
-startDB();
 this->socketDesc = socketDesc;
 // ***** END OF DATABASE TESTING *****
-}
-
-void Connection::startDB(){
-    myDB = new DataBase();
 }
 
 void Connection::run() {
@@ -226,6 +221,16 @@ void Connection::run() {
     socket.flush();
     socket.disconnectFromHost();
 }
+DataBase *Connection::getMyDB() const
+{
+    return myDB;
+}
+
+void Connection::setMyDB(DataBase *value)
+{
+    myDB = value;
+}
+
 
 std::string Connection::concatStrInt(std::string str, int num){
     std::stringstream test;
