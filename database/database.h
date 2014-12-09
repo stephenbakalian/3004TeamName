@@ -27,7 +27,7 @@ class DataBase : public QObject
         QString createTransaction(int, int, int, QString);
         QString createBilling(int, QString);
         QString createStudentCourseRelation(int, QString);
-        QString DataBase::createPurchaseRelation(int, int);
+        QString createPurchaseRelation(int, int);
 
 
 // For these get functions tell me how you want the delimited so you can use them later...

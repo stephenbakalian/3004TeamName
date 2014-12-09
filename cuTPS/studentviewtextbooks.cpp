@@ -150,12 +150,12 @@ void StudentViewTextbooks::showDetails(int x){
     ui->SelectedChapter->setText("");
     if(showItem.getType()=="chapter"){
         Chapter *steveSucks = (Chapter*)&showItem;
-        ui->SelectedTexbook->setText (QString::fromUtf8((steveSucks)->getTextbookName().c_str()));
+       // ui->SelectedTexbook->setText (QString::fromUtf8((steveSucks)->getTextbookName().c_str()));
     }
     if(showItem.getType()=="section"){
         section *steveSucks = (section*)&showItem;
-        ui->SelectedTexbook->setText (QString::fromUtf8(steveSucks->getTextbookName().c_str()));
-        ui->SelectedChapter->setText(QString::fromUtf8(steveSucks->getChapter().c_str()));
+        //ui->SelectedTexbook->setText (QString::fromUtf8(steveSucks->getTextbookName().c_str()));
+        //ui->SelectedChapter->setText(QString::fromUtf8(steveSucks->getChapter().c_str()));
     }
 }
 
