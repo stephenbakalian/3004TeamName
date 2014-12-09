@@ -50,11 +50,16 @@ void StudentViewTextbooks::on_pushButton_5_clicked()
     reqHandler = new RequestHandler(this);
 
     //TODO loop seleteditems
-    std::string checkedItems[4];
-    checkedItems[1]="waffles";
+    QList<Item> checkedItems;
     //TODO ends here
+    for(int x=0; x<items.size();x++){
+        if(addToCart.value(x)->isChecked()){
+            checkedItems.push_back(items.value(x));
+        }
+    }
 
     int resp = reqHandler->AddToCart(checkedItems, username);
+
     qDebug() << "Add to cart" << resp;
     switch (resp) {
     case -5:
@@ -88,7 +93,6 @@ void StudentViewTextbooks::showItems(QList<Item> list){
    QLabel *price[list.size()];
    QLabel *description[list.size()];
    QPushButton *details[list.size()];
-   QCheckBox *addToCart[list.size()];
 
 
    for(x=0;x < list.size(); x++){
@@ -103,8 +107,8 @@ void StudentViewTextbooks::showItems(QList<Item> list){
          price[x] = new QLabel(QString::fromUtf8(list.value(x).getPrice().c_str()));
          ui->gridLayout->addWidget(price[x],x+1,2,1,1);
 
-         addToCart[x] = new QCheckBox("");
-         ui->gridLayout->addWidget(addToCart[x],x+1,3,1,1);
+         addToCart.append(new QCheckBox(""));
+         ui->gridLayout->addWidget(addToCart.value(x),x+1,3,1,1);
 
 
          description[x] = new QLabel(QString::fromUtf8(list.value(x).getDescription().c_str()));

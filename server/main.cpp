@@ -7,13 +7,13 @@
 #include "server.h"
 #include "database.h"
 
-
 using namespace std;
 
 int main(int argc, char *argv[]) {
     QCoreApplication a(argc, argv);
-
+    DataBase* myDB = new DataBase;
     Server *server = new Server(0);
+    server->setMyDB(myDB);
     if (server->listen(QHostAddress::Any, PORT)) {
         qDebug() << "Server started.";
         qDebug() << "Listening on port: " << server->serverPort();

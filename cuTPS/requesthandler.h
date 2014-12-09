@@ -15,7 +15,7 @@ public:
     explicit RequestHandler(QObject *parent = 0);
     ~RequestHandler();
     int Login(std::string username);
-    int AddToCart(std::string itemKey[], std::string username);
+    int AddToCart(QList<Item> items, std::string username);
     int addItem(Item item);
     int checkout(QList<Item> cartItems, std::string username);
     QList<Item> booksOwned(std::string username);

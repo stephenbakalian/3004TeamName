@@ -3,6 +3,7 @@
 
 #include <QTcpServer>
 #include <QTcpSocket>
+#include "database.h"
 
 class Server : public QTcpServer
 {
@@ -11,6 +12,9 @@ class Server : public QTcpServer
 public:
     explicit Server(QObject *parent = 0);
 
+    DataBase *getMyDB() const;
+    void setMyDB(DataBase *value);
+
 protected slots:
     void socketError();
     void socketError(QTcpSocket::SocketError error);
@@ -18,6 +22,8 @@ protected slots:
 protected:
     void incomingConnection(qintptr socketDesc);
 
+private:
+    DataBase* myDB;
 };
 
 #endif // SERVER_H

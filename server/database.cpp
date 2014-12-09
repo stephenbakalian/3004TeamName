@@ -74,7 +74,7 @@ bool DataBase::createTables(){
                        "purchase_id VARCHAR(255) NOT NULL) ");
         //qDebug() << ret;
         ret = qry.exec("CREATE TABLE cart "
-                       "(cartID INTEGER PRIMARY KEY NOT NULL, "
+                       "(cartID INTEGER PRIMARYflightdb KEY NOT NULL, "
                        "student_number VARCHAR(255) NOT NULL, "
                        "isbn VARCHAR(255) NOT NULL) ");
         //qDebug() << ret;
@@ -102,10 +102,10 @@ bool DataBase::createTables(){
 bool DataBase::getDBOpen(){
 
     // Using SQLite DB
-    mydb = QSqlDatabase::addDatabase("QSQLITE");
-    mydb.setDatabaseName(getPath());
+    mydb = QSqlDatabase::addDatabase("QSQLITE");//FILEpath
+    mydb.setHostName("cutpsdbthings");
+    mydb.setDatabaseName("cuTPSDB");
     return mydb.open();
-
 }
 
 QString DataBase::createTransaction(QString purchaseISBN, QString purchasePrice, QString date){
