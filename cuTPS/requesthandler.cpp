@@ -124,6 +124,7 @@ int RequestHandler::AddToCart(QList<Item> items, std::string username){
         request[concatStrInt("type",itemCount).c_str()]          = QString(bookList[i].getType().c_str());
         request[concatStrInt("isbn",itemCount).c_str()]          = QString(bookList[i].getISBN().c_str());
         request[concatStrInt("length",itemCount).c_str()]        = QString(bookList[i].getLength().c_str());
+        qDebug() << QString(bookList[i].getISBN().c_str());
         itemCount++;
     }
 

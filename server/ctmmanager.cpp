@@ -14,7 +14,7 @@ int CTMManager::additem(Item item, DataBase* myDB){
 
     int successful = -1;
 
-   /* if (myDB->getItem(QString::fromStdString(item.getISBN())) != NULL){
+    if (myDB->getItem(QString::fromStdString(item.getISBN())) != NULL){
 
         successful = myDB->updateItem(QString::fromStdString(item.getISBN()),
                                       QString::fromStdString(item.getPrice()),
@@ -25,7 +25,7 @@ int CTMManager::additem(Item item, DataBase* myDB){
                                       QString::fromStdString(item.getType()),
                                       QString::fromStdString(item.getCourse()));
 
-    }*/
+    }
 
     successful = myDB->createItem(QString::fromStdString(item.getISBN()),
                                   QString::fromStdString(item.getPrice()),
