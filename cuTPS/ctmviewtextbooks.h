@@ -3,6 +3,11 @@
 #include <item.h>
 #include <QWidget>
 
+#include "item.h"
+#include "requesthandler.h"
+#include "section.h"
+#include "chapter.h"
+
 namespace Ui {
 class CTMViewTextbooks;
 }
@@ -12,6 +17,7 @@ class CTMViewTextbooks : public QWidget
     Q_OBJECT
 
 public:
+    RequestHandler *reqHandler;
     explicit CTMViewTextbooks(QWidget *parent = 0);
     ~CTMViewTextbooks();
     void setUsername(std::string username);
@@ -27,6 +33,8 @@ private slots:
 private:
     Ui::CTMViewTextbooks *ui;
     std::string username;
+    void updateUI();
+    QList<Item> items;
 };
 
 #endif // CTMVIEWTEXTBOOKS_H

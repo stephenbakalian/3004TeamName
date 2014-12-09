@@ -121,7 +121,7 @@ void Connection::run() {
 
         } else if (request["request"] == QString("StuCourseLoad")){
 
-            qDebug() << "view cart request made";
+            qDebug() << "student course load request made";
             std::string user        = request["user"].toString().toStdString();
 
             QList<Course> regCourse = StudentManager().getEnrolledCourse(user);
@@ -148,7 +148,32 @@ void Connection::run() {
             }
 
             response["itemCount"] = itemCount;
+        } else if (request["request"] == QString("allItem")){
 
+            qDebug() << "all course request made";
+
+            QList<Item> ownedBooks  = CTMManager().getAllItems();
+            int         itemCount   = 0;
+
+            Item bookList[ownedBooks.size()];
+
+            for (int i =0; i < ownedBooks.size(); i++){
+                bookList[i] = ownedBooks.value(i);
+            }
+            qDebug() << ownedBooks.size();
+            for (int i =0; i< ownedBooks.size(); i++){
+                response[concatStrInt("title",itemCount).c_str()]         = QString(bookList[i].getTitle().c_str());
+                response[concatStrInt("author",itemCount).c_str()]        = QString(bookList[i].getAuthor().c_str());
+                response[concatStrInt("description",itemCount).c_str()]   = QString(bookList[i].getDescription().c_str());
+                response[concatStrInt("course",itemCount).c_str()]        = QString(bookList[i].getCourse().c_str());
+                response[concatStrInt("purchasedate",itemCount).c_str()]  = QString(bookList[i].getPurchaseDate().c_str());
+                response[concatStrInt("price",itemCount).c_str()]         = QString(bookList[i].getPrice().c_str());
+                response[concatStrInt("type",itemCount).c_str()]          = QString(bookList[i].getType().c_str());
+                itemCount++;
+                qDebug() << bookList[i].getTitle().c_str();
+            }
+
+            response["itemCount"] = itemCount;
         } else if (request["request"] == QString("checkout")) {
             QList<Item> checkoutBooks;
             int         itemCount   = request["itemCount"].toDouble();
