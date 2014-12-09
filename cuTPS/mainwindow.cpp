@@ -33,14 +33,14 @@ void MainWindow::setViewError(QString errorMessage, int refPage, std::string use
     errorPage->setUsername(username);
     this->setCentralWidget(errorPage);
 }
-void MainWindow::setViewModItems(std::string username){
+void MainWindow::setViewModItems(std::string username,Item showItem){
     ModTextPage = new ModifyTextbook();
     ModTextPage->setUsername(username);
+    ModTextPage->setData(showItem);
     this->setCentralWidget(ModTextPage);
 }
-void MainWindow::setViewModItems(QString args[], std::string username){
+void MainWindow::setViewModItems(std::string username){
     ModTextPage = new ModifyTextbook();
-    ModTextPage->setData(args);
     ModTextPage->setUsername(username);
     this->setCentralWidget(ModTextPage);
 }

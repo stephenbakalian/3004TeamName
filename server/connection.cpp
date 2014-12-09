@@ -26,11 +26,11 @@ void Connection::run() {
         return;
     }
 
-    QByteArray buffer;
-    QJsonDocument rawRequest;
-    QJsonObject request;
-    QJsonDocument rawResponse;
-    QJsonObject response;
+    QByteArray      buffer;
+    QJsonDocument   rawRequest;
+    QJsonObject     request;
+    QJsonDocument   rawResponse;
+    QJsonObject     response;
     QJsonParseError jsonError;
 
     while (socket.waitForReadyRead()) {
@@ -50,22 +50,6 @@ void Connection::run() {
             response["status"] = SharedManager().loginHandler(username, myDB);
 
         } else if (request["request"] == QString("addToCart")){
-/*
-            qDebug() << "add to cart request made";
-
-            int         itemCount   = request["itemCount"].toDouble();
-            std::string user        = request["user"].toString().toStdString();
-
-            std::string itemKey[itemCount];
-
-            for (int i =0; i< itemCount; i++){
-                itemKey[i] = request[concatStrInt("items",i).c_str()].toString().toStdString();
-                qDebug() << itemKey[i].c_str();
-            }
-
-            response["status"] = StudentManager().addToCart(user, itemKey, itemCount, myDB);
-*/
-
             QList<Item> addToCarItems;
             int         itemCount   = request["itemCount"].toDouble();
             std::string user        = request["user"].toString().toStdString();
@@ -227,6 +211,11 @@ void Connection::run() {
             item.setType(request["type"].toString().toStdString());
 
             response["status"] = CTMManager().additem(item, myDB);
+
+        } else if (request["request"] == QString("emptyCart")){
+
+            std::string username    = request["username"].toString().toStdString();
+            response["status"] = StudentManager().emptyCart(username, myDB);
 
         }else {
             response["status"] = -403;

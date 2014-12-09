@@ -69,14 +69,31 @@ void ModifyTextbook::on_pushButton_clicked()
         ((MainWindow*)parentWidget())->setViewError("An unhandeled error occured \n please contant a techincal assiant \n ERROR: " + resp,1, username);
     }
 }
-void ModifyTextbook::setData(QString* info)
+void ModifyTextbook::setData(Item item)
 {
-    ui->type->setCurrentIndex(info[0].toInt());
+    if(item.getType()=="textbook"){
+        ui->type->setCurrentIndex(0);
+    }
+    else if(item.getType()=="section"){
+        //section *temp = (section*)&item;
+        //ui->chapter->setText((QString::fromUtf8(temp->getChapter().c_str())));
+        //ui->textbook->setText((QString::fromUtf8(temp->getTextbookName().c_str())));
+        ui->type->setCurrentIndex(2);
+    }
+    else if(item.getType()=="chapter"){
+        //Chapter *temp = (Chapter*)&item;
+        //ui->chapter->setText((QString::fromUtf8(temp->getTextbookName().c_str())));
+        ui->type->setCurrentIndex(1);
+    }
     updateAvailableFeilds();
-    ui->title->setText(info[1]);
-    ui->description->setText(info[1]);
-    ui->author->setText(info[1]);
 
+    ui->title->setText((QString::fromUtf8(item.getTitle().c_str())));
+    ui->description->setText((QString::fromUtf8(item.getDescription().c_str())));
+    ui->author->setText((QString::fromUtf8(item.getAuthor().c_str())));
+    ui->course->setText((QString::fromUtf8(item.getCourse().c_str())));
+    ui->ISBN->setText((QString::fromUtf8(item.getISBN().c_str())));
+    ui->price->setText((QString::fromUtf8(item.getPrice().c_str())));
+    ui->length->setText((QString::fromUtf8(item.getLength().c_str())));
 }
 void ModifyTextbook::on_pushButton_2_clicked()
 {

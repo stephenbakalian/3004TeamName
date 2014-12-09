@@ -37,6 +37,7 @@ private:
     QList<QSignalMapper*> mapper;
     void updateUI();
     QList<Item> items;
+    Item showItem;
 };
 
 #endif // CTMVIEWTEXTBOOKS_H
