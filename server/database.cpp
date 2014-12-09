@@ -97,7 +97,6 @@ bool DataBase::createTables(){
 
         createStudentCourseRelation("100770196", "COMP 3004");
         createStudentCourseRelation("100770196", "COMP 3005");
-
     }
     return ret;
 }
