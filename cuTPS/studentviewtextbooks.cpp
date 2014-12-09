@@ -55,6 +55,7 @@ void StudentViewTextbooks::on_pushButton_5_clicked()
     for(int x=0; x<items.size();x++){
         if(addToCart.value(x)->isChecked()){
             checkedItems.push_back(items.value(x));
+            addToCart.value(x)->setEnabled(false);
         }
     }
 
@@ -76,7 +77,7 @@ void StudentViewTextbooks::on_pushButton_5_clicked()
         break;
     case 0://Socket Disconect
         break;
-    case 1: //Successfull
+    case 1://Successfull
         break;
     case 2: //Student logs in
         //Add to cart

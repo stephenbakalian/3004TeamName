@@ -3,9 +3,16 @@
 #include <sstream>
 #include "mainwindow.h"
 
+
+
 #define SSTR( x ) dynamic_cast< std::ostringstream & >( \
         ( std::ostringstream() << std::dec << x ) ).str()
-
+/**
+ * Page used to represent and display the users cart
+ *
+ * @brief Cart::Cart
+ * @param parent
+ */
 Cart::Cart(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Cart)
@@ -18,12 +25,12 @@ Cart::~Cart()
 
     delete ui;
 }
-
+//set the username of the user on this page
 void Cart::setUsername(std::string user){
     username=user;
     updateUI();
 }
-
+//this updates the ui, it getsthe list from the server then displays
 void Cart::updateUI(){
 
     reqHandler = new RequestHandler(this);
@@ -35,19 +42,19 @@ void Cart::updateUI(){
     showItems(items);
 
 }
-
+//Logout button is press -> send to login page
 void Cart::on_pushButton_clicked()
 {
     ((MainWindow*)parentWidget())->setViewLogin();
 
 }
-
+//Go to all List button pressed
 void Cart::on_pushButton_2_clicked()
 {
     ((MainWindow*)parentWidget())->setStuViewItems(username);
-#define SSTR( x ) dynamic_cast< std::ostringstream & >( \
-        ( std::ostringstream() << std::dec << x ) ).str()
+
 }
+//called to show a set of items
 void Cart::showItems(QList<Item> list){
    //ui->gridLayout
    int x;
@@ -81,7 +88,7 @@ void Cart::showItems(QList<Item> list){
    ui->totalPrice->setText((SSTR(totalPrice)).c_str());
    ui->scrollAreaWidgetContents->setMinimumHeight(28*list.size()+1);
 }
-
+//purchase cart pressed -> send request to server, update-> return to view list
 void Cart::on_pushButton_3_clicked()
 {
     reqHandler = new RequestHandler(this);
@@ -123,17 +130,15 @@ void Cart::on_pushButton_3_clicked()
 }
 
 
-
+//empty cart => send request to server ->returns to textbook list view
 void Cart::on_pushButton_4_clicked()
 {//empty the cart
     reqHandler = new RequestHandler(this);
 
-    //TODO cart items here
     Item item;
     item.setTitle("test");
     QList<Item> cartItems;
     cartItems.push_back(item);
-    //TODO ends here
 
     int resp = reqHandler->emptyCart(username);
 

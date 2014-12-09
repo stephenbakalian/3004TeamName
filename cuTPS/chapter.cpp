@@ -1,5 +1,9 @@
 #include "chapter.h"
 
+/**
+ * Item type used to store a chapter (part of textbook)
+ *@brief Chapter::Chapter
+ */
 Chapter::Chapter()
 {
 

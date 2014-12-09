@@ -2,7 +2,12 @@
 #include "ui_login.h"
 #include "mainwindow.h"
 
-
+/**
+ * Page used to login
+ *
+ * @brief Login::Login
+ * @param parent
+ */
 Login::Login(QWidget *parent) :
     QWidget(parent), ui(new Ui::Login)
 {
@@ -20,7 +25,7 @@ void Login::on_pushButton_clicked()
 
 }
 
-
+//login is pressed->send request to server->handle response; error,login(student?,ctm?,admin?)
 void Login::on_pushButton_released()
 {
 
