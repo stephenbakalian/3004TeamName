@@ -21,7 +21,8 @@ SOURCES += main.cpp \
     studentmanager.cpp \
     sharedmanager.cpp \
     ctmmanager.cpp \
-    item.cpp
+    item.cpp \
+    course.cpp
 
 HEADERS += \
     server.h \
@@ -29,4 +30,5 @@ HEADERS += \
     studentmanager.h \
     sharedmanager.h \
     ctmmanager.h \
-    item.h
+    item.h \
+    course.h

@@ -5,6 +5,7 @@
 #include <QList>
 
 #include "item.h"
+#include "course.h"
 
 class StudentManager
 {
@@ -17,6 +18,8 @@ public:
     bool removeCartItems(std::string user);
     QList<Item> viewPurchasedItems(std::string studentName);
     QList<Item> viewCart(std::string studentName);
+    QList<Course> getEnrolledCourse(std::string user);
+    QList<Item> getBooksFromCourse(QList<Course> regCourse);
 };
 
 #endif // STUDENTMANAGER_H

@@ -20,6 +20,7 @@ public:
     int checkout(QList<Item> cartItems, std::string username);
     QList<Item> booksOwned(std::string username);
     QList<Item> viewCart(std::string username);
+    QList<Item> getStuCourseLoad(std::string username);
 
     void AddBook(std::string, double, std::string, double, double, std::string);
     void AddCoruse(std::string,std::string,std::string,double,std::string);

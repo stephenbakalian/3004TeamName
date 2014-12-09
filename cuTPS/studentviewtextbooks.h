@@ -32,6 +32,7 @@ private slots:
 private:
     Ui::StudentViewTextbooks *ui;
     std::string username;
+    void updateUI();
 };
 
 #endif // STUDENTVIEWTEXTBOOKS_H

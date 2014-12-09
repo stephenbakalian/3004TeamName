@@ -25,7 +25,8 @@ SOURCES += main.cpp\
     item.cpp \
     admin.cpp \
     section.cpp \
-    chapter.cpp
+    chapter.cpp \
+    course.cpp
 
 HEADERS  += mainwindow.h \
     login.h \
@@ -39,7 +40,8 @@ HEADERS  += mainwindow.h \
     item.h \
     admin.h \
     section.h \
-    chapter.h
+    chapter.h \
+    course.h
 
 FORMS    += mainwindow.ui \
     login.ui \

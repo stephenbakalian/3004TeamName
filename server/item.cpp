@@ -25,14 +25,22 @@ std::string Item::getPrice(){
 std::string Item::getType(){
     return type;
 }
+std::string Item::getLength(){
+    return length;
+}
+std::string Item::getISBN(){
+    return ISBN;
+}
 
 
-
-
-
-
+void Item::setISBN(std::string newISBN){
+    ISBN=newISBN;
+}
 void Item::setTitle(std::string newTitle){
     title=newTitle;
+}
+void Item::setLength(std::string newLength){
+    length=newLength;
 }
 void Item::setAuthor(std::string newAuthor){
     author=newAuthor;

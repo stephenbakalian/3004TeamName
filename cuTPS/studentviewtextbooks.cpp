@@ -8,7 +8,19 @@ StudentViewTextbooks::StudentViewTextbooks(QWidget *parent) :
 {
     ui->setupUi(this);
 
+}
 
+StudentViewTextbooks::~StudentViewTextbooks()
+{
+    delete ui;
+}
+
+void StudentViewTextbooks::setUsername(std::string user){
+    username=user;
+    updateUI();
+}
+
+void StudentViewTextbooks::updateUI(){
     Item *temp1 = new Item();
     Item *temp2 = new Item();
     Item *temp3 = new Item();
@@ -24,22 +36,14 @@ StudentViewTextbooks::StudentViewTextbooks(QWidget *parent) :
     lit.append(*temp2);
     lit.append(*temp3);
     lit.append(*temp4);
-    /**
-      HERE ITEMS SHOULD BE GRABBED FROM SERVER
-     **/
-    showItems(lit);
 
+    reqHandler = new RequestHandler(this);
+    QList<Item> items;
+
+    items = reqHandler->getStuCourseLoad(username);
+
+    showItems(items);
 }
-
-StudentViewTextbooks::~StudentViewTextbooks()
-{
-    delete ui;
-}
-
-void StudentViewTextbooks::setUsername(std::string user){
-    username=user;
-}
-
 
 void StudentViewTextbooks::on_pushButton_6_clicked()
 {
