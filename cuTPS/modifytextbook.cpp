@@ -76,7 +76,7 @@ void ModifyTextbook::on_pushButton_clicked()
     case 0://Socket Disconect
         break;
     case 1: //Successfull
-        ((MainWindow*)parentWidget())->setViewError("Unknown Json Parsing Error",2,username);
+        ((MainWindow*)parentWidget())->setCTMViewItems(username);
         break;
     case 2: //Student logs in
         //Add to cart

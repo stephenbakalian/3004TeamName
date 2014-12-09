@@ -118,6 +118,7 @@ void Cart::on_pushButton_3_clicked()
     case 0://Socket Disconect
         break;
     case 1: //Successfull
+        ((MainWindow*)parentWidget())->setViewOwnedItems(username);
         break;
     case 2: //Student logs in
         //Add to cart

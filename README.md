@@ -11,10 +11,25 @@
   * Stephen Bakalian
 
 ## Instructions
+  * Server
+	Under release folder run MAKEFILE
+ 	* Run server 
 
-  * Run server 
+  * Client
+	Under release folder run MAKEFILE
+	Configure config.h so that it points the server Ip address and open port.
+	* Run client
 
-  * Run client
+	Follow on screen prompts
+
+
+============
+
+## Diagnostics:
+	Admin acount name: admin
+	CTM account name: 100884228
+	Student Account name: 10770196
+
 
 ## Notes
 
