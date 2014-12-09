@@ -115,13 +115,15 @@ int RequestHandler::AddToCart(QList<Item> items, std::string username){
     }
     qDebug() << items.size();
     for (int i =0; i< items.size(); i++){
-        request[concatStrInt("title",i).c_str()]   = QString(bookList[i].getTitle().c_str());
+        request[concatStrInt("title",i).c_str()]                 = QString(bookList[i].getTitle().c_str());
         request[concatStrInt("author",itemCount).c_str()]        = QString(bookList[i].getAuthor().c_str());
         request[concatStrInt("description",itemCount).c_str()]   = QString(bookList[i].getDescription().c_str());
         request[concatStrInt("course",itemCount).c_str()]        = QString(bookList[i].getCourse().c_str());
         request[concatStrInt("purchasedate",itemCount).c_str()]  = QString(bookList[i].getPurchaseDate().c_str());
         request[concatStrInt("price",itemCount).c_str()]         = QString(bookList[i].getPrice().c_str());
         request[concatStrInt("type",itemCount).c_str()]          = QString(bookList[i].getType().c_str());
+        request[concatStrInt("isbn",itemCount).c_str()]          = QString(bookList[i].getISBN().c_str());
+        request[concatStrInt("length",itemCount).c_str()]        = QString(bookList[i].getLength().c_str());
         itemCount++;
     }
 
@@ -216,6 +218,8 @@ QList<Item> RequestHandler::booksOwned(std::string username){
             item.setPurchaseDate(response[concatStrInt("purchasedate",i).c_str()].toString().toStdString());
             item.setTitle(response[concatStrInt("title",i).c_str()].toString().toStdString());
             item.setType(response[concatStrInt("type",itemCount).c_str()].toString().toStdString());
+            item.setISBN(response[concatStrInt("isbn",itemCount).c_str()].toString().toStdString());
+            item.setLength(response[concatStrInt("length",itemCount).c_str()].toString().toStdString());
             ownedBooks.push_back(item);
             qDebug() << ownedBooks.value(i).getTitle().c_str();
         }
@@ -284,6 +288,8 @@ QList<Item> RequestHandler::viewCart(std::string username){
             item.setPurchaseDate(response[concatStrInt("purchasedate",i).c_str()].toString().toStdString());
             item.setTitle(response[concatStrInt("title",i).c_str()].toString().toStdString());
             item.setType(response[concatStrInt("type",i).c_str()].toString().toStdString());
+            item.setISBN(response[concatStrInt("isbn",i).c_str()].toString().toStdString());
+            item.setLength(response[concatStrInt("length",i).c_str()].toString().toStdString());
             ownedBooks.push_back(item);
             qDebug() << ownedBooks.value(i).getTitle().c_str();
         }
@@ -327,6 +333,8 @@ int RequestHandler::checkout(QList<Item> cartItems, std::string username){
         request[concatStrInt("purchasedate",itemCount).c_str()]  = QString(bookList[i].getPurchaseDate().c_str());
         request[concatStrInt("price",itemCount).c_str()]         = QString(bookList[i].getPrice().c_str());
         request[concatStrInt("type",itemCount).c_str()]          = QString(bookList[i].getType().c_str());
+        request[concatStrInt("isbn",itemCount).c_str()]         = QString(bookList[i].getISBN().c_str());
+        request[concatStrInt("length",itemCount).c_str()]          = QString(bookList[i].getLength().c_str());
         itemCount++;
     }
     qDebug() << itemCount;
@@ -389,6 +397,8 @@ int RequestHandler::addItem(Item item){
     request["purchasedate"]  = QString(item.getPurchaseDate().c_str());
     request["price"]         = QString(item.getPrice().c_str());
     request["type"]          = QString(item.getType().c_str());
+    request["isbn"]         = QString(item.getISBN().c_str());
+    request["length"]          = QString(item.getLength().c_str());
     rawRequest.setObject(request);
 
     double req=-10;
@@ -481,6 +491,8 @@ QList<Item> RequestHandler::getStuCourseLoad(std::string username){
             item.setPurchaseDate(response[concatStrInt("purchasedate",i).c_str()].toString().toStdString());
             item.setTitle(response[concatStrInt("title",i).c_str()].toString().toStdString());
             item.setType(response[concatStrInt("type",i).c_str()].toString().toStdString());
+            item.setISBN(response[concatStrInt("isbn",i).c_str()].toString().toStdString());
+            item.setLength(response[concatStrInt("length",i).c_str()].toString().toStdString());
             ownedBooks.push_back(item);
             qDebug() << ownedBooks.value(i).getTitle().c_str();
         }
@@ -548,6 +560,8 @@ QList<Item> RequestHandler::getAllItems(){
             item.setPurchaseDate(response[concatStrInt("purchasedate",i).c_str()].toString().toStdString());
             item.setTitle(response[concatStrInt("title",i).c_str()].toString().toStdString());
             item.setType(response[concatStrInt("type",i).c_str()].toString().toStdString());
+            item.setISBN(response[concatStrInt("isbn",i).c_str()].toString().toStdString());
+            item.setLength(response[concatStrInt("length",i).c_str()].toString().toStdString());
             ownedBooks.push_back(item);
             qDebug() << ownedBooks.value(i).getTitle().c_str();
         }

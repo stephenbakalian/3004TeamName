@@ -64,6 +64,8 @@ void Connection::run() {
                 item.setPurchaseDate(response[concatStrInt("purchasedate",i).c_str()].toString().toStdString());
                 item.setTitle(response[concatStrInt("title",i).c_str()].toString().toStdString());
                 item.setType(response[concatStrInt("type",i).c_str()].toString().toStdString());
+                item.setISBN(response[concatStrInt("isbn",i).c_str()].toString().toStdString());
+                item.setLength(response[concatStrInt("length",i).c_str()].toString().toStdString());
                 addToCarItems.push_back(item);
                 qDebug() << addToCarItems.value(i).getTitle().c_str();
             }
@@ -90,6 +92,8 @@ void Connection::run() {
                 response[concatStrInt("purchasedate",itemCount).c_str()]  = QString(bookList[i].getPurchaseDate().c_str());
                 response[concatStrInt("price",itemCount).c_str()]         = QString(bookList[i].getPrice().c_str());
                 response[concatStrInt("type",itemCount).c_str()]          = QString(bookList[i].getType().c_str());
+                response[concatStrInt("isbn",itemCount).c_str()]          = QString(bookList[i].getISBN().c_str());
+                response[concatStrInt("length",itemCount).c_str()]        = QString(bookList[i].getLength().c_str());
                 itemCount++;
             //    qDebug() << bookList[i];
             }
@@ -117,6 +121,8 @@ void Connection::run() {
                 response[concatStrInt("purchasedate",itemCount).c_str()]  = QString(bookList[i].getPurchaseDate().c_str());
                 response[concatStrInt("price",itemCount).c_str()]         = QString(bookList[i].getPrice().c_str());
                 response[concatStrInt("type",itemCount).c_str()]          = QString(bookList[i].getType().c_str());
+                response[concatStrInt("isbn",itemCount).c_str()]         = QString(bookList[i].getISBN().c_str());
+                response[concatStrInt("length",itemCount).c_str()]          = QString(bookList[i].getLength().c_str());
                 itemCount++;
                 qDebug() << bookList[i].getTitle().c_str();
             }
@@ -147,6 +153,8 @@ void Connection::run() {
                 response[concatStrInt("purchasedate",itemCount).c_str()]  = QString(bookList[i].getPurchaseDate().c_str());
                 response[concatStrInt("price",itemCount).c_str()]         = QString(bookList[i].getPrice().c_str());
                 response[concatStrInt("type",itemCount).c_str()]          = QString(bookList[i].getType().c_str());
+                response[concatStrInt("isbn",itemCount).c_str()]         = QString(bookList[i].getISBN().c_str());
+                response[concatStrInt("length",itemCount).c_str()]          = QString(bookList[i].getLength().c_str());
                 itemCount++;
                 qDebug() << bookList[i].getTitle().c_str();
             }
@@ -173,6 +181,8 @@ void Connection::run() {
                 response[concatStrInt("purchasedate",itemCount).c_str()]  = QString(bookList[i].getPurchaseDate().c_str());
                 response[concatStrInt("price",itemCount).c_str()]         = QString(bookList[i].getPrice().c_str());
                 response[concatStrInt("type",itemCount).c_str()]          = QString(bookList[i].getType().c_str());
+                response[concatStrInt("isbn",itemCount).c_str()]          = QString(bookList[i].getISBN().c_str());
+                response[concatStrInt("length",itemCount).c_str()]        = QString(bookList[i].getLength().c_str());
                 itemCount++;
                 qDebug() << bookList[i].getTitle().c_str();
             }
@@ -193,6 +203,8 @@ void Connection::run() {
                 item.setPurchaseDate(response[concatStrInt("purchasedate",i).c_str()].toString().toStdString());
                 item.setTitle(response[concatStrInt("title",i).c_str()].toString().toStdString());
                 item.setType(response[concatStrInt("type",i).c_str()].toString().toStdString());
+                item.setISBN(response[concatStrInt("isbn",i).c_str()].toString().toStdString());
+                item.setLength(response[concatStrInt("length",i).c_str()].toString().toStdString());
                 checkoutBooks.push_back(item);
                 qDebug() << checkoutBooks.value(i).getTitle().c_str();
             }
@@ -209,6 +221,8 @@ void Connection::run() {
             item.setPurchaseDate(request["purchasedate"].toString().toStdString());
             item.setPrice(request["price"].toString().toStdString());
             item.setType(request["type"].toString().toStdString());
+            item.setISBN(request["isbn"].toString().toStdString());
+            item.setLength(request["length"].toString().toStdString());
 
             response["status"] = CTMManager().additem(item, myDB);
 

@@ -52,6 +52,7 @@ QList<Item> StudentManager::viewPurchasedItems(std::string studentName) {
 
 QList<Item> StudentManager::viewCart(std::string studentName, DataBase *myDB) {
 
+
     QList<Item> item = myDB->getCart(QString::fromStdString(studentName));
     QList<Item>::iterator i;
     QList<Item>::iterator c;
