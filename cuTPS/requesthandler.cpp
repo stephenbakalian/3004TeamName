@@ -684,6 +684,59 @@ QList<Item> RequestHandler::getAllItems(){
     return ownedBooks;
 }
 
+int RequestHandler::emptyCart(std::string username){
+    QByteArray buffer;
+    QJsonDocument rawRequest;
+    QJsonObject request;
+    QJsonDocument rawResponse;
+    QJsonObject response;
+    QJsonParseError jsonError;
+
+    /* Connect to the server. */
+    init();
+
+    /* Generate the request object. */
+    request["request"] = QString("emptyCart");
+    request["username"] = QString(username.c_str());
+    rawRequest.setObject(request);
+
+
+    double req=-10;
+    socket = new QTcpSocket(this);
+    socket->connectToHost(SERVER, PORT);
+
+    if(socket->waitForConnected(3000))
+    {
+        //qDebug() << "Connected!";
+
+        // send
+        socket->write(rawRequest.toJson());
+        socket->waitForBytesWritten(1000);
+        socket->waitForReadyRead(3000);
+        //qDebug() << "Reading: " << socket->bytesAvailable();
+
+        buffer= (socket->readAll());
+        //qDebug() << "Reading: " <<buffer;
+
+        rawResponse = QJsonDocument::fromJson(buffer, &jsonError);
+
+        if (jsonError.error) {
+            return -2;
+        }
+
+        response = rawResponse.object();
+        return (response["status"].toDouble());
+        socket->close();
+    }
+    else
+    {
+        //qDebug() << "No Connecion";
+        return -4;
+    }
+    qDebug() << req;
+    return req;
+}
+
 void RequestHandler::socketChanged(QAbstractSocket::SocketState state) {
     switch(state) {
     case QAbstractSocket::UnconnectedState:

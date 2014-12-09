@@ -18,6 +18,7 @@ public:
     int AddToCart(QList<Item> items, std::string username);
     int addItem(Item item);
     int checkout(QList<Item> cartItems, std::string username);
+    int emptyCart(std::string username);
     QList<Item> booksOwned(std::string username);
     QList<Item> viewCart(std::string username);
     QList<Item> getStuCourseLoad(std::string username);
